@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -29,13 +30,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'admin'])->name('admin');
     Route::get('/home', [App\Http\Controllers\AdminHomeController::class, 'getHomeData'])->name('adminHome');
+    Route::resource('/user', UserController::class);
+    // Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('index');
 });
 
 
 Route::prefix('user')->middleware(['auth', 'user'])->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'user'])->name('user');
-    
-    
+    Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index'])->name('blog');
 });
 
 

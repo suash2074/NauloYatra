@@ -2,7 +2,7 @@
     <form action="{{ route('register') }}" method="POST" class="register-form">
         @csrf
 
-        <a href="#"><img src="images/logo deg.png" width="130px" alt=""></a>
+        <a href="#"><img src={{asset("images/logo.png")}} width="130px" alt=""></a>
         <p class="title"><u>Register for new membership</u></p>
         @include('include.flash')
 

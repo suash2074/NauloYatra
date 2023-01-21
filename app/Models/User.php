@@ -18,7 +18,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'full_name',
+        'first_name',
+        'last_name',
         'username',
         'email',
         'password',
@@ -48,7 +49,8 @@ class User extends Authenticatable
     public function getRules($act = 'add')
     {
         $rules = [
-            'full_name' => 'required|string',
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
             'username' => 'required|string',
             'phone' => 'required|string',
             'address' => 'required|string',

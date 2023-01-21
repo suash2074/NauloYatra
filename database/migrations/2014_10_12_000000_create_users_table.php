@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('full_name');
+            $table->string('first_name');
+            $table->string('last_name');
             $table->string('username');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -26,7 +27,7 @@ return new class extends Migration
             $table->enum('role',['Admin','User','Guide'])->default('User');
             $table->enum('availability',['Available','Not Available'])->nullable();
             $table->enum('status',['Active','Inactive'])->default('Active');
-            $table->rememberToken();
+            // $table->rememberToken();
             $table->timestamps();
         });
     }

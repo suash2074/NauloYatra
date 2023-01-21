@@ -3,6 +3,13 @@
 
 <body>
     @include('include.navbar')
+
+    <div class="media-icons" id="mediaIcons">
+        <a href="#"><i class="uil uil-facebook-f"></i></a>
+        <a href="#"><i class="uil uil-instagram"></i></a>
+        <a href="#"><i class="uil uil-twitter"></i></a>
+    </div>
+
     <div class="homeBackground">
         <img src="images/background1.png" id="backgroundImg1">
         <h2 id="logoText">Naulo Yatra</h2>
@@ -230,3 +237,4 @@
     </div>
 
     @include('include.footer')
+    
