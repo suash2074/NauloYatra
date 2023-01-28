@@ -43,6 +43,17 @@
             application: "argon-dashboard-free",
         });
 </script>
+
+<script>
+    function checkSelectedValue() {
+        var selectedValue = document.getElementById("role").value;
+        if (selectedValue == "guide") {
+            document.getElementById("guide").style.display = "block";
+        } else {
+            document.getElementById("guide").style.display = "none";
+        }
+    }
+</script>
 </body>
 
 </html>

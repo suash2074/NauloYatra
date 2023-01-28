@@ -19,12 +19,13 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('username');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            // $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('address');
             $table->string('phone');
             $table->string('photo')->nullable();
-            $table->enum('role',['Admin','User','Guide'])->default('User');
+            $table->integer('cost_per_day')->nullable();
+            $table->enum('role',['admin','user','guide'])->default('user');
             $table->enum('availability',['Available','Not Available'])->nullable();
             $table->enum('status',['Active','Inactive'])->default('Active');
             // $table->rememberToken();

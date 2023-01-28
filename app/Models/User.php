@@ -24,7 +24,12 @@ class User extends Authenticatable
         'email',
         'password',
         'address',
-        'phone'
+        'phone',
+        'photo',
+        'availability',
+        'role',
+        'cost_per_day',
+        'status'
     ];
 
     /**
@@ -56,7 +61,8 @@ class User extends Authenticatable
             'address' => 'required|string',
             'email' => 'required|string',
             'password' => 'required|string',
-            'photo' => 'nullable|image|max:5120'
+            'photo' => 'nullable|image|max:5120',
+            'cost_per_day' => 'nullable|integer'
         ];
 
         if ($act == 'update') {

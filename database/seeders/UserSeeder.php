@@ -23,10 +23,10 @@ class UserSeeder extends Seeder
                 'last_name' => 'Rajbhandari',
                 'username' => 'Swas',
                 'address' => 'Pokhara',
-                'phone' => '9827100545',
+                'phone' => 9827100545,
                 'email' => 'suash.rb@gmail.com',
                 'password' => Hash::make('suash123'),
-                'role' => 'Admin',
+                'role' => 'admin',
                 'status' => 'Active'
             ],
 
@@ -35,10 +35,10 @@ class UserSeeder extends Seeder
                 'last_name' => '1',
                 'username' => 'Test1',
                 'address' => 'Pokhara',
-                'phone' => '9827100545',
+                'phone' => 9827100545,
                 'email' => 'testuser@gmail.com',
                 'password' => Hash::make('suash123'),
-                'role' => 'User',
+                'role' => 'user',
                 'status' => 'Active'
             ],
         ];

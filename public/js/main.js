@@ -119,7 +119,7 @@
         }
         else {
             mediaIcons.style.display = "flex";
-        }                                                                                                                                                                          
+        }
         function startFromTop() {
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
@@ -178,5 +178,15 @@
         }
 
     });
+
+
+    // function checkSelectedValue() {
+    //     var selectedValue = document.getElementById("role").value;
+    //     if (selectedValue == "guide") {
+    //         document.getElementById("guide_div").style.display = "block";
+    //     } else {
+    //         document.getElementById("guide_div").style.display = "none";
+    //     }
+    // }
 
 })()

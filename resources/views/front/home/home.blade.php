@@ -179,7 +179,6 @@
                             </div>
                         </div>
 
-
                         <div class="col-lg-4 col-md-6 news-item filter-recently">
                             <div class="news-wrap">
                                 <img src="images/trek4.jfif" class="img-fluid" alt="">
