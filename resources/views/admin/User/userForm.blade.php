@@ -160,34 +160,38 @@
                     <div class="row d-flex justify-content-between">
                         <div class="col-8 p-0" id="guide" style="display: none;">
                             <div class="d-flex justify-content-between">
-                            <div class="form-group col-5">
-                                <label for="example-tel-input" class="form-control-label">Cost Per Day</label>
-                                <input class="form-control" type="number" placeholder="Rs 1600" value="{{ @$user_data->cost_per_day }}"
-                                    name="cost_per_day" id="example-tel-input">
-                                @error('cost_per_day')
-                                    <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                                @enderror
-                            </div>
+                                <div class="form-group col-5">
+                                    <label for="example-tel-input" class="form-control-label">Cost Per Day</label>
+                                    <input class="form-control" type="number" placeholder="Rs 1600"
+                                        value="{{ @$user_data->cost_per_day }}" name="cost_per_day"
+                                        id="example-tel-input">
+                                    @error('cost_per_day')
+                                        <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                                    @enderror
+                                </div>
 
-                            <div class="form-group col-5">
-                                <label for="example-password-input" class="form-control-label">Availability</label>
-                                <select class="form-control" name="availability" id="availability">
-                                    <option {{ @$user_data->role == 'Not Available' ? 'selected' : '' }}>Not Available
-                                    </option>
-                                    <option {{ @$user_data->role == 'Available' ? 'selected' : '' }}>Available</option>
-                                </select>
-                                @error('availability')
-                                    <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                                @enderror
+                                <div class="form-group col-5">
+                                    <label for="example-password-input"
+                                        class="form-control-label">Availability</label>
+                                    <select class="form-control" name="availability" id="availability">
+                                        <option {{ @$user_data->availability == 'Not Available' ? 'selected' : '' }}>Not
+                                            Available
+                                        </option>
+                                        <option {{ @$user_data->availability == 'Available' ? 'selected' : '' }}>Available
+                                        </option>
+                                    </select>
+                                    @error('availability')
+                                        <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
                         </div>
 
                         <div class="form-group col-3">
                             <label for="example-password-input" class="form-control-label">Status</label>
                             <select class="form-control" name="status" id="status">
-                                <option {{ @$user_data->role == 'Active' ? 'selected' : '' }}>Active</option>
-                                <option {{ @$user_data->role == 'Inactive' ? 'selected' : '' }}>Inactive</option>
+                                <option {{ @$user_data->status == 'Active' ? 'selected' : '' }}>Active</option>
+                                <option {{ @$user_data->status == 'Inactive' ? 'selected' : '' }}>Inactive</option>
                             </select>
                             @error('role')
                                 <span class="invalid-feedback" role="alert">{{ $message }}</span>
@@ -221,14 +225,4 @@
             </div>
         </div>
     </div>
-    <script>
-        function checkSelectedValue() {
-            var selectedValue = document.getElementById("role").value;
-            if (selectedValue == "guide") {
-                document.getElementById("guide").style.display = "block";
-            } else {
-                document.getElementById("guide").style.display = "none";
-            }
-        }
-    </script>
     @include('admin.adminInclude.footer')

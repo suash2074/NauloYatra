@@ -41,6 +41,18 @@ class UserSeeder extends Seeder
                 'role' => 'user',
                 'status' => 'Active'
             ],
+
+            [
+                'first_name' => 'Batak',
+                'last_name' => 'Lal',
+                'username' => 'Batte',
+                'address' => 'Pokhara',
+                'phone' => 9827100545,
+                'email' => 'batak.guide@gmail.com',
+                'password' => Hash::make('batak123'),
+                'role' => 'guide',
+                'status' => 'Active'
+            ],
         ];
         DB::table('users')->insert($user_data);
 

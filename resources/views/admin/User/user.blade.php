@@ -58,7 +58,7 @@
 
                                                     <td>{{ $user->email }}</td>
 
-                                                    <td>{{ $user->role }}</td>
+                                                    <td style="text-transform:capitalize">{{ $user->role }}</td>
 
                                                     <td>{{ $user->status }}</td>
 
@@ -72,7 +72,7 @@
                                                             <div
                                                                 class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                                 <a class="dropdown-item" href="{{ route('user.edit', $user->id) }}">Edit</a>
-                                                                <a class="dropdown-item" href="#">View</a>
+                                                                <a class="dropdown-item" href="{{ route('user.show', $user->id)}}">View</a>
                                                                 <form action="{{ route('user.destroy', $user->id) }}" method="post">
                                                                     @method('delete')
                                                                     @csrf

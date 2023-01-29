@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\TrekContreller;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'admin'])->name('admin');
     Route::get('/home', [App\Http\Controllers\AdminHomeController::class, 'getHomeData'])->name('adminHome');
     Route::resource('/user', UserController::class);
+    Route::resource('/trek', TrekContreller::class);
     // Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('index');
 });
 
@@ -40,4 +42,6 @@ Route::prefix('user')->middleware(['auth', 'user'])->group(function () {
     Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index'])->name('blog');
 });
 
-
+Route::prefix('guide')->middleware(['auth', 'guide'])->group(function () {
+    
+});

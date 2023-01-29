@@ -83,12 +83,13 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        $test = $this->user->orderBy('id', 'DESC')->get();
         $this->user = $this->user->find($id);
         if (!$this->user) {
             return redirect()->route('user.index');
         }
 
-        return view('admin.User.userView')->with('user_data', $this->user);
+        return view('admin.User.userProfileView')->with('user_data', $this->user)->with('user_datas', $test);
     }
 
     /**
@@ -117,7 +118,39 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->user = $this->user->find($id);
+        if (!$this->user) {
+            // notify()->error('This user doesnot exists');
+            redirect()->route('user.index');
+        }
+        $rules = $this->user->getRules('update');
+        $request->validate($rules);
+        $data = $request->except(['_token', 'photo']);
+        if ($request->has('photo')) {
+            $photo = $request->photo;
+            $file_name = uploadImage($photo, 'user', '125x125');
+            if ($file_name) {
+                if ($this->user->photo != null && file_exists(public_path() . '/uploads/user/' . $this->user->photo)) {
+                    unlink(public_path() . '/uploads/user/' . $this->user->photo);
+                    unlink(public_path() . '/uploads/user/Thumb-' . $this->user->photo);
+                }
+                $data['photo'] = $file_name;
+            }
+        }
+        if ($data['password'] != $request->password) {
+
+            $data['password'] = Hash::make($request->password);
+        }
+
+        $this->user->fill($data);
+
+        $status = $this->user->save();
+        // if($status){
+        //     notify()->success('User updated successfully');
+        // }else{
+        //     notify()->error('Sorry! There was problem in updating user');
+        // }
+        return redirect()->route('user.index');
     }
 
     /**
