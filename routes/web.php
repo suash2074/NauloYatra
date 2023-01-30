@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutSectionContreller;
 use App\Http\Controllers\Admin\TrekContreller;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -33,6 +34,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/home', [App\Http\Controllers\AdminHomeController::class, 'getHomeData'])->name('adminHome');
     Route::resource('/user', UserController::class);
     Route::resource('/trek', TrekContreller::class);
+    Route::resource('/about', AboutSectionContreller::class);
     // Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('index');
 });
 

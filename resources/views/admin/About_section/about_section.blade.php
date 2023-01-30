@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <!-- Brand -->
             <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"
-                href="{{ route('trek.index') }}">Treks</a>
+                href="{{ route('about.index') }}">About treks</a>
 
             @include('admin.adminInclude.topNav')
 
@@ -19,9 +19,9 @@
                     <div class="col">
                         <div class="card shadow">
                             <div class="card-header border-0" style="display:flex; justify-content:space-between">
-                                <h3 class="mb-0">Trek table</h3>
-                                <a class="nav-link " href="{{ route('trek.create') }}">
-                                    <i class="ni ni-fat-add text-primary"></i> Trek
+                                <h3 class="mb-0">About trek table</h3>
+                                <a class="nav-link " href="{{ route('about.create') }}">
+                                    <i class="ni ni-fat-add text-primary"></i> About trek
                                 </a>
                             </div>
                             <div class="table-responsive">
@@ -29,29 +29,26 @@
                                     <thead class="thead-light">
                                         <tr>
                                             <th scope="col">No.</th>
-                                            <th scope="col">User</th>
-                                            <th scope="col">Trek name</th>
-                                            <th scope="col">Trek type</th>
-                                            <th scope="col">Best season</th>
+                                            <th scope="col">Trek Name</th>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Description</th>
                                             <th scope="col">Status</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if (isset($trek_data))
-                                            @foreach ($trek_data as $treks => $trek)
+                                        @if (isset($about_section_data))
+                                            @foreach ($about_section_data as $abouts_trek => $about_trek)
                                                 <tr>
-                                                    <td>{{ $treks + 1 }}</td>
+                                                    <td>{{ $abouts_trek + 1 }}</td>
 
-                                                    <td>{{ $trek->user_id }}</td>
+                                                    <td>{{ $about_trek->trek_id }}</td>
 
-                                                    <td>{{ $trek->trek_name }}</td>
+                                                    <td>{{ $about_trek->title }}</td>
 
-                                                    <td>{{ $trek->trek_type }}</td>
+                                                    <td>{{ $about_trek->description }}</td>
 
-                                                    <td>{{ $trek->best_season }}</td>
-
-                                                    <td>{{ $trek->status }}</td>
+                                                    <td>{{ $about_trek->status }}</td>
 
                                                     <td class="text-right d-flex">
                                                         <div class="dropdown">
@@ -63,10 +60,10 @@
                                                             <div
                                                                 class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                                 <a class="dropdown-item"
-                                                                    href="{{ route('trek.edit', $trek->id) }}">Edit</a>
+                                                                    href="{{ route('about.edit', $about_trek->id) }}">Edit</a>
                                                                 <a class="dropdown-item"
-                                                                    href="{{ route('trek.show', $trek->id) }}">View</a>
-                                                                <form action="{{ route('trek.destroy', $trek->id) }}"
+                                                                    href="{{ route('about.show', $about_trek->id) }}">View</a>
+                                                                <form action="{{ route('about.destroy', $about_trek->id) }}"
                                                                     method="post">
                                                                     @method('delete')
                                                                     @csrf

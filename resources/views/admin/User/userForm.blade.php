@@ -191,7 +191,7 @@
                                 <option {{ @$user_data->status == 'Active' ? 'selected' : '' }}>Active</option>
                                 <option {{ @$user_data->status == 'Inactive' ? 'selected' : '' }}>Inactive</option>
                             </select>
-                            @error('role')
+                            @error('status')
                                 <span class="invalid-feedback" role="alert">{{ $message }}</span>
                             @enderror
                         </div>

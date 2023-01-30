@@ -111,6 +111,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link " href="{{ route('about.index') }}">
+                        <i class="ni ni-square-pin text-green"></i> About Trek
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link " href="./examples/icons.html">
                         <i class="ni ni-planet text-blue"></i> Icons
                     </a>

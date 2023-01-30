@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('trek_id')->nullable();
             $table->string('title')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->string('image')->nullable();
-            $table->string('note')->nullable();
+            $table->text('note')->nullable();
             $table->enum('status',['Active', 'Inactive'])->default('Active');
             $table->foreign('trek_id')->references('id')->on('treks')->onDelete('set null');
             $table->timestamps();

@@ -47,7 +47,7 @@ class TrekContreller extends Controller
     {
         $rules = $this->trek->getRules();
         $request->validate($rules);
-        $data = $request->except(['_token', 'photo']);
+        $data = $request->except(['_token', 'background_image']);
         if ($request->has('background_image')) {
             $photo = $request->background_image;
             $file_name = uploadImage($photo, 'trek', '125x125');
@@ -115,16 +115,16 @@ class TrekContreller extends Controller
         }
         $rules = $this->trek->getRules('update');
         $request->validate($rules);
-        $data = $request->except(['_token', 'photo']);
-        if ($request->has('photo')) {
-            $photo = $request->photo;
+        $data = $request->except(['_token', 'background_image']);
+        if ($request->has('background_image')) {
+            $photo = $request->background_image;
             $file_name = uploadImage($photo, 'trek', '125x125');
             if ($file_name) {
-                if ($this->trek->photo != null && file_exists(public_path() . '/uploads/trek/' . $this->trek->photo)) {
+                if ($this->trek->background_image != null && file_exists(public_path() . '/uploads/trek/' . $this->trek->photo)) {
                     unlink(public_path() . '/uploads/trek/' . $this->trek->photo);
                     unlink(public_path() . '/uploads/trek/Thumb-' . $this->trek->photo);
                 }
-                $data['photo'] = $file_name;
+                $data['background_image'] = $file_name;
             }
         }
         $this->trek->fill($data);
@@ -152,7 +152,7 @@ class TrekContreller extends Controller
             return redirect()->route('trek.index');
         }
         $del = $this->trek->delete();
-        $photo = $this->trek->photo;
+        $photo = $this->trek->background_image;
         if ($del) {
             if ($photo != null && file_exists(public_path() . '/uploads/trek/' . $photo)) {
                 unlink(public_path() . '/uploads/trek/' . $photo);

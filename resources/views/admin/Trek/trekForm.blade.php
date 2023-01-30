@@ -46,7 +46,7 @@
                             <label for="trek_name" class="form-control-label">Trek Name <span
                                     class="text-danger">*</span></label>
                             <input class="form-control" type="text" placeholder="Name of the trek" name="trek_name"
-                                id="example-text-input" value="{{ @$trek_data->trek_name }}" required>
+                                id="trek_name" value="{{ @$trek_data->trek_name }}" required>
                             @error('trek_name')
                                 <span class="invalid-feedback" role="alert">{{ $message }}</span>
                             @enderror
@@ -70,7 +70,7 @@
                             <input class="form-control" type="file" value="" name="background_image"
                                 id="background_image">
                             <div class="col-md-4">
-                                <img src={{ asset('uploads/user/Thumb-' . @$trek_data->background_image) }}
+                                <img src={{ asset('uploads/trek/Thumb-' . @$trek_data->background_image) }}
                                     alt="" class="img img-fluid img-responsive" style="max-width: 10rem">
                             </div>
                             @error('background_image')
@@ -160,7 +160,7 @@
                                 <option {{ @$trek_data->status == 'Active' ? 'selected' : '' }}>Active</option>
                                 <option {{ @$trek_data->status == 'Inactive' ? 'selected' : '' }}>Inactive</option>
                             </select>
-                            @error('role')
+                            @error('status')
                                 <span class="invalid-feedback" role="alert">{{ $message }}</span>
                             @enderror
                         </div>
