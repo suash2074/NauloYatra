@@ -22,8 +22,6 @@
             <div class="card shadow">
                 <div class="card-header border-0" style="display:flex; justify-content:space-between">
                     <h3 class="mb-0">{{ isset($user_data) ? 'User update Form' : 'User Form' }}</h3>
-                    {{-- <a href="{{ route('user.index') }}">
-                        <i class="ni ni-bold-left" style="margin-top: 8px"></i>Back</a> --}}
                     <a class="nav-link " href="{{ route('user.index') }}">
                         <i class="ni ni-bold-left text-orange"></i> Back
                     </a>
@@ -164,7 +162,7 @@
                                     <label for="example-tel-input" class="form-control-label">Cost Per Day</label>
                                     <input class="form-control" type="number" placeholder="Rs 1600"
                                         value="{{ @$user_data->cost_per_day }}" name="cost_per_day"
-                                        id="example-tel-input">
+                                        id="cost_per_day">
                                     @error('cost_per_day')
                                         <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                     @enderror

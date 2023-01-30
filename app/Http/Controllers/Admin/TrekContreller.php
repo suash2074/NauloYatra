@@ -3,10 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Trek;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TrekContreller extends Controller
 {
+
+    protected $trek = null;
+    public function __construct(Trek $trek)
+    {
+        $this->trek = $trek;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,8 @@ class TrekContreller extends Controller
      */
     public function index()
     {
-        return view('admin.Trek.trek');
+        $this->trek = $this->trek->orderby('id','DESC')->with('user_info')->get();
+        return view('admin.Trek.trek')->with('trek_data', $this->trek);
     }
 
     /**
@@ -24,7 +33,8 @@ class TrekContreller extends Controller
      */
     public function create()
     {
-        //
+        $user_info = User::orderBy('id', 'DESC')->pluck('username', 'id');
+        return view('admin.Trek.trekForm')->with('user_info', $user_info);
     }
 
     /**
@@ -35,7 +45,25 @@ class TrekContreller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = $this->trek->getRules();
+        $request->validate($rules);
+        $data = $request->except(['_token', 'photo']);
+        if ($request->has('background_image')) {
+            $photo = $request->background_image;
+            $file_name = uploadImage($photo, 'trek', '125x125');
+            if ($file_name) {
+                $data['background_image'] = $file_name;
+            }
+        }
+        $this->trek->fill($data);
+        $status = $this->trek->save();
+        // if($status){
+        //     notify()->success('Package added successfully');
+        // }else{
+        //     notify()->error('Sorry! There was problem in adding package');
+        // }
+        
+        return redirect()->route('trek.index');
     }
 
     /**
@@ -46,7 +74,12 @@ class TrekContreller extends Controller
      */
     public function show($id)
     {
-        //
+        $this->trek = $this->trek->find($id);
+        if (!$this->trek) {
+            return redirect()->route('trek.index');
+        }
+
+        return view('admin.Trek.trekView')->with('trek_data', $this->trek);
     }
 
     /**
@@ -57,7 +90,13 @@ class TrekContreller extends Controller
      */
     public function edit($id)
     {
-        //
+        $this->trek = $this->trek->find($id);
+        if(!$this->trek){
+            // notify()->error('This trek doesnot exists');
+            return redirect()->route('trek.index');
+        }
+        return view('admin.Trek.trekForm')
+        ->with('trek_data', $this->trek);
     }
 
     /**
@@ -69,7 +108,34 @@ class TrekContreller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->trek = $this->trek->find($id);
+        if (!$this->trek) {
+            // notify()->error('This trek doesnot exists');
+            redirect()->route('trek.index');
+        }
+        $rules = $this->trek->getRules('update');
+        $request->validate($rules);
+        $data = $request->except(['_token', 'photo']);
+        if ($request->has('photo')) {
+            $photo = $request->photo;
+            $file_name = uploadImage($photo, 'trek', '125x125');
+            if ($file_name) {
+                if ($this->trek->photo != null && file_exists(public_path() . '/uploads/trek/' . $this->trek->photo)) {
+                    unlink(public_path() . '/uploads/trek/' . $this->trek->photo);
+                    unlink(public_path() . '/uploads/trek/Thumb-' . $this->trek->photo);
+                }
+                $data['photo'] = $file_name;
+            }
+        }
+        $this->trek->fill($data);
+
+        $status = $this->trek->save();
+        // if($status){
+        //     notify()->success('trek updated successfully');
+        // }else{
+        //     notify()->error('Sorry! There was problem in updating trek');
+        // }
+        return redirect()->route('trek.index');
     }
 
     /**
@@ -80,6 +146,25 @@ class TrekContreller extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->trek = $this->trek->find($id);
+        if(!$this->trek){
+            // notify()->error('This trek doesnot exists');
+            return redirect()->route('trek.index');
+        }
+        $del = $this->trek->delete();
+        $photo = $this->trek->photo;
+        if ($del) {
+            if ($photo != null && file_exists(public_path() . '/uploads/trek/' . $photo)) {
+                unlink(public_path() . '/uploads/trek/' . $photo);
+                unlink(public_path() . '/uploads/trek/Thumb-' . $photo);
+                //message
+                // notify()->success('trek deleted successfully');
+            } else {
+                //message
+                // notify()->error('Sorry! there was problem in deleting data');
+            }
+
+            return redirect()->route('trek.index');
+        }
     }
 }

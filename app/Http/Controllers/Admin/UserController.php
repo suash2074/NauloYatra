@@ -83,13 +83,13 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $test = $this->user->orderBy('id', 'DESC')->get();
+        // $test = $this->user->orderBy('id', 'DESC')->get();
         $this->user = $this->user->find($id);
         if (!$this->user) {
             return redirect()->route('user.index');
         }
 
-        return view('admin.User.userProfileView')->with('user_data', $this->user)->with('user_datas', $test);
+        return view('admin.User.userProfileView')->with('user_data', $this->user);
     }
 
     /**

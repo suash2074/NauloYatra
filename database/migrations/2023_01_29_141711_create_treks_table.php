@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('background_image')->nullable();
             $table->enum('trek_type', ['Tea House Trek', 'Camping Trekking', 'Gap Trek']);
             $table->integer('duration')->nullable();
-            $table->enum('track-difficulty',['Easy', 'Moderate', 'Difficult']);
+            $table->enum('track_difficulty',['Easy', 'Moderate', 'Difficult']);
             $table->integer('average_budget');
             $table->enum('best_season',['Spring', 'Summer', 'Autumn', 'Winter']);
             $table->enum('status',['Active', 'Inactive'])->default('Active');
