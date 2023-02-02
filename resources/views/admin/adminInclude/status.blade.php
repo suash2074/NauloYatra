@@ -7,7 +7,7 @@
                         <h5 class="card-title text-uppercase text-muted mb-0">
                             Treks
                         </h5>
-                        <span class="h2 font-weight-bold mb-0">350,897</span>
+                        <span class="h2 font-weight-bold mb-0">350</span>
                     </div>
                     <div class="col-auto">
                         <div class="icon icon-shape bg-danger text-white rounded-circle shadow">

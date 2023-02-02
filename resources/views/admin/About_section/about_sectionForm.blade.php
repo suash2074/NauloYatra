@@ -43,16 +43,26 @@
                                 @csrf
                     @endif
                     <div class="row d-flex justify-content-between">
-                        {{-- <div class="form-group col-3">
+                        <div class="form-group col-3">
                             <label for="example-password-input" class="form-control-label">Trek Name</label>
                             <select class="form-control" name="trek_id" id="trek_id">
-                                <option {{ @$about_section_data->trek_id == 'Tea House Trek' ? 'selected' : '' }}>Tea House
-                                    Trek
+                                {{-- <option {{ @$about_section_data->trek_id == 'Tea House Trek' ? 'selected' : '' }}>Tea
+                                    House
+                                    Trek --}}
+
+                                @if (isset($trek_info))
+                                    @foreach (@$trek_info as $trek => $data)
+                                        <option value="{{ @$trek != null ? @$trek : '' }}"
+                                            {{ @$about_section_data->trek_id == $trek ? 'selected' : '' }}>
+                                            {{ @$data }}</option>
+                                    @endforeach
+                                @endif
                             </select>
+
                             @error('trek_id')
                                 <span class="invalid-feedback" role="alert">{{ $message }}</span>
                             @enderror
-                        </div> --}}
+                        </div>
 
                         <div class="form-group col-6">
                             <label for="trek_name" class="form-control-label">Title <span

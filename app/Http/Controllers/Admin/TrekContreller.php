@@ -55,6 +55,9 @@ class TrekContreller extends Controller
                 $data['background_image'] = $file_name;
             }
         }
+
+        $data['user_id'] = auth()->user()->id;
+        // dd($data['user_data']);
         $this->trek->fill($data);
         $status = $this->trek->save();
         // if($status){
@@ -120,9 +123,9 @@ class TrekContreller extends Controller
             $photo = $request->background_image;
             $file_name = uploadImage($photo, 'trek', '125x125');
             if ($file_name) {
-                if ($this->trek->background_image != null && file_exists(public_path() . '/uploads/trek/' . $this->trek->photo)) {
-                    unlink(public_path() . '/uploads/trek/' . $this->trek->photo);
-                    unlink(public_path() . '/uploads/trek/Thumb-' . $this->trek->photo);
+                if ($this->trek->background_image != null && file_exists(public_path() . '/uploads/trek/' . $this->trek->backgrpund_image)) {
+                    unlink(public_path() . '/uploads/trek/' . $this->trek->backgrpund_image);
+                    unlink(public_path() . '/uploads/trek/Thumb-' . $this->trek->backgrpund_image);
                 }
                 $data['background_image'] = $file_name;
             }

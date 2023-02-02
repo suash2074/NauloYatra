@@ -140,7 +140,7 @@
                             <select class="form-control" name="best_season" id="best_season">
                                 <option {{ @$trek_data->best_season == 'Spring' ? 'selected' : '' }}>Spring
                                 </option>
-                                <option {{ @$trek_data->best_season == 'Summer' ? 'selected' : '' }}>Moserate
+                                <option {{ @$trek_data->best_season == 'Summer' ? 'selected' : '' }}>Summer
                                 </option>
                                 <option {{ @$trek_data->best_season == 'Autumn' ? 'selected' : '' }}>Autumn
                                 </option>

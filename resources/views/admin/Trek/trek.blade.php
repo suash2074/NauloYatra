@@ -43,7 +43,13 @@
                                                 <tr>
                                                     <td>{{ $treks + 1 }}</td>
 
-                                                    <td>{{ $trek->user_id }}</td>
+                                                    <td>
+                                                        @if (isset($trek->user_info['username']))
+                                                            {{ $trek->user_info['username'] }}
+                                                        @else
+                                                            --
+                                                        @endif
+                                                    </td>
 
                                                     <td>{{ $trek->trek_name }}</td>
 

@@ -48,7 +48,7 @@
                                                                 data-toggle="tooltip"
                                                                 data-original-title="{{ Auth::user()->first_name }} {{ Auth::user()->last_Fname }}">
                                                                 <img alt="Image placeholder"
-                                                                    src="../assets/img/theme/team-1-800x800.jpg"
+                                                                    src="{{ asset('uploads/user/Thumb-' . $user->photo) }}"
                                                                     class="rounded-circle">
                                                             </a>
                                                         </div>

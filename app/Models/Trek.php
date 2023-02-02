@@ -11,6 +11,7 @@ class Trek extends Model
 
     protected $fillable = [
         'trek_name',
+        'user_id',
         'background_image',
         'trek_type',
         'duration',

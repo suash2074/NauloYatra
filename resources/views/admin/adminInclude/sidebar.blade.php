@@ -116,7 +116,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link " href="./examples/icons.html">
                         <i class="ni ni-planet text-blue"></i> Icons
                     </a>
@@ -145,7 +145,7 @@
                     <a class="nav-link" href="./examples/register.html">
                         <i class="ni ni-circle-08 text-pink"></i> Register
                     </a>
-                </li>
+                </li> --}}
             </ul>
             <!-- Divider -->
         </div>
