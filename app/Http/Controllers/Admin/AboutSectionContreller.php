@@ -83,7 +83,7 @@ class AboutSectionContreller extends Controller
             return redirect()->route('about.index');
         }
         return view('admin.about_section.about_sectionView')
-            ->with('about_section_data', $this->about_section)->with('trek_$trek_info', $trek_info);
+            ->with('about_section_data', $this->about_section)->with('$trek_info', $trek_info);
     }
 
     /**
@@ -115,7 +115,7 @@ class AboutSectionContreller extends Controller
     public function update(Request $request, $id)
     {
         $this->about_section = $this->about_section->find($id);
-        $trek_info = Trek::orderBy('id', 'Desc')->pluck('trek_name', 'id');
+        $trek_info = Trek::orderBy('id', 'Desc')->where('status', 'Active')->pluck('trek_name', 'id');
         if (!$this->about_section) {
             // notify()->error('This package doesnot exists');
             redirect()->route('about.index');

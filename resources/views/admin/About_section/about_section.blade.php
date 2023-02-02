@@ -7,8 +7,8 @@
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
         <div class="container-fluid">
             <!-- Brand -->
-            <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"
-                href="{{ route('about.index') }}">About treks</a>
+            <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{ route('about.index') }}">About
+                treks</a>
 
             @include('admin.adminInclude.topNav')
 
@@ -38,11 +38,17 @@
                                     </thead>
                                     <tbody>
                                         @if (isset($about_section_data))
-                                            @foreach ($about_section_data as $abouts_trek => $about_trek)
+                                            @foreach ($about_section_data as $about_treks => $about_trek)
                                                 <tr>
-                                                    <td>{{ $abouts_trek + 1 }}</td>
+                                                    <td>{{ $about_treks + 1 }}</td>
 
-                                                    <td>{{ $about_trek->trek_id }}</td>
+                                                    <td>
+                                                        @if (isset($about_trek->trek_info['trek_name']))
+                                                            {{ $about_trek->trek_info['trek_name'] }}
+                                                        @else
+                                                            --
+                                                        @endif
+                                                    </td>
 
                                                     <td>{{ $about_trek->title }}</td>
 
@@ -63,7 +69,8 @@
                                                                     href="{{ route('about.edit', $about_trek->id) }}">Edit</a>
                                                                 <a class="dropdown-item"
                                                                     href="{{ route('about.show', $about_trek->id) }}">View</a>
-                                                                <form action="{{ route('about.destroy', $about_trek->id) }}"
+                                                                <form
+                                                                    action="{{ route('about.destroy', $about_trek->id) }}"
                                                                     method="post">
                                                                     @method('delete')
                                                                     @csrf

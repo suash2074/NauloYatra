@@ -19,7 +19,7 @@ class About_section extends Model
     ];
 
     public function trek_info(){
-        return $this->hasOne(User::class, 'id', 'trek_id');
+        return $this->hasOne(Trek::class, 'id', 'trek_id');
     }
 
     public function getRules($act = 'add')
