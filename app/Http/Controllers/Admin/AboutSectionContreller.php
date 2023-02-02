@@ -76,14 +76,14 @@ class AboutSectionContreller extends Controller
     public function show($id)
     {
         $this->about_section = $this->about_section->find($id);
-        $trek_info = Trek::orderBy('id', 'Desc')->where('status', 'Active')->pluck('trek_name', 'id');
+        $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
         if (!$this->about_section) {
             //message
             // notify()->error('This about_section doesnot exists');
             return redirect()->route('about.index');
         }
         return view('admin.about_section.about_sectionView')
-            ->with('about_section_data', $this->about_section)->with('$trek_info', $trek_info);
+            ->with('about_section_data', $this->about_section)->with('trek_info', $trek_info);
     }
 
     /**
@@ -102,7 +102,7 @@ class AboutSectionContreller extends Controller
             return redirect()->route('about.index');
         }
         return view('admin.about_section.about_sectionForm')
-            ->with('about_section_data', $this->about_section)->with('$trek_info', $trek_info);
+            ->with('about_section_data', $this->about_section)->with('trek_info', $trek_info);
     }
 
     /**
