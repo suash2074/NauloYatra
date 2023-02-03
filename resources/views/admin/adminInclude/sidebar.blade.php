@@ -114,6 +114,10 @@
                     <a class="nav-link " href="{{ route('about.index') }}">
                         <i class="ni ni-square-pin text-green"></i> About Trek
                     </a>
+                </li><li class="nav-item">
+                    <a class="nav-link " href="{{ route('culture.index') }}">
+                        <i class="ni ni-square-pin text-green"></i> Cultures
+                    </a>
                 </li>
 
                 {{-- <li class="nav-item">

@@ -7,8 +7,7 @@
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
         <div class="container-fluid">
             <!-- Brand -->
-            <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{ route('about.index') }}">About
-                Treks</a>
+            <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{ route('culture.index') }}">Cultures encounteerd on trek</a>
 
             @include('admin.adminInclude.topNav')
 
@@ -23,7 +22,7 @@
             <div class="card shadow">
                 <div class="card-header border-0" style="display:flex; justify-content:space-between">
                     <h3 class="mb-0">Trek details</h3>
-                    <a class="nav-link " href="{{ route('about.index') }}">
+                    <a class="nav-link " href="{{ route('culture.index') }}">
                         <i class="ni ni-bold-left text-orange"></i> Back
                     </a>
                 </div>
@@ -35,7 +34,7 @@
                                 @if (isset($trek_info))
                                 @foreach (@$trek_info as $trek => $data)
                                     <option value="{{ @$trek != null ? @$trek : '' }}"
-                                        {{ @$about_section_data->trek_id == $trek ? 'selected' : '' }}>
+                                        {{ @$culture_data->trek_id == $trek ? 'selected' : '' }}>
                                         {{ @$data }}</option>
                                 @endforeach
                             @endif
@@ -44,8 +43,8 @@
 
                         <div class="form-group col-6">
                             <label for="trek_name" class="form-control-label">Title</label>
-                            <input class="form-control" type="text" placeholder="Best thing about trek something"
-                                name="title" id="title" value="{{ @$about_section_data->title }}" readonly>
+                            <input class="form-control" type="text" placeholder="Best thing culture trek something"
+                                name="title" id="title" value="{{ @$culture_data->title }}" readonly>
                         </div>
                     </div>
 
@@ -53,7 +52,7 @@
                         <div class="form-group col-12">
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Description</label>
-                                <textarea class="form-control" id="description" name="description" rows="3" readonly>{{ @$about_section_data->description }}</textarea>
+                                <textarea class="form-control" id="description" name="description" rows="3" readonly>{{ @$culture_data->description }}</textarea>
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                 @enderror
@@ -67,7 +66,7 @@
                             <input class="form-control" type="file" value="" name="image" id="image"
                                 readonly>
                             <div class="col-md-4">
-                                <img src={{ asset('uploads/about_section/Thumb-' . @$about_section_data->image) }}
+                                <img src={{ asset('uploads/culture/Thumb-' . @$culture_data->image) }}
                                     alt="" class="img img-fluid img-responsive" style="max-width: 10rem">
                             </div>
                         </div>
@@ -77,15 +76,15 @@
                         <div class="form-group col-8">
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Note</label>
-                                <textarea class="form-control" id="note" name="note" rows="1" readonly>{{ @$about_section_data->note }}</textarea>
+                                <textarea class="form-control" id="note" name="note" rows="1" readonly>{{ @$culture_data->note }}</textarea>
                             </div>
                         </div>
 
                         <div class="form-group col-3">
                             <label for="example-password-input" class="form-control-label">Status</label>
                             <select class="form-control" name="status" id="status" readonly>
-                                <option {{ @$about_section_data->status == 'Active' ? 'selected' : '' }}>Active</option>
-                                <option {{ @$about_section_data->status == 'Inactive' ? 'selected' : '' }}>Inactive
+                                <option {{ @$culture_data->status == 'Active' ? 'selected' : '' }}>Active</option>
+                                <option {{ @$culture_data->status == 'Inactive' ? 'selected' : '' }}>Inactive
                                 </option>
                             </select>
                         </div>
@@ -95,7 +94,7 @@
                         <div class="form-group col-6">
                             <label for="trek_name" class="form-control-label">Created at</label>
                             <input class="form-control" type="text" placeholder="Name of the trek"
-                                name="created_at" id="example-text-input" value="{{ @$about_section_data->created_at }}"
+                                name="created_at" id="example-text-input" value="{{ @$culture_data->created_at }}"
                                 readonly>
                             @error('created_at')
                                 <span class="invalid-feedback" role="alert">{{ $message }}</span>
@@ -105,7 +104,7 @@
                         <div class="form-group col-6">
                             <label for="trek_name" class="form-control-label">Updated at</label>
                             <input class="form-control" type="text" placeholder="Name of the trek"
-                                name="updated_at" id="example-text-input" value="{{ @$about_section_data->updated_at }}"
+                                name="updated_at" id="example-text-input" value="{{ @$culture_data->updated_at }}"
                                 readonly>
                             @error('updated_at')
                                 <span class="invalid-feedback" role="alert">{{ $message }}</span>

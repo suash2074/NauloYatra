@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AboutSectionContreller;
+use App\Http\Controllers\Admin\CultureController;
 use App\Http\Controllers\Admin\TrekContreller;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +36,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('/user', UserController::class);
     Route::resource('/trek', TrekContreller::class);
     Route::resource('/about', AboutSectionContreller::class);
+    Route::resource('/culture', CultureController::class);
     // Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('index');
 });
 
