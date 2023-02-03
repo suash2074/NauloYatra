@@ -120,17 +120,18 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link " href="{{ route('medicine.index') }}">
+                        <i class="ni ni-pin-3 text-orange"></i> Medicines
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link " href="{{ route('healthKit.index') }}">
+                        <i class="ni ni-planet text-blue"></i> Health Kit
+                    </a>
+                </li>
                 {{-- <li class="nav-item">
-                    <a class="nav-link " href="./examples/icons.html">
-                        <i class="ni ni-planet text-blue"></i> Icons
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="./examples/maps.html">
-                        <i class="ni ni-pin-3 text-orange"></i> Maps
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link " href="./examples/profile.html">
                         <i class="ni ni-single-02 text-yellow"></i> User profile
                     </a>
