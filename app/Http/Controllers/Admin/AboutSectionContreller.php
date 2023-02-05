@@ -118,7 +118,7 @@ class AboutSectionContreller extends Controller
         $trek_info = Trek::orderBy('id', 'Desc')->where('status', 'Active')->pluck('trek_name', 'id');
         if (!$this->about_section) {
             // notify()->error('This package doesnot exists');
-            redirect()->route('about.index');
+            return redirect()->route('about.index');
         }
         
         $rules = $this->about_section->getRules();

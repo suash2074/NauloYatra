@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
     <div class="container-fluid">
         <!-- Toggler -->
@@ -8,7 +7,7 @@
         </button>
         <!-- Brand -->
         <a class="navbar-brand pt-0" href="./index.html">
-            <img src={{asset("images/logo.png")}}  class="navbar-brand-img" alt="..." />
+            <img src={{ asset('images/logo.png') }} class="navbar-brand-img" alt="..." />
         </a>
         <!-- User -->
         <ul class="nav align-items-center d-md-none">
@@ -69,7 +68,7 @@
                 <div class="row">
                     <div class="col-6 collapse-brand">
                         <a href="./index.html">
-                            <img src= {{asset("images/logo.png")}}  />
+                            <img src={{ asset('images/logo.png') }} />
                         </a>
                     </div>
                     <div class="col-6 collapse-close">
@@ -114,7 +113,8 @@
                     <a class="nav-link " href="{{ route('about.index') }}">
                         <i class="ni ni-square-pin text-green"></i> About Trek
                     </a>
-                </li><li class="nav-item">
+                </li>
+                <li class="nav-item">
                     <a class="nav-link " href="{{ route('culture.index') }}">
                         <i class="ni ni-square-pin text-green"></i> Cultures
                     </a>
@@ -131,16 +131,17 @@
                         <i class="ni ni-planet text-blue"></i> Health Kit
                     </a>
                 </li>
-                {{-- <li class="nav-item">
-                    <a class="nav-link " href="./examples/profile.html">
-                        <i class="ni ni-single-02 text-yellow"></i> User profile
+                <li class="nav-item">
+                    <a class="nav-link " href="{{ route('galleryDetail.index') }}">
+                        <i class="ni ni-single-02 text-yellow"></i>Gallery Detail
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="./examples/tables.html">
-                        <i class="ni ni-bullet-list-67 text-red"></i> Tables
+                    <a class="nav-link " href="{{ route('gallery.index') }}">
+                        <i class="ni ni-bullet-list-67 text-red"></i> Gallery
                     </a>
                 </li>
+                {{--
                 <li class="nav-item">
                     <a class="nav-link" href="./examples/login.html">
                         <i class="ni ni-key-25 text-info"></i> Login

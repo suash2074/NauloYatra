@@ -27,7 +27,9 @@ class Culture extends Model
             'title' => 'required|string',
             'trek_id' => 'nullable|exists:treks,id',
             'description' => 'required|string',
-            'note' => 'nullable|string',
+            'image' => 'nullable|image|max:5120',
+            'note' => 'nullable|string',            'photo' => 'nullable|image|max:5120',
+
         ];
 
         if ($act == 'update') {

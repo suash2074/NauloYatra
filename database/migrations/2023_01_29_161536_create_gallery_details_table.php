@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('gallery_image')->nullable();
             $table->string('image_caption')->nullable();
             $table->enum('season',['Spring', 'Summer', 'Autumn', 'Winter']);
+            $table->enum('status', ['Active', 'Inactive'])->default('Active');
             $table->timestamps();
         });
     }

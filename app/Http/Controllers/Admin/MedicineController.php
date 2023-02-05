@@ -3,10 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Medicine;
 use Illuminate\Http\Request;
 
 class MedicineController extends Controller
 {
+
+    protected $medicine = null;
+    public function __construct(Medicine $medicine)
+    {
+        $this->medicine = $medicine;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,8 @@ class MedicineController extends Controller
      */
     public function index()
     {
-        //
+        $this->medicine = $this->medicine->orderBy('id', 'DESC')->get();
+        return view('admin.medicine.medicine')->with('medicine_data', $this->medicine);
     }
 
     /**
@@ -24,7 +33,7 @@ class MedicineController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.medicine.medicineForm');
     }
 
     /**
@@ -35,7 +44,18 @@ class MedicineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = $this->medicine->getRules();
+        $request->validate($rules);
+        $data = $request->except(['_token']);
+        $this->medicine->fill($data);
+        $status = $this->medicine->save();
+        // if($status){
+        //     notify()->success('Package added successfully');
+        // }else{
+        //     notify()->error('Sorry! There was problem in adding package');
+        // }
+
+        return redirect()->route('medicine.index');
     }
 
     /**
@@ -46,7 +66,13 @@ class MedicineController extends Controller
      */
     public function show($id)
     {
-        //
+        $this->medicine = $this->medicine->find($id);
+        if (!$this->medicine) {
+            //message
+            // notify()->error('This medicine doesnot exists');
+            return redirect()->route('healthKit.index');
+        }
+        return view('admin.medicine.medicineView')->with('medicine_data', $this->medicine);
     }
 
     /**
@@ -57,7 +83,13 @@ class MedicineController extends Controller
      */
     public function edit($id)
     {
-        //
+        $this->medicine = $this->medicine->find($id);
+        if (!$this->medicine) {
+            //message
+            // notify()->error('This medicine doesnot exists');
+            return redirect()->route('healthKit.index');
+        }
+        return view('admin.medicine.medicineForm')->with('medicine_data', $this->medicine);
     }
 
     /**
@@ -69,7 +101,24 @@ class MedicineController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->medicine = $this->medicine->find($id);
+        if (!$this->medicine) {
+            //message
+            // notify()->error('This medicine doesnot exists');
+            return redirect()->route('healthKit.index');
+        }
+        $rules = $this->medicine->getRules();
+        $request->validate($rules);
+        $data = $request->except(['_token']);
+        $this->medicine->fill($data);
+        $status = $this->medicine->save();
+        // if($status){
+        //     notify()->success('Package added successfully');
+        // }else{
+        //     notify()->error('Sorry! There was problem in adding package');
+        // }
+
+        return redirect()->route('medicine.index');
     }
 
     /**
@@ -80,6 +129,20 @@ class MedicineController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->medicine = $this->medicine->find($id);
+        if (!$this->medicine) {
+            // notify()->error('This trek doesnot exists');
+            return redirect()->route('about.index');
+        }
+        $del = $this->medicine->delete();
+        if ($del) {
+            //message
+            // notify()->success('trek deleted successfully');
+        } else {
+            //message
+            // notify()->error('Sorry! there was problem in deleting data');
+        }
+
+        return redirect()->route('medicine.index');
     }
 }

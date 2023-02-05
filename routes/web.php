@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\AboutSectionContreller;
 use App\Http\Controllers\Admin\CultureController;
+use App\Http\Controllers\Admin\GalleriesController;
+use App\Http\Controllers\Admin\Gallery_detailsController;
 use App\Http\Controllers\Admin\Health_kitController;
 use App\Http\Controllers\Admin\MedicineController;
 use App\Http\Controllers\Admin\TrekContreller;
@@ -41,6 +43,8 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('/culture', CultureController::class);
     Route::resource('/medicine', MedicineController::class);
     Route::resource('/healthKit', Health_kitController::class);
+    Route::resource('/galleryDetail', Gallery_detailsController::class);
+    Route::resource('/gallery', GalleriesController::class);
     // Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('index');
 });
 

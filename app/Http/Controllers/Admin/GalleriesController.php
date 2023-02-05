@@ -3,19 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Health_kit;
-use App\Models\Medicine;
+use App\Models\Gallery;
+use App\Models\Gallery_detail;
 use App\Models\Trek;
 use Illuminate\Http\Request;
 
-class Health_kitController extends Controller
+class GalleriesController extends Controller
 {
-
-    protected $health_kit = null;
-    public function __construct(Health_kit $health_kit)
+    protected $gallery = null;
+    public function __construct(Gallery $gallery)
     {
-        $this->health_kit = $health_kit;
+        $this->gallery = $gallery;
     }
+    
     /**
      * Display a listing of the resource.
      *
@@ -23,8 +23,9 @@ class Health_kitController extends Controller
      */
     public function index()
     {
-        $this->health_kit = $this->health_kit->orderBy('id', 'DESC')->with('trek_info')->with('medicine_info')->get();
-        return view('admin.health_kit.health_kit')->with('health_kit_data', $this->health_kit);
+        $this->gallery = $this->gallery->orderBy('id', 'DESC')->with('trek_info')->with('gallery_info')->get();
+        return view('admin.galleries.galleries.galleries')->with('gallery_data', $this->gallery);
+
     }
 
     /**
@@ -35,10 +36,10 @@ class Health_kitController extends Controller
     public function create()
     {
         $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
-        $medicine_info = Medicine::orderBy('id', 'DESC')->where('status', 'Active')->pluck('medicine_name', 'id');
-        return view('admin.health_kit.health_kitForm')->with([
+        $gallery_info = Gallery_detail::orderBy('id', 'DESC')->where('status', 'Active')->pluck('image_caption', 'id');
+        return view('admin.galleries.galleries.galleriesForm')->with([
             'trek_info' => $trek_info,
-            'medicine_info' => $medicine_info
+            'gallery_info' => $gallery_info
         ]);
     }
 
@@ -50,18 +51,18 @@ class Health_kitController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = $this->health_kit->getRules();
+        $rules = $this->gallery->getRules();
         $request->validate($rules);
         $data = $request->except(['_token']);
-        $this->health_kit->fill($data);
-        $status = $this->health_kit->save();
+        $this->gallery->fill($data);
+        $status = $this->gallery->save();
         // if($status){
         //     notify()->success('Package added successfully');
         // }else{
         //     notify()->error('Sorry! There was problem in adding package');
         // }
 
-        return redirect()->route('healthKit.index');
+        return redirect()->route('gallery.index');
     }
 
     /**
@@ -72,17 +73,17 @@ class Health_kitController extends Controller
      */
     public function show($id)
     {
-        $this->health_kit = $this->health_kit->find($id);
+        $this->gallery = $this->gallery->find($id);
+        $gallery_info = Gallery_detail::orderBy('id', 'DESC')->where('status', 'Active')->pluck('image_caption', 'id');
         $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
-        $medicine_info = Medicine::orderBy('id', 'DESC')->where('status', 'Active')->pluck('medicine_name', 'id');
-        if (!$this->health_kit) {
+        if (!$this->gallery) {
             //message
             // notify()->error('This health_kit doesnot exists');
             return redirect()->route('healthKit.index');
         }
-        return view('admin.health_kit.health_kitView')->with('health_kit_data', $this->health_kit)->with([
+        return view('admin.galleries.galleries.galleriesView')->with('gallery_data', $this->gallery)->with([
             'trek_info' => $trek_info,
-            'medicine_info' => $medicine_info
+            'gallery_info' => $gallery_info
         ]);
     }
 
@@ -94,17 +95,17 @@ class Health_kitController extends Controller
      */
     public function edit($id)
     {
-        $this->health_kit = $this->health_kit->find($id);
+        $this->gallery = $this->gallery->find($id);
         $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
-        $medicine_info = Medicine::orderBy('id', 'DESC')->where('status', 'Active')->pluck('medicine_name', 'id');
-        if (!$this->health_kit) {
+        $gallery_info = Gallery_detail::orderBy('id', 'DESC')->where('status', 'Active')->pluck('image_caption', 'id');
+        if (!$this->gallery) {
             //message
             // notify()->error('This health_kit doesnot exists');
             return redirect()->route('healthKit.index');
         }
-        return view('admin.health_kit.health_kitForm')->with('health_kit_data', $this->health_kit)->with([
+        return view('admin.galleries.galleries.galleriesForm')->with('gallery_data', $this->gallery)->with([
             'trek_info' => $trek_info,
-            'medicine_info' => $medicine_info
+            'gallery_info' => $gallery_info
         ]);
     }
 
@@ -117,30 +118,30 @@ class Health_kitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->health_kit = $this->health_kit->find($id);
+        $this->gallery = $this->gallery->find($id);
         $trek_info = Trek::orderBy('id', 'Desc')->where('status', 'Active')->pluck('trek_name', 'id');
-        $medicine_info = Medicine::orderBy('id', 'DESC')->where('status', 'Active')->pluck('medicine_name', 'id');
+        $gallery_info = Gallery_detail::orderBy('id', 'DESC')->where('status', 'Active')->pluck('image_caption', 'id');
 
-        if (!$this->health_kit) {
+        if (!$this->gallery) {
             // notify()->error('This package doesnot exists');
-            return redirect()->route('healthKit.index');
+            return redirect()->route('gallery.index');
         }
 
-        $rules = $this->health_kit->getRules();
+        $rules = $this->gallery->getRules();
         $request->validate($rules);
         $data = $request->except(['_token']);
-        $this->health_kit->fill($data);
+        $this->gallery->fill($data);
 
-        $status = $this->health_kit->save();
+        $status = $this->gallery->save();
         // if($status){
         //     notify()->success('Package updated successfully');
         // }else{
         //     notify()->error('Sorry! There was problem in updating package');
         // }
 
-        return redirect()->route('healthKit.index')->with([
+        return redirect()->route('gallery.index')->with([
             'trek_info' => $trek_info,
-            'medicine_info' => $medicine_info
+            'gallery_info' => $gallery_info
         ]);
     }
 
@@ -152,12 +153,13 @@ class Health_kitController extends Controller
      */
     public function destroy($id)
     {
-        $this->health_kit = $this->health_kit->find($id);
-        if (!$this->health_kit) {
+        
+        $this->gallery = $this->gallery->find($id);
+        if (!$this->gallery) {
             // notify()->error('This trek doesnot exists');
-            return redirect()->route('healthKit.index');
+            return redirect()->route('gallery.index');
         }
-        $del = $this->health_kit->delete();
+        $del = $this->gallery->delete();
         if ($del) {
             //message
             // notify()->success('trek deleted successfully');
@@ -166,6 +168,6 @@ class Health_kitController extends Controller
             // notify()->error('Sorry! there was problem in deleting data');
         }
 
-        return redirect()->route('healthKit.index');
+        return redirect()->route('gallery.index');
     }
 }

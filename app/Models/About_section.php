@@ -28,6 +28,7 @@ class About_section extends Model
             'title' => 'required|string',
             'trek_id' => 'nullable|exists:treks,id',
             'description' => 'required|string',
+            'image' => 'nullable|image|max:5120',
             'note' => 'nullable|string',
         ];
 
