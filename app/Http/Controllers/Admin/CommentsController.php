@@ -3,20 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Health_kit;
-use App\Models\Medicine;
+use App\Models\Comment;
 use App\Models\Trek;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class Health_kitController extends Controller
+class CommentsController extends Controller
 {
-
-    protected $health_kit = null;
-    public function __construct(Health_kit $health_kit)
+    protected $comment = null;
+    public function __construct(Comment $comment)
     {
-        $this->health_kit = $health_kit;
+        $this->comment = $comment;
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -24,8 +23,8 @@ class Health_kitController extends Controller
      */
     public function index()
     {
-        $this->health_kit = $this->health_kit->orderBy('id', 'DESC')->with('trek_info')->with('medicine_info')->get();
-        return view('admin.health_kit.health_kit')->with('health_kit_data', $this->health_kit);
+        $this->comment = $this->comment->orderBy('id', 'DESC')->with('trek_info')->with('user_info')->get();
+        return view('admin.comment.comment')->with('comment_data', $this->comment);
     }
 
     /**
@@ -36,10 +35,10 @@ class Health_kitController extends Controller
     public function create()
     {
         $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
-        $medicine_info = Medicine::orderBy('id', 'DESC')->where('status', 'Active')->pluck('medicine_name', 'id');
-        return view('admin.health_kit.health_kitForm')->with([
+        $user_info = User::orderBy('id', 'DESC')->where('status', 'Active')->pluck('username', 'id');
+        return view('admin.comment.commentForm')->with([
             'trek_info' => $trek_info,
-            'medicine_info' => $medicine_info
+            'user_info' => $user_info
         ]);
     }
 
@@ -51,18 +50,18 @@ class Health_kitController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = $this->health_kit->getRules();
+        $rules = $this->comment->getRules();
         $request->validate($rules);
         $data = $request->except(['_token']);
-        $this->health_kit->fill($data);
-        $status = $this->health_kit->save();
+        $this->comment->fill($data);
+        $status = $this->comment->save();
         // if($status){
         //     notify()->success('Package added successfully');
         // }else{
         //     notify()->error('Sorry! There was problem in adding package');
         // }
 
-        return redirect()->route('healthKit.index');
+        return redirect()->route('comment.index');
     }
 
     /**
@@ -73,17 +72,17 @@ class Health_kitController extends Controller
      */
     public function show($id)
     {
-        $this->health_kit = $this->health_kit->find($id);
+        $this->comment = $this->comment->find($id);
         $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
-        $medicine_info = Medicine::orderBy('id', 'DESC')->where('status', 'Active')->pluck('medicine_name', 'id');
-        if (!$this->health_kit) {
+        $user_info = User::orderBy('id', 'DESC')->where('status', 'Active')->pluck('username', 'id');
+        if (!$this->comment) {
             //message
-            // notify()->error('This health_kit doesnot exists');
-            return redirect()->route('healthKit.index');
+            // notify()->error('This comment doesnot exists');
+            return redirect()->route('comment.index');
         }
-        return view('admin.health_kit.health_kitView')->with('health_kit_data', $this->health_kit)->with([
+        return view('admin.comment.commentView')->with('comment_data', $this->comment)->with([
             'trek_info' => $trek_info,
-            'medicine_info' => $medicine_info
+            'user_info' => $user_info
         ]);
     }
 
@@ -95,17 +94,17 @@ class Health_kitController extends Controller
      */
     public function edit($id)
     {
-        $this->health_kit = $this->health_kit->find($id);
+        $this->comment = $this->comment->find($id);
         $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
-        $medicine_info = Medicine::orderBy('id', 'DESC')->where('status', 'Active')->pluck('medicine_name', 'id');
-        if (!$this->health_kit) {
+        $user_info = User::orderBy('id', 'DESC')->where('status', 'Active')->pluck('username', 'id');
+        if (!$this->comment) {
             //message
-            // notify()->error('This health_kit doesnot exists');
-            return redirect()->route('healthKit.index');
+            // notify()->error('This comment doesnot exists');
+            return redirect()->route('comment.index');
         }
-        return view('admin.health_kit.health_kitForm')->with('health_kit_data', $this->health_kit)->with([
+        return view('admin.comment.commentForm')->with('comment_data', $this->comment)->with([
             'trek_info' => $trek_info,
-            'medicine_info' => $medicine_info
+            'user_info' => $user_info
         ]);
     }
 
@@ -118,30 +117,30 @@ class Health_kitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->health_kit = $this->health_kit->find($id);
+        $this->comment = $this->comment->find($id);
         $trek_info = Trek::orderBy('id', 'Desc')->where('status', 'Active')->pluck('trek_name', 'id');
-        $medicine_info = Medicine::orderBy('id', 'DESC')->where('status', 'Active')->pluck('medicine_name', 'id');
+        $user_info = User::orderBy('id', 'DESC')->where('status', 'Active')->pluck('username', 'id');
 
-        if (!$this->health_kit) {
+        if (!$this->comment) {
             // notify()->error('This package doesnot exists');
-            return redirect()->route('healthKit.index');
+            return redirect()->route('comment.index');
         }
 
-        $rules = $this->health_kit->getRules();
+        $rules = $this->comment->getRules();
         $request->validate($rules);
         $data = $request->except(['_token']);
-        $this->health_kit->fill($data);
+        $this->comment->fill($data);
 
-        $status = $this->health_kit->save();
+        $status = $this->comment->save();
         // if($status){
         //     notify()->success('Package updated successfully');
         // }else{
         //     notify()->error('Sorry! There was problem in updating package');
         // }
 
-        return redirect()->route('healthKit.index')->with([
+        return redirect()->route('comment.index')->with([
             'trek_info' => $trek_info,
-            'medicine_info' => $medicine_info
+            'user_info' => $user_info
         ]);
     }
 
@@ -153,12 +152,12 @@ class Health_kitController extends Controller
      */
     public function destroy($id)
     {
-        $this->health_kit = $this->health_kit->find($id);
-        if (!$this->health_kit) {
+        $this->comment = $this->comment->find($id);
+        if (!$this->comment) {
             // notify()->error('This trek doesnot exists');
-            return redirect()->route('healthKit.index');
+            return redirect()->route('comment.index');
         }
-        $del = $this->health_kit->delete();
+        $del = $this->comment->delete();
         if ($del) {
             //message
             // notify()->success('trek deleted successfully');
@@ -167,6 +166,6 @@ class Health_kitController extends Controller
             // notify()->error('Sorry! there was problem in deleting data');
         }
 
-        return redirect()->route('healthKit.index');
+        return redirect()->route('comment.index');
     }
 }

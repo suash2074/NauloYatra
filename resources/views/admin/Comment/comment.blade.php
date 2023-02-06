@@ -7,8 +7,7 @@
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
         <div class="container-fluid">
             <!-- Brand -->
-            <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"
-                href="{{ route('gallery.index') }}">Galleries</a>
+            <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{ route('comment.index') }}">Comments</a>
 
             @include('admin.adminInclude.topNav')
 
@@ -19,9 +18,9 @@
                     <div class="col">
                         <div class="card shadow">
                             <div class="card-header border-0" style="display:flex; justify-content:space-between">
-                                <h3 class="mb-0">Gallery table</h3>
-                                <a class="nav-link " href="{{ route('gallery.create') }}">
-                                    <i class="ni ni-fat-add text-primary"></i> Gallery
+                                <h3 class="mb-0">Comment table</h3>
+                                <a class="nav-link " href="{{ route('comment.create') }}">
+                                    <i class="ni ni-fat-add text-primary"></i> Comment
                                 </a>
                             </div>
                             <div class="table-responsive">
@@ -30,47 +29,40 @@
                                         <tr>
                                             <th scope="col">No.</th>
                                             <th scope="col">Trek Name</th>
-                                            <th scope="col">Image caption</th>
+                                            <th scope="col">User Name</th>
+                                            <th scope="col">Text</th>
                                             <th scope="col">Status</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if (isset($gallery_data))
-                                            @foreach ($gallery_data as $galleries => $gallery)
+                                        @if (isset($comment_data))
+                                            @foreach ($comment_data as $comments => $comment)
                                                 <tr>
-                                                    <td>{{ $galleries + 1 }}</td>
+                                                    <td>{{ $comments + 1 }}</td>
 
                                                     <td>
-                                                        @if (isset($gallery->trek_info['trek_name']))
-                                                            {{ $gallery->trek_info['trek_name'] }}
+                                                        @if (isset($comment->trek_info['trek_name']))
+                                                            {{ $comment->trek_info['trek_name'] }}
                                                         @else
                                                             --
                                                         @endif
                                                     </td>
 
                                                     <td>
-                                                        <div class="avatar-group">
-                                                            <a href="#" class=""
-                                                                data-toggle="tooltip">
-                                                                <img alt="Avatar"
-                                                                    src="{{ asset('uploads/gallery/Thumb-' . $gallery->gallery_info['gallery_image']) }}"
-                                                                    class="rounded-3" style="width: 100px;"
-                                                                   >
-                                                            </a>
-                                                        </div>
-                                                        {{-- @if (isset($gallery->gallery_info['gallery_image']))
-                                                            {{ $gallery->gallery_info['gallery_image'] }}
+                                                        @if (isset($comment->user_info['first_name']))
+                                                            {{ $comment->user_info['first_name'] }}
                                                         @else
                                                             --
-                                                        @endif --}}
+                                                        @endif
                                                     </td>
 
+                                                    <td>{{ $comment->text }}</td>
 
-                                                    <td>{{ $gallery->status }}</td>
+                                                    <td>{{ $comment->status }}</td>
 
-                                                    <td class="text-right">
-                                                        <div class="dropdown d-flex align-items-center">
+                                                    <td class="text-right d-flex">
+                                                        <div class="dropdown">
                                                             <a class="btn btn-sm btn-icon-only text-light"
                                                                 href="#" role="button" data-toggle="dropdown"
                                                                 aria-haspopup="true" aria-expanded="false">
@@ -79,11 +71,11 @@
                                                             <div
                                                                 class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                                 <a class="dropdown-item"
-                                                                    href="{{ route('gallery.edit', $gallery->id) }}">Edit</a>
+                                                                    href="{{ route('comment.edit', $comment->id) }}">Edit</a>
                                                                 <a class="dropdown-item"
-                                                                    href="{{ route('gallery.show', $gallery->id) }}">View</a>
+                                                                    href="{{ route('comment.show', $comment->id) }}">View</a>
                                                                 <form
-                                                                    action="{{ route('gallery.destroy', $gallery->id) }}"
+                                                                    action="{{ route('comment.destroy', $comment->id) }}"
                                                                     method="post">
                                                                     @method('delete')
                                                                     @csrf

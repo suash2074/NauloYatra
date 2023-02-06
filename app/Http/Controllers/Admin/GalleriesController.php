@@ -36,7 +36,7 @@ class GalleriesController extends Controller
     public function create()
     {
         $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
-        $gallery_info = Gallery_detail::orderBy('id', 'DESC')->where('status', 'Active')->pluck('image_caption', 'id');
+        $gallery_info = Gallery_detail::orderBy('id', 'DESC')->where('status', 'Active')->pluck('image_caption','gallery_image', 'id');
         return view('admin.galleries.galleries.galleriesForm')->with([
             'trek_info' => $trek_info,
             'gallery_info' => $gallery_info

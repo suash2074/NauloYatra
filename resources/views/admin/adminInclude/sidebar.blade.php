@@ -138,15 +138,15 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="{{ route('gallery.index') }}">
-                        <i class="ni ni-bullet-list-67 text-red"></i> Gallery
+                        <i class="ni ni-bullet-list-67 text-red"></i> Galleries
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('comment.index') }}">
+                        <i class="ni ni-key-25 text-info"></i> Comments
                     </a>
                 </li>
                 {{--
-                <li class="nav-item">
-                    <a class="nav-link" href="./examples/login.html">
-                        <i class="ni ni-key-25 text-info"></i> Login
-                    </a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="./examples/register.html">
                         <i class="ni ni-circle-08 text-pink"></i> Register

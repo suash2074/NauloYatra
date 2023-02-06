@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AboutSectionContreller;
+use App\Http\Controllers\Admin\CommentsController;
 use App\Http\Controllers\Admin\CultureController;
 use App\Http\Controllers\Admin\GalleriesController;
 use App\Http\Controllers\Admin\Gallery_detailsController;
@@ -45,6 +46,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('/healthKit', Health_kitController::class);
     Route::resource('/galleryDetail', Gallery_detailsController::class);
     Route::resource('/gallery', GalleriesController::class);
+    Route::resource('/comment', CommentsController::class);
     // Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('index');
 });
 
