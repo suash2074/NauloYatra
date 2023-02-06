@@ -128,8 +128,9 @@
                                 look around!
                             </div>
 
-                            <hr class="my-4" />
                             @if (@$user_data->role == 'guide' && @$user_data->availability == 'Available')
+                                <hr class="my-4" />
+
                                 <div>
                                     <i class="ni education_hat mr-2"></i>I am excited to share a wonderful adventure
                                     with you, and am currently <span
@@ -137,6 +138,8 @@
                                     Let's make it a great one!.
                                 </div>
                             @elseif(@$user_data->role == 'guide' && @$user_data->availability == 'Not Available')
+                                <hr class="my-4" />
+
                                 <div>
                                     <i class="ni education_hat mr-2"></i>I apologize, but at the moment I am <span
                                         class="text-red">{{ @$user_data->availability }}</span> to book any adventure,
@@ -148,7 +151,9 @@
                             <a href="#">Show more</a> --}}
                             <hr class="my-4" />
                             <h6 class="heading-small text-muted mb-2"><u>Others</u></h6>
-                            @if (@$user_data->role == 'guide' && @$user_data->availability == 'Available' || @$user_data->role == 'guide' && @$user_data->availability == 'Not Available')
+                            @if (
+                                (@$user_data->role == 'guide' && @$user_data->availability == 'Available') ||
+                                    (@$user_data->role == 'guide' && @$user_data->availability == 'Not Available'))
                                 <p class="text-" style="font-size: 13px">Per day charge: Rs
                                     {{ @$user_data->cost_per_day }}</p>
                             @endif
