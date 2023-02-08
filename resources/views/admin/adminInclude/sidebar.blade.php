@@ -146,12 +146,25 @@
                         <i class="ni ni-key-25 text-info"></i> Comments
                     </a>
                 </li>
-                {{--
                 <li class="nav-item">
-                    <a class="nav-link" href="./examples/register.html">
-                        <i class="ni ni-circle-08 text-pink"></i> Register
+                    <a class="nav-link" href="{{ route('news.index') }}">
+                        <i class="ni ni-circle-08 text-pink"></i> News
                     </a>
-                </li> --}}
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('newsDetail.index') }}">
+                        <i class="ni ni-circle-08 text-pink"></i> News Details
+                    </a>
+                </li><li class="nav-item">
+                    <a class="nav-link" href="{{ route('package.index') }}">
+                        <i class="ni ni-circle-08 text-pink"></i> Packages
+                    </a>
+                </li>
+            </li><li class="nav-item">
+                <a class="nav-link" href="{{ route('packageDetail.index') }}">
+                    <i class="ni ni-circle-08 text-pink"></i> Package Details
+                </a>
+            </li>
             </ul>
             <!-- Divider -->
         </div>

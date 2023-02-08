@@ -3,10 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\News;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
+    protected $news = null;
+    public function __construct(News $news)
+    {
+        $this->news = $news;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        //
+        $this->news = $this->news->orderBy('id', 'DESC')->with('user_info')->get();
+        return view('admin.NewsSection.News.news')->with('news_data', $this->news);
     }
 
     /**
@@ -24,7 +33,8 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
+        $user_info = User::orderBy('id', 'DESC')->where('status', 'Active')->pluck('username', 'id');
+        return view('admin.newsSection.news.newsForm')->with('user_info', $user_info);
     }
 
     /**
@@ -35,7 +45,27 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = $this->news->getRules();
+        $request->validate($rules);
+        $data = $request->except(['_token', 'image']);
+        if ($request->has('image')) {
+            $photo = $request->image;
+            $file_name = uploadImage($photo, 'news', '125x125');
+            if ($file_name) {
+                $data['image'] = $file_name;
+            }
+        }
+
+        $data['user_id'] = auth()->user()->id;
+        $this->news->fill($data);
+        $status = $this->news->save();
+        // if($status){
+        //     notify()->success('Package added successfully');
+        // }else{
+        //     notify()->error('Sorry! There was problem in adding package');
+        // }
+
+        return redirect()->route('news.index');
     }
 
     /**
@@ -46,7 +76,15 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        //
+        $this->news = $this->news->find($id);
+        $user_info = User::orderBy('id', 'DESC')->where('status', 'Active')->pluck('username', 'id');
+        if (!$this->news) {
+            //message
+            // notify()->error('This news doesnot exists');
+            return redirect()->route('news.index');
+        }
+        return view('admin.newsSection.news.newsView')
+            ->with('news_data', $this->news)->with('user_info', $user_info);
     }
 
     /**
@@ -57,7 +95,15 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $this->news = $this->news->find($id);
+        $user_info = User::orderBy('id', 'DESC')->where('status', 'Active')->pluck('username', 'id');
+        if (!$this->news) {
+            //message
+            // notify()->error('This news doesnot exists');
+            return redirect()->route('news.index');
+        }
+        return view('admin.newsSection.news.newsForm')
+            ->with('news_data', $this->news)->with('user_info', $user_info);
     }
 
     /**
@@ -69,7 +115,38 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->news = $this->news->find($id);
+        $user_info = User::orderBy('id', 'Desc')->where('status', 'Active')->pluck('username', 'id');
+        if (!$this->news) {
+            // notify()->error('This package doesnot exists');
+            return redirect()->route('news.index');
+        }
+
+        $rules = $this->news->getRules();
+        $request->validate($rules);
+        $data = $request->except(['_token', 'image']);
+        if ($request->has('image')) {
+            $photo = $request->image;
+            $file_name = uploadImage($photo, 'news', '125x125');
+            if ($file_name) {
+                if ($this->news->iamge != null && file_exists(public_path() . '/uploads/news/' . $this->news->image)) {
+                    unlink(public_path() . '/uploads/news/' . $this->news->image);
+                    unlink(public_path() . '/uploads/news/Thumb-' . $this->news->image);
+                }
+                $data['image'] = $file_name;
+            }
+        }
+
+        $this->news->fill($data);
+
+        $status = $this->news->save();
+        // if($status){
+        //     notify()->success('Package updated successfully');
+        // }else{
+        //     notify()->error('Sorry! There was problem in updating package');
+        // }
+
+        return redirect()->route('news.index')->with('$user_info', $user_info);
     }
 
     /**
@@ -80,6 +157,25 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->news = $this->news->find($id);
+        if (!$this->news) {
+            // notify()->error('This trek doesnot exists');
+            return redirect()->route('news.index');
+        }
+        $del = $this->news->delete();
+        $photo = $this->news->image;
+        if ($del) {
+            if ($photo != null && file_exists(public_path() . '/uploads/news/' . $photo)) {
+                unlink(public_path() . '/uploads/news/' . $photo);
+                unlink(public_path() . '/uploads/news/Thumb-' . $photo);
+                //message
+                // notify()->success('trek deleted successfully');
+            } else {
+                //message
+                // notify()->error('Sorry! there was problem in deleting data');
+            }
+
+            return redirect()->route('news.index');
+        }
     }
 }

@@ -15,8 +15,6 @@ return new class extends Migration
     {
         Schema::create('news_details', function (Blueprint $table) {
             $table->id();
-            // ID, news_id, user_id, sub_headline, description, image, link,
-			//   status
             $table->unsignedBigInteger('news_id')->nullable();
             $table->string('sub_headline');
             $table->text('description');

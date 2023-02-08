@@ -7,7 +7,10 @@ use App\Http\Controllers\Admin\GalleriesController;
 use App\Http\Controllers\Admin\Gallery_detailsController;
 use App\Http\Controllers\Admin\Health_kitController;
 use App\Http\Controllers\Admin\MedicineController;
+use App\Http\Controllers\Admin\News_detailsController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\Package_detailsController;
+use App\Http\Controllers\Admin\PackagesController;
 use App\Http\Controllers\Admin\TrekContreller;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -49,6 +52,9 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('/gallery', GalleriesController::class);
     Route::resource('/comment', CommentsController::class);
     Route::resource('/news', NewsController::class);
+    Route::resource('/newsDetail', News_detailsController::class);
+    Route::resource('/package', PackagesController::class);
+    Route::resource('/packageDetail', Package_detailsController::class);
     // Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('index');
 });
 

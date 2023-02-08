@@ -18,6 +18,7 @@ return new class extends Migration
             //ID, user-id, trek_id, status
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('trek_id')->nullable();
+            $table->string('package_name');
             $table->enum('status',['Active', 'Inactive'])->default('Active');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $table->foreign('trek_id')->references('id')->on('treks')->onDelete('set null');

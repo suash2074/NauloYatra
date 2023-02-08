@@ -1,0 +1,180 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Models\News;
+use App\Models\News_details;
+use Illuminate\Http\Request;
+
+class News_detailsController extends Controller
+{
+
+    protected $news_detail = null;
+    public function __construct(News_details $news_detail)
+    {
+        $this->news_detail = $news_detail;
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $this->news_detail = $this->news_detail->orderBy('id', 'DESC')->with('news_info')->get();
+        return view('admin.newsSection.news_detail.news_detail')->with('news_detail_data', $this->news_detail);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $news_info = News::orderBy('id', 'DESC')->where('status', 'Active')->pluck('headline', 'id');
+        return view('admin.newsSection.news_detail.news_detailForm')->with('news_info', $news_info);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $rules = $this->news_detail->getRules();
+        $request->validate($rules);
+        $data = $request->except(['_token', 'image']);
+        if ($request->has('image')) {
+            $photo = $request->image;
+            $file_name = uploadImage($photo, 'news_detail', '125x125');
+            if ($file_name) {
+                $data['image'] = $file_name;
+            }
+        }
+        $this->news_detail->fill($data);
+        $status = $this->news_detail->save();
+        // if($status){
+        //     notify()->success('Package added successfully');
+        // }else{
+        //     notify()->error('Sorry! There was problem in adding package');
+        // }
+
+        return redirect()->route('newsDetail.index');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $this->news_detail = $this->news_detail->find($id);
+        $news_info = News::orderBy('id', 'DESC')->where('status', 'Active')->pluck('headline', 'id');
+        if (!$this->news_detail) {
+            //message
+            // notify()->error('This news_detail doesnot exists');
+            return redirect()->route('newsDetail.index');
+        }
+        return view('admin.newsSection.news_detail.news_detailView')
+            ->with('news_detail_data', $this->news_detail)->with('news_info', $news_info);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $this->news_detail = $this->news_detail->find($id);
+        $news_info = News::orderBy('id', 'DESC')->where('status', 'Active')->pluck('headline', 'id');
+        if (!$this->news_detail) {
+            //message
+            // notify()->error('This news_detail doesnot exists');
+            return redirect()->route('newsDetail.index');
+        }
+        return view('admin.newsSection.news_detail.news_detailForm')
+            ->with('news_detail_data', $this->news_detail)->with('news_info', $news_info);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $this->news_detail = $this->news_detail->find($id);
+        $news_info = News::orderBy('id', 'Desc')->where('status', 'Active')->pluck('headline', 'id');
+        if (!$this->news_detail) {
+            // notify()->error('This package doesnot exists');
+            return redirect()->route('newsDetail.index');
+        }
+
+        $rules = $this->news_detail->getRules();
+        $request->validate($rules);
+        $data = $request->except(['_token', 'image']);
+        if ($request->has('image')) {
+            $photo = $request->image;
+            $file_name = uploadImage($photo, 'news_detail', '125x125');
+            if ($file_name) {
+                if ($this->news_detail->iamge != null && file_exists(public_path() . '/uploads/news_detail/' . $this->news_detail->image)) {
+                    unlink(public_path() . '/uploads/news_detail/' . $this->news_detail->image);
+                    unlink(public_path() . '/uploads/news_detail/Thumb-' . $this->news_detail->image);
+                }
+                $data['image'] = $file_name;
+            }
+        }
+
+        $this->news_detail->fill($data);
+
+        $status = $this->news_detail->save();
+        // if($status){
+        //     notify()->success('Package updated successfully');
+        // }else{
+        //     notify()->error('Sorry! There was problem in updating package');
+        // }
+
+        return redirect()->route('newsDetail.index')->with('$news_info', $news_info);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $this->news_detail = $this->news_detail->find($id);
+        if (!$this->news_detail) {
+            // notify()->error('This trek doesnot exists');
+            return redirect()->route('newsDetail.index');
+        }
+        $del = $this->news_detail->delete();
+        $photo = $this->news_detail->image;
+        if ($del) {
+            if ($photo != null && file_exists(public_path() . '/uploads/news_detail/' . $photo)) {
+                unlink(public_path() . '/uploads/news_detail/' . $photo);
+                unlink(public_path() . '/uploads/news_detail/Thumb-' . $photo);
+                //message
+                // notify()->success('trek deleted successfully');
+            } else {
+                //message
+                // notify()->error('Sorry! there was problem in deleting data');
+            }
+
+            return redirect()->route('newsDetail.index');
+        }
+    }
+}
