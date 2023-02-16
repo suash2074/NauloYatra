@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Package_detailsController;
 use App\Http\Controllers\Admin\PackagesController;
 use App\Http\Controllers\Admin\TrekContreller;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -55,6 +56,11 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('/newsDetail', News_detailsController::class);
     Route::resource('/package', PackagesController::class);
     Route::resource('/packageDetail', Package_detailsController::class);
+    Route::resource('/profile', ProfileController::class);
+
+
+    Route::get('/adminBlog', [App\Http\Controllers\HomeController::class, 'adminBlog'])->name('adminBlog');
+    Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index'])->name('blog');
     // Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('index');
 });
 

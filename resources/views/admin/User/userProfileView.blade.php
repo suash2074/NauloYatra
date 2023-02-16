@@ -6,7 +6,7 @@
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
         <div class="container-fluid">
             <!-- Brand -->
-            <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="../index.html">User Profile
+            <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{ route('home') }}">User Profile
                 View</a>
 
             <!-- User -->
@@ -28,7 +28,7 @@
                         <div class=" dropdown-header noti-title">
                             <h6 class="text-overflow m-0">Welcome!</h6>
                         </div>
-                        <a href="../examples/profile.html" class="dropdown-item">
+                        <a href="{{ route('profile.edit',  auth()->user()->id ) }}" class="dropdown-item">
                             <i class="ni ni-single-02"></i>
                             <span>My profile</span>
                         </a>
@@ -57,7 +57,7 @@
     <!-- End Navbar -->
     <!-- Header -->
     <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
-        style="min-height: 600px; background-image: url(../../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+        style="min-height: 600px; background-image: url(../../images/images2.jpg); background-size: cover; background-position: center top;">
         <!-- Mask -->
         <span class="mask bg-gradient-default opacity-8"></span>
         <!-- Header container -->
@@ -83,7 +83,7 @@
                         <div class="col-lg-3 order-lg-2">
                             <div class="card-profile-image">
                                 <a href="#">
-                                    <img src={{ asset('assets/img/theme/team-4-800x800.jpg') }} class="rounded-circle">
+                                    <img src={{ asset('uploads/user/' . @$user_data->photo) }} width="180" height="180" class="rounded-circle">
                                 </a>
                             </div>
                         </div>

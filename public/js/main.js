@@ -97,7 +97,7 @@
 
     window.addEventListener('scroll', function () {
         let value = window.scrollY
-        backgroundImg1.style.top = value * 0.3 + 'px';
+        backgroundimg1.style.top = value * 0.3 + 'px';
         // backgroundImg2.style.top = value * 0.27 + 'px';
         logoText.style.marginTop = value * 0.7 + 'px';
         mediaIcons.style.marginTop = value * 0.7 + 'px';

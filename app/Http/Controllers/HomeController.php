@@ -32,7 +32,13 @@ class HomeController extends Controller
         return redirect()->route('adminHome');
     }
 
-    public function user(){
+    public function adminBlog()
+    {
+        return view('front/Home/home');
+    }
+
+    public function user()
+    {
         return view('front/Home/home');
     }
 }

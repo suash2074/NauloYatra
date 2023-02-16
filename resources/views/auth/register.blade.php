@@ -8,10 +8,22 @@
 
         <div class="input-field">
             <i class="icon fas fa-user"></i>
-            <input id="full_name" type="text" class="form-control @error('full_name') is-invalid @enderror"
-                name="full_name" value="{{ old('full_name') }}" required autocomplete="full_name" autofocus
-                placeholder="Full name"/>
-            @error('full_name')
+            <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror"
+                name="first_name" value="{{ old('first_name') }}" required autocomplete="first_name" autofocus
+                placeholder="First name"/>
+            @error('first_name')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+
+        <div class="input-field">
+            <i class="icon fas fa-user"></i>
+            <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror"
+                name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name" autofocus
+                placeholder="Last name"/>
+            @error('last_name')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>

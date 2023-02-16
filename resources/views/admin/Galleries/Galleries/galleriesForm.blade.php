@@ -65,7 +65,7 @@
 
                     <div class="row">
                         <div class="form-group col-5">
-                            <label for="example-password-input" class="form-control-label">Medicine Name</label>
+                            <label for="example-password-input" class="form-control-label">Caption</label>
                             <select class="form-control" name="gallery_detail_id" id="gallery_detail_id">
                                 <option value="" disabled selected hidden>Select Gallery Caption</option>
 

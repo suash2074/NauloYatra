@@ -6,7 +6,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Brand -->
-        <a class="navbar-brand pt-0" href="./index.html">
+        <a class="navbar-brand pt-0" href="{{ route('home') }}">
             <img src={{ asset('images/logo.png') }} class="navbar-brand-img" alt="..." />
         </a>
         <!-- User -->
@@ -104,67 +104,111 @@
                         <i class="ni ni-single-02 text-yellow"></i> Users
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('trek.index') }}">
-                        <i class="ni ni-square-pin text-green"></i> Trek
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <i class="ni ni-square-pin text-green"></i>
+                        <span class="mb-0 text-sm"> Adventure</span>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('about.index') }}">
-                        <i class="ni ni-square-pin text-green"></i> About Trek
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('culture.index') }}">
-                        <i class="ni ni-square-pin text-green"></i> Cultures
-                    </a>
+                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+                        <a href="{{ route('trek.index') }}" class="dropdown-item">
+                            <i class="ni ni-compass-04 text-orange"></i>
+                            <span>Trek</span>
+                        </a>
+
+                        <a href="{{ route('about.index') }}" class="dropdown-item">
+                            <i class="ni ni-books text-default"></i>
+                            <span>About Trek</span>
+                        </a>
+                        <a href="{{ route('culture.index') }}" class="dropdown-item">
+                            <i class="ni ni-single-02 text-green"></i>
+                            <span>Cultures</span>
+                        </a>
+                    </div>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('medicine.index') }}">
-                        <i class="ni ni-pin-3 text-orange"></i> Medicines
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <i class="ni ni-sound-wave text-red"></i>
+                        <span class="mb-0 text-sm"> First Aid</span>
                     </a>
+                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+                        <a href="{{ route('medicine.index') }}" class="dropdown-item">
+                            <i class="ni ni-favourite-28 text-orange"></i>
+                            <span>Medicines</span>
+                        </a>
+
+                        <a href="{{ route('healthKit.index') }}" class="dropdown-item">
+                            <i class="ni ni-ruler-pencil text-info"></i>
+                            <span>Health Kit</span>
+                        </a>
+                    </div>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('healthKit.index') }}">
-                        <i class="ni ni-planet text-blue"></i> Health Kit
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <i class="ni ni-image text-default"></i>
+                        <span class="mb-0 text-sm">Images</span>
                     </a>
+                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+                        <a href="{{ route('galleryDetail.index') }}" class="dropdown-item">
+                            <i class="ni ni-archive-2 text-orange"></i>
+                            <span>Gallery Detail</span>
+                        </a>
+
+                        <a href="{{ route('gallery.index') }}" class="dropdown-item">
+                            <i class="ni ni-collection text-green"></i>
+                            <span>Galleries</span>
+                        </a>
+                    </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('galleryDetail.index') }}">
-                        <i class="ni ni-single-02 text-yellow"></i>Gallery Detail
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('gallery.index') }}">
-                        <i class="ni ni-bullet-list-67 text-red"></i> Galleries
-                    </a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('comment.index') }}">
-                        <i class="ni ni-key-25 text-info"></i> Comments
+                        <i class="ni ni-chat-round text-info"></i> Comments
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('news.index') }}">
-                        <i class="ni ni-circle-08 text-pink"></i> News
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <i class="ni ni-single-copy-04 text-danger"></i>
+                        <span class="mb-0 text-sm">News</span>
                     </a>
+                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+                        <a href="{{ route('news.index') }}" class="dropdown-item">
+                            <i class="ni ni-archive-2 text-orange"></i>
+                            <span>News</span>
+                        </a>
+
+                        <a href="{{ route('newsDetail.index') }}" class="dropdown-item">
+                            <i class="ni ni-collection text-Default"></i>
+                            <span>News Details</span>
+                        </a>
+                    </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('newsDetail.index') }}">
-                        <i class="ni ni-circle-08 text-pink"></i> News Details
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <i class="ni ni-cart text-default"></i>
+                        <span class="mb-0 text-sm">Packages</span>
                     </a>
-                </li><li class="nav-item">
-                    <a class="nav-link" href="{{ route('package.index') }}">
-                        <i class="ni ni-circle-08 text-pink"></i> Packages
-                    </a>
+                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+                        <a href="{{ route('package.index') }}" class="dropdown-item">
+                            <i class="ni ni-bag-17 text-orange"></i>
+                            <span>Packages</span>
+                        </a>
+
+                        <a href="{{ route('packageDetail.index') }}" class="dropdown-item">
+                            <i class="ni ni-ruler-pencil text-yellow"></i>
+                            <span>Package Details</span>
+                        </a>
+                    </div>
                 </li>
-            </li><li class="nav-item">
-                <a class="nav-link" href="{{ route('packageDetail.index') }}">
-                    <i class="ni ni-circle-08 text-pink"></i> Package Details
-                </a>
-            </li>
             </ul>
             <!-- Divider -->
         </div>
