@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AboutSectionContreller;
+use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\CommentsController;
 use App\Http\Controllers\Admin\CultureController;
 use App\Http\Controllers\Admin\GalleriesController;
@@ -56,6 +57,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('/newsDetail', News_detailsController::class);
     Route::resource('/package', PackagesController::class);
     Route::resource('/packageDetail', Package_detailsController::class);
+    Route::resource('/booking', BookingController::class);
     Route::resource('/profile', ProfileController::class);
 
 

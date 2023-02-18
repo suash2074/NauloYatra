@@ -209,6 +209,12 @@
                         </a>
                     </div>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('booking.index') }}">
+                        <i class="ni ni-chat-round text-info"></i> Bookings
+                    </a>
+                </li>
             </ul>
             <!-- Divider -->
         </div>

@@ -33,7 +33,7 @@ class TrekContreller extends Controller
      */
     public function create()
     {
-        $user_info = User::orderBy('id', 'DESC')->pluck('username', 'id');
+        $user_info = User::orderBy('id', 'DESC')->where('status', 'Active')->pluck('username', 'id');
         return view('admin.Trek.trekForm')->with('user_info', $user_info);
     }
 

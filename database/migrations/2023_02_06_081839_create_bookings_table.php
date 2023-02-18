@@ -26,9 +26,10 @@ return new class extends Migration
             $table->integer('days');
             $table->unsignedBigInteger('trek_id')->nullable();
             $table->enum('status',['Active', 'Inactive'])->default('Active');
+
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $table->foreign('trek_id')->references('id')->on('treks')->onDelete('set null');
-            $table->foreign('package_id')->references('id')->on('packages')->onDelete('set null');
+            $table->foreign('package_id')->references('id')->on('package_details')->onDelete('set null');
             $table->timestamps();
         });
     }
