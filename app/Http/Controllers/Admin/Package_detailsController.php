@@ -51,11 +51,11 @@ class Package_detailsController extends Controller
         $data = $request->except(['_token']);
         $this->package_detail->fill($data);
         $status = $this->package_detail->save();
-        // if($status){
-        //     notify()->success('Package added successfully');
-        // }else{
-        //     notify()->error('Sorry! There was problem in adding package');
-        // }
+        if($status){
+            notify()->success('Package details added successfully !');
+        }else{
+            notify()->error('Sorry! There was problem while adding package details.');
+        }
 
         return redirect()->route('packageDetail.index');
     }
@@ -72,7 +72,7 @@ class Package_detailsController extends Controller
         $package_info = Packages::orderBy('id', 'DESC')->where('status', 'Active')->pluck('package_name', 'id');
         if (!$this->package_detail) {
             //message
-            // notify()->error('This package_detail doesnot exists');
+            notify()->error('This package detail doesnot exists !!');
             return redirect()->route('packageDetail.index');
         }
         return view('admin.packageSection.package_detail.package_detailView')
@@ -91,7 +91,7 @@ class Package_detailsController extends Controller
         $package_info = Packages::orderBy('id', 'DESC')->where('status', 'Active')->pluck('package_name', 'id');
         if (!$this->package_detail) {
             //message
-            // notify()->error('This package_detail doesnot exists');
+            notify()->error('This package detail doesnot exists !!');
             return redirect()->route('packageDetail.index');
         }
         return view('admin.packageSection.package_detail.package_detailForm')
@@ -110,7 +110,7 @@ class Package_detailsController extends Controller
         $this->package_detail = $this->package_detail->find($id);
         $package_info = Packages::orderBy('id', 'Desc')->where('status', 'Active')->pluck('package_name', 'id');
         if (!$this->package_detail) {
-            // notify()->error('This package doesnot exists');
+            notify()->error('This package detail doesnot exists !!');
             return redirect()->route('packageDetail.index');
         }
 
@@ -121,11 +121,11 @@ class Package_detailsController extends Controller
         $this->package_detail->fill($data);
 
         $status = $this->package_detail->save();
-        // if($status){
-        //     notify()->success('Package updated successfully');
-        // }else{
-        //     notify()->error('Sorry! There was problem in updating package');
-        // }
+        if($status){
+            notify()->success('Package detail updated successfully !');
+        }else{
+            notify()->error('Sorry! There was problem in updating package detail.');
+        }
 
         return redirect()->route('packageDetail.index')->with('$package_info', $package_info);
     }
@@ -140,16 +140,16 @@ class Package_detailsController extends Controller
     {
         $this->package_detail = $this->package_detail->find($id);
         if (!$this->package_detail) {
-            // notify()->error('This trek doesnot exists');
+            notify()->error('This package detail doesnot exists !!');
             return redirect()->route('packageDetail.index');
         }
         $del = $this->package_detail->delete();
         if ($del) {
             //message
-            // notify()->success('trek deleted successfully');
+            notify()->success('Package detail deleted successfully !');
         } else {
             //message
-            // notify()->error('Sorry! there was problem in deleting data');
+            notify()->error('Sorry! there was problem in deleting data.');
         }
 
         return redirect()->route('newsDetail.index');

@@ -41,8 +41,6 @@ class BookingController extends Controller
         $guide_info = User::orderBy('id', 'DESC')->where('status', 'Active')->where('role', 'guide')->pluck('username', 'id');
         $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
         $package_info = Packages::orderBy('id', 'DESC')->where('status', 'Active')->pluck('package_name', 'id');
-        // $package_info = Package_details::orderBy('id', 'DESC')->where('status', 'Active')->get();
-        // dd($guide_info);
         return view('admin.booking.bookingForm')->with([
             'user_info' => $user_info,
             'guide_info' => $guide_info,
@@ -62,19 +60,13 @@ class BookingController extends Controller
         $rules = $this->booking->getRules();
         $request->validate($rules);
         $data = $request->except(['_token']);
-
-
-        // $data['user_id'] = auth()->user()->id;
-        // $data['email'] = $request->user_id
-
-        // dd($request->user_id);
         $this->booking->fill($data);
         $status = $this->booking->save();
-        // if($status){
-        //     notify()->success('Package added successfully');
-        // }else{
-        //     notify()->error('Sorry! There was problem in adding package');
-        // }
+        if($status){
+            notify()->success('Package booking done sucessfully !');
+        }else{
+            notify()->error('Sorry! There was problem in booking of package.');
+        }
 
         return redirect()->route('booking.index');
     }
@@ -94,7 +86,7 @@ class BookingController extends Controller
         $package_info = Packages::orderBy('id', 'DESC')->where('status', 'Active')->pluck('package_name', 'id');
         if (!$this->booking) {
             //message
-            // notify()->error('This package_detail doesnot exists');
+            notify()->error('This booking doesnot exists !!');
             return redirect()->route('packageDetail.index');
         }
         return view('admin.booking.bookingView')
@@ -120,7 +112,7 @@ class BookingController extends Controller
         $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
         $package_info = Package_details::orderBy('id', 'DESC')->where('status', 'Active')->get();
         if (!$this->booking) {
-            // notify()->error('This trek doesnot exists');
+            notify()->error('This booking doesnot exists !!');
             return redirect()->route('booking.index');
         }
         return view('admin.booking.bookingForm')
@@ -147,7 +139,7 @@ class BookingController extends Controller
         $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
         $package_info = Package_details::orderBy('id', 'DESC')->where('status', 'Active')->get();
         if (!$this->booking) {
-            // notify()->error('This package doesnot exists');
+            notify()->error('This booking doesnot exists !!');
             return redirect()->route('booking.index');
         }
 
@@ -158,11 +150,11 @@ class BookingController extends Controller
         $this->booking->fill($data);
 
         $status = $this->booking->save();
-        // if($status){
-        //     notify()->success('Package updated successfully');
-        // }else{
-        //     notify()->error('Sorry! There was problem in updating package');
-        // }
+        if($status){
+            notify()->success('Booking updated successfully.');
+        }else{
+            notify()->error('Sorry! There was problem in updating data');
+        }
 
         return redirect()->route('booking.index')->with([
             'user_info' => $user_info,
@@ -188,10 +180,10 @@ class BookingController extends Controller
         $del = $this->booking->delete();
         if ($del) {
             //message
-            // notify()->success('trek deleted successfully');
+            notify()->success('Booking deleted successfully !');
         } else {
             //message
-            // notify()->error('Sorry! there was problem in deleting data');
+            notify()->error('Sorry! there was problem in deleting data.');
         }
 
         return redirect()->route('booking.index');

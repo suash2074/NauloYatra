@@ -57,11 +57,11 @@ class CultureController extends Controller
         }
         $this->culture->fill($data);
         $status = $this->culture->save();
-        // if($status){
-        //     notify()->success('Package added successfully');
-        // }else{
-        //     notify()->error('Sorry! There was problem in adding package');
-        // }
+        if($status){
+            notify()->success('Culture detail added successfully !');
+        }else{
+            notify()->error('Sorry! There was problem while adding culture.');
+        }
 
         return redirect()->route('culture.index');
     }
@@ -78,7 +78,7 @@ class CultureController extends Controller
         $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
         if (!$this->culture) {
             //message
-            // notify()->error('This culture doesnot exists');
+            notify()->error('This culture detail doesnot exists !!');
             return redirect()->route('culture.index');
         }
         return view('admin.culture.cultureView')
@@ -97,7 +97,7 @@ class CultureController extends Controller
         $trek_info = Trek::orderBy('id', 'Desc')->where('status', 'Active')->pluck('trek_name', 'id');
         if (!$this->culture) {
             //message
-            // notify()->error('This culture doesnot exists');
+            notify()->error('This culture detail doesnot exists !!');
             return redirect()->route('culture.index');
         }
         return view('admin.culture.cultureForm')
@@ -116,7 +116,7 @@ class CultureController extends Controller
         $this->culture = $this->culture->find($id);
         $trek_info = Trek::orderBy('id', 'Desc')->where('status', 'Active')->pluck('trek_name', 'id');
         if (!$this->culture) {
-            // notify()->error('This package doesnot exists');
+            notify()->error('This culture doesnot exists');
             redirect()->route('about.index');
         }
 
@@ -138,11 +138,11 @@ class CultureController extends Controller
         $this->culture->fill($data);
 
         $status = $this->culture->save();
-        // if($status){
-        //     notify()->success('Package updated successfully');
-        // }else{
-        //     notify()->error('Sorry! There was problem in updating package');
-        // }
+        if($status){
+            notify()->success('Culture detail updated successfully !');
+        }else{
+            notify()->error('Sorry! There was problem in updating details.');
+        }
 
         return redirect()->route('culture.index')->with('$trek_info', $trek_info);
     }
@@ -157,7 +157,7 @@ class CultureController extends Controller
     {
         $this->culture = $this->culture->find($id);
         if (!$this->culture) {
-            // notify()->error('This trek doesnot exists');
+            notify()->error('This culture detail doesnot exists !!');
             return redirect()->route('about.index');
         }
         $del = $this->culture->delete();
@@ -167,10 +167,10 @@ class CultureController extends Controller
                 unlink(public_path() . '/uploads/culture/' . $photo);
                 unlink(public_path() . '/uploads/culture/Thumb-' . $photo);
                 //message
-                // notify()->success('trek deleted successfully');
+                notify()->success('Culture details deleted successfully !');
             } else {
                 //message
-                // notify()->error('Sorry! there was problem in deleting data');
+                notify()->error('Sorry! there was problem in deleting data.');
             }
 
             return redirect()->route('culture.index');

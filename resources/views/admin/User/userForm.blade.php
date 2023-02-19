@@ -26,7 +26,7 @@
                         <i class="ni ni-bold-left text-orange"></i> Back
                     </a>
                 </div>
-                <div class="container mb-4">
+                <div class="container-fluid mb-4">
                     @if ($errors->any())
                         {{ implode('', $errors->all('<div>:message</div>')) }}
                     @endif

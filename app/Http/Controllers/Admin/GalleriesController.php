@@ -56,11 +56,11 @@ class GalleriesController extends Controller
         $data = $request->except(['_token']);
         $this->gallery->fill($data);
         $status = $this->gallery->save();
-        // if($status){
-        //     notify()->success('Package added successfully');
-        // }else{
-        //     notify()->error('Sorry! There was problem in adding package');
-        // }
+        if($status){
+            notify()->success('Gallery added successfully !');
+        }else{
+            notify()->error('Sorry! There was problem while adding gallery.');
+        }
 
         return redirect()->route('gallery.index');
     }
@@ -78,7 +78,7 @@ class GalleriesController extends Controller
         $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
         if (!$this->gallery) {
             //message
-            // notify()->error('This health_kit doesnot exists');
+            notify()->error('This gallery doesnot exists !!');
             return redirect()->route('healthKit.index');
         }
         return view('admin.galleries.galleries.galleriesView')->with('gallery_data', $this->gallery)->with([
@@ -100,7 +100,7 @@ class GalleriesController extends Controller
         $gallery_info = Gallery_detail::orderBy('id', 'DESC')->where('status', 'Active')->pluck('image_caption', 'id');
         if (!$this->gallery) {
             //message
-            // notify()->error('This health_kit doesnot exists');
+            notify()->error('This gallery doesnot exists !!');
             return redirect()->route('healthKit.index');
         }
         return view('admin.galleries.galleries.galleriesForm')->with('gallery_data', $this->gallery)->with([
@@ -123,7 +123,7 @@ class GalleriesController extends Controller
         $gallery_info = Gallery_detail::orderBy('id', 'DESC')->where('status', 'Active')->pluck('image_caption', 'id');
 
         if (!$this->gallery) {
-            // notify()->error('This package doesnot exists');
+            notify()->error('This gallery doesnot exists !!');
             return redirect()->route('gallery.index');
         }
 
@@ -133,11 +133,11 @@ class GalleriesController extends Controller
         $this->gallery->fill($data);
 
         $status = $this->gallery->save();
-        // if($status){
-        //     notify()->success('Package updated successfully');
-        // }else{
-        //     notify()->error('Sorry! There was problem in updating package');
-        // }
+        if($status){
+            notify()->success('Gallery updated successfully !');
+        }else{
+            notify()->error('Sorry! There was problem in updating gallery.');
+        }
 
         return redirect()->route('gallery.index')->with([
             'trek_info' => $trek_info,
@@ -156,16 +156,16 @@ class GalleriesController extends Controller
         
         $this->gallery = $this->gallery->find($id);
         if (!$this->gallery) {
-            // notify()->error('This trek doesnot exists');
+            notify()->error('This gallery doesnot exists !!');
             return redirect()->route('gallery.index');
         }
         $del = $this->gallery->delete();
         if ($del) {
             //message
-            // notify()->success('trek deleted successfully');
+            notify()->success('Gallery deleted successfully !');
         } else {
             //message
-            // notify()->error('Sorry! there was problem in deleting data');
+            notify()->error('Sorry! there was problem in deleting data.');
         }
 
         return redirect()->route('gallery.index');

@@ -58,11 +58,11 @@ class AboutSectionContreller extends Controller
         }
         $this->about_section->fill($data);
         $status = $this->about_section->save();
-        // if($status){
-        //     notify()->success('Package added successfully');
-        // }else{
-        //     notify()->error('Sorry! There was problem in adding package');
-        // }
+        if($status){
+            notify()->success('Trek detail added successfully !');
+        }else{
+            notify()->error('Sorry! There was problem in while adding the details !');
+        }
         
         return redirect()->route('about.index');
     }
@@ -79,7 +79,7 @@ class AboutSectionContreller extends Controller
         $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
         if (!$this->about_section) {
             //message
-            // notify()->error('This about_section doesnot exists');
+            notify()->error('This trek detail doesnot exists !!');
             return redirect()->route('about.index');
         }
         return view('admin.about_section.about_sectionView')
@@ -98,7 +98,7 @@ class AboutSectionContreller extends Controller
         $trek_info = Trek::orderBy('id', 'Desc')->where('status', 'Active')->pluck('trek_name', 'id');
         if (!$this->about_section) {
             //message
-            // notify()->error('This about_section doesnot exists');
+            notify()->error('This trek detail doesnot exists !!');
             return redirect()->route('about.index');
         }
         return view('admin.about_section.about_sectionForm')
@@ -117,7 +117,7 @@ class AboutSectionContreller extends Controller
         $this->about_section = $this->about_section->find($id);
         $trek_info = Trek::orderBy('id', 'Desc')->where('status', 'Active')->pluck('trek_name', 'id');
         if (!$this->about_section) {
-            // notify()->error('This package doesnot exists');
+            notify()->error('This trek detail doesnot exists !!');
             return redirect()->route('about.index');
         }
         
@@ -139,11 +139,11 @@ class AboutSectionContreller extends Controller
         $this->about_section->fill($data);
 
         $status = $this->about_section->save();
-        // if($status){
-        //     notify()->success('Package updated successfully');
-        // }else{
-        //     notify()->error('Sorry! There was problem in updating package');
-        // }
+        if($status){
+            notify()->success('Trek detail updated successfully !');
+        }else{
+            notify()->error('Sorry! There was problem in updating details !!');
+        }
 
         return redirect()->route('about.index')->with('$trek_info', $trek_info);
     }
@@ -158,7 +158,7 @@ class AboutSectionContreller extends Controller
     {
         $this->about_section = $this->about_section->find($id);
         if(!$this->about_section){
-            // notify()->error('This trek doesnot exists');
+            notify()->error('This trek details doesnot exists');
             return redirect()->route('about.index');
         }
         $del = $this->about_section->delete();
@@ -168,10 +168,10 @@ class AboutSectionContreller extends Controller
                 unlink(public_path() . '/uploads/about_section/' . $photo);
                 unlink(public_path() . '/uploads/about_section/Thumb-' . $photo);
                 //message
-                // notify()->success('trek deleted successfully');
+                notify()->success('Trek detail deleted successfully !');
             } else {
                 //message
-                // notify()->error('Sorry! there was problem in deleting data');
+                notify()->error('Sorry! there was problem in deleting detail');
             }
 
             return redirect()->route('about.index');

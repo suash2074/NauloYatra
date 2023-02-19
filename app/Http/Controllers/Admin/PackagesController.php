@@ -58,11 +58,11 @@ class PackagesController extends Controller
         $data['user_id'] = auth()->user()->id;
         $this->package->fill($data);
         $status = $this->package->save();
-        // if($status){
-        //     notify()->success('Package added successfully');
-        // }else{
-        //     notify()->error('Sorry! There was problem in adding package');
-        // }
+        if($status){
+            notify()->success('Package added successfully !');
+        }else{
+            notify()->error('Sorry! There was problem while adding package.');
+        }
 
         return redirect()->route('package.index');
     }
@@ -80,7 +80,7 @@ class PackagesController extends Controller
         $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
         if (!$this->package) {
             //message
-            // notify()->error('This package doesnot exists');
+            notify()->error('This package doesnot exists !!');
             return redirect()->route('package.index');
         }
         return view('admin.packageSection.package.packageView')
@@ -103,7 +103,7 @@ class PackagesController extends Controller
         $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
         if (!$this->package) {
             //message
-            // notify()->error('This package doesnot exists');
+            notify()->error('This package doesnot exists !!');
             return redirect()->route('package.index');
         }
         return view('admin.packageSection.package.packageForm')
@@ -126,7 +126,7 @@ class PackagesController extends Controller
         $user_info = User::orderBy('id', 'Desc')->where('status', 'Active')->pluck('username', 'id');
         $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
         if (!$this->package) {
-            // notify()->error('This package doesnot exists');
+            notify()->error('This package doesnot exists !!');
             return redirect()->route('package.index');
         }
         $rules = $this->package->getRules();
@@ -135,11 +135,11 @@ class PackagesController extends Controller
         $this->package->fill($data);
 
         $status = $this->package->save();
-        // if($status){
-        //     notify()->success('Package updated successfully');
-        // }else{
-        //     notify()->error('Sorry! There was problem in updating package');
-        // }
+        if($status){
+            notify()->success('Package updated successfully !');
+        }else{
+            notify()->error('Sorry! There was problem in updating package.');
+        }
 
         return redirect()->route('package.index')->with([
             'user_info' => $user_info,
@@ -157,16 +157,16 @@ class PackagesController extends Controller
     {
         $this->package = $this->package->find($id);
         if (!$this->package) {
-            // notify()->error('This trek doesnot exists');
+            notify()->error('This package doesnot exists !!');
             return redirect()->route('package.index');
         }
         $del = $this->package->delete();
         if ($del) {
             //message
-            // notify()->success('trek deleted successfully');
+            notify()->success('Package deleted successfully !');
         } else {
             //message
-            // notify()->error('Sorry! there was problem in deleting data');
+            notify()->error('Sorry! there was problem in deleting data.');
         }
 
         return redirect()->route('package.index');

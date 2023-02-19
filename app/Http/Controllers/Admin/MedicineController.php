@@ -49,11 +49,11 @@ class MedicineController extends Controller
         $data = $request->except(['_token']);
         $this->medicine->fill($data);
         $status = $this->medicine->save();
-        // if($status){
-        //     notify()->success('Package added successfully');
-        // }else{
-        //     notify()->error('Sorry! There was problem in adding package');
-        // }
+        if($status){
+            notify()->success('Medicine added successfully !');
+        }else{
+            notify()->error('Sorry! There was problem while adding medicine.');
+        }
 
         return redirect()->route('medicine.index');
     }
@@ -69,7 +69,7 @@ class MedicineController extends Controller
         $this->medicine = $this->medicine->find($id);
         if (!$this->medicine) {
             //message
-            // notify()->error('This medicine doesnot exists');
+            notify()->error('This medicine doesnot exists !!');
             return redirect()->route('healthKit.index');
         }
         return view('admin.medicine.medicineView')->with('medicine_data', $this->medicine);
@@ -86,7 +86,7 @@ class MedicineController extends Controller
         $this->medicine = $this->medicine->find($id);
         if (!$this->medicine) {
             //message
-            // notify()->error('This medicine doesnot exists');
+            notify()->error('This medicine doesnot exists !!');
             return redirect()->route('healthKit.index');
         }
         return view('admin.medicine.medicineForm')->with('medicine_data', $this->medicine);
@@ -104,7 +104,7 @@ class MedicineController extends Controller
         $this->medicine = $this->medicine->find($id);
         if (!$this->medicine) {
             //message
-            // notify()->error('This medicine doesnot exists');
+            notify()->error('This medicine doesnot exists !!');
             return redirect()->route('healthKit.index');
         }
         $rules = $this->medicine->getRules();
@@ -112,11 +112,11 @@ class MedicineController extends Controller
         $data = $request->except(['_token']);
         $this->medicine->fill($data);
         $status = $this->medicine->save();
-        // if($status){
-        //     notify()->success('Package added successfully');
-        // }else{
-        //     notify()->error('Sorry! There was problem in adding package');
-        // }
+        if($status){
+            notify()->success('Medicine added successfully !');
+        }else{
+            notify()->error('Sorry! There was problem in adding medicine.');
+        }
 
         return redirect()->route('medicine.index');
     }
@@ -131,16 +131,16 @@ class MedicineController extends Controller
     {
         $this->medicine = $this->medicine->find($id);
         if (!$this->medicine) {
-            // notify()->error('This trek doesnot exists');
+            notify()->error('This medicine doesnot exists !!');
             return redirect()->route('about.index');
         }
         $del = $this->medicine->delete();
         if ($del) {
             //message
-            // notify()->success('trek deleted successfully');
+            notify()->success('Medicine deleted successfully !');
         } else {
             //message
-            // notify()->error('Sorry! there was problem in deleting data');
+            notify()->error('Sorry! there was problem in deleting data.');
         }
 
         return redirect()->route('medicine.index');

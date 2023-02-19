@@ -56,11 +56,11 @@ class Gallery_detailsController extends Controller
         }
         $this->gallery_detail->fill($data);
         $status = $this->gallery_detail->save();
-        // if($status){
-        //     notify()->success('Package added successfully');
-        // }else{
-        //     notify()->error('Sorry! There was problem in adding package');
-        // }
+        if($status){
+            notify()->success('Gallery details added successfully !');
+        }else{
+            notify()->error('Sorry! There was problem while adding gallery details.');
+        }
 
         return redirect()->route('galleryDetail.index');
     }
@@ -76,7 +76,7 @@ class Gallery_detailsController extends Controller
         $this->gallery_detail = $this->gallery_detail->find($id);
         if (!$this->gallery_detail) {
             //message
-            // notify()->error('This gallery_detail doesnot exists');
+            notify()->error('This gallery detail doesnot exists !!');
             return redirect()->route('galleryDetail.index');
         }
         return view('admin.galleries.gallery_detail.gallery_detailView')
@@ -94,7 +94,7 @@ class Gallery_detailsController extends Controller
         $this->gallery_detail = $this->gallery_detail->find($id);
         if (!$this->gallery_detail) {
             //message
-            // notify()->error('This gallery_detail doesnot exists');
+            notify()->error('This gallery detail doesnot exists !!');
             return redirect()->route('galleryDetail.index');
         }
         return view('admin.galleries.gallery_detail.gallery_detailForm')
@@ -113,7 +113,7 @@ class Gallery_detailsController extends Controller
     {
         $this->gallery_detail = $this->gallery_detail->find($id);
         if (!$this->gallery_detail) {
-            // notify()->error('This package doesnot exists');
+            notify()->error('This gallery detail doesnot exists !!');
             return redirect()->route('galleryDetail.index');
         }
         
@@ -135,11 +135,11 @@ class Gallery_detailsController extends Controller
         $this->gallery_detail->fill($data);
 
         $status = $this->gallery_detail->save();
-        // if($status){
-        //     notify()->success('Package updated successfully');
-        // }else{
-        //     notify()->error('Sorry! There was problem in updating package');
-        // }
+        if($status){
+            notify()->success('Gallery details updated successfully !');
+        }else{
+            notify()->error('Sorry! There was problem in updating details.');
+        }
 
         return redirect()->route('galleryDetail.index');
     
@@ -155,7 +155,7 @@ class Gallery_detailsController extends Controller
     {
         $this->gallery_detail = $this->gallery_detail->find($id);
         if(!$this->gallery_detail){
-            // notify()->error('This trek doesnot exists');
+            notify()->error('This gallery detail doesnot exists !!');
             return redirect()->route('galleryDetail.index');
         }
         $del = $this->gallery_detail->delete();
@@ -165,10 +165,10 @@ class Gallery_detailsController extends Controller
                 unlink(public_path() . '/uploads/gallery/' . $photo);
                 unlink(public_path() . '/uploads/gallery/Thumb-' . $photo);
                 //message
-                // notify()->success('trek deleted successfully');
+                notify()->success('Gallery details deleted successfully !');
             } else {
                 //message
-                // notify()->error('Sorry! there was problem in deleting data');
+                notify()->error('Sorry! there was problem in deleting data.');
             }
 
             return redirect()->route('galleryDetail.index');

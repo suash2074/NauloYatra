@@ -16,4 +16,5 @@
     <link href={{ asset('assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css') }} rel="stylesheet" />
     <!-- CSS Files -->
     <link href={{ asset('assets/css/argon-dashboard.css') }} rel="stylesheet" />
+    @notifyCss
 </head>

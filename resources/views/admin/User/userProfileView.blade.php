@@ -16,7 +16,8 @@
                         aria-expanded="false">
                         <div class="media align-items-center">
                             <span class="avatar avatar-sm rounded-circle">
-                                <img alt="Image placeholder" src="{{ asset('assets/img/theme/team-4-800x800.jpg') }}">
+                                <img alt="Image placeholder" src={{ asset('uploads/user/Thumb-' . auth()->user()->photo) }}
+                        style="height:38px" />
                             </span>
                             <div class="media-body ml-2 d-none d-lg-block">
                                 <span class="mb-0 text-sm font-weight-bold">{{ Auth::user()->first_name }}
@@ -28,27 +29,31 @@
                         <div class=" dropdown-header noti-title">
                             <h6 class="text-overflow m-0">Welcome!</h6>
                         </div>
-                        <a href="{{ route('profile.edit',  auth()->user()->id ) }}" class="dropdown-item">
+                        <a href="{{ url('admin/profile') }}" class="dropdown-item">
                             <i class="ni ni-single-02"></i>
                             <span>My profile</span>
                         </a>
-                        <a href="../examples/profile.html" class="dropdown-item">
+                        <a href="#" class="dropdown-item">
                             <i class="ni ni-settings-gear-65"></i>
                             <span>Settings</span>
                         </a>
-                        <a href="../examples/profile.html" class="dropdown-item">
+                        <a href="#" class="dropdown-item">
                             <i class="ni ni-calendar-grid-58"></i>
-                            <span>Activity</span>
-                        </a>
-                        <a href="../examples/profile.html" class="dropdown-item">
-                            <i class="ni ni-support-16"></i>
-                            <span>Support</span>
+                            <span>Blog</span>
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="#!" class="dropdown-item">
+                        <a href="{{ route('logout') }}" class="dropdown-item"
+                            onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
                             <i class="ni ni-user-run"></i>
-                            <span>Logout</span>
+            
+            
+                            {{ __('Logout') }}
                         </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+            
                     </div>
                 </li>
             </ul>
@@ -83,7 +88,7 @@
                         <div class="col-lg-3 order-lg-2">
                             <div class="card-profile-image">
                                 <a href="#">
-                                    <img src={{ asset('uploads/user/' . @$user_data->photo) }} width="180" height="180" class="rounded-circle">
+                                    <img src={{ asset('uploads/user/' . @$user_data->photo) }} style="height:180px; width:180px" class="rounded-circle">
                                 </a>
                             </div>
                         </div>

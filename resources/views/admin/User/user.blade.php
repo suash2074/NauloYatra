@@ -49,7 +49,7 @@
                                                                 data-original-title="{{ Auth::user()->first_name }} {{ Auth::user()->last_Fname }}">
                                                                 <img alt="Image placeholder"
                                                                     src="{{ asset('uploads/user/Thumb-' . $user->photo) }}"
-                                                                     height="35" class="rounded-circle">
+                                                                    style="height:35px" class="rounded-circle">
                                                             </a>
                                                         </div>
                                                     </td>

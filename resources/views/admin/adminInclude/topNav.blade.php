@@ -10,17 +10,21 @@
                 </div>
             </form> --}}
 <!-- User -->
+<div style="z-index: 2">
+    <x:notify-messages />
+</div>
 <ul class="navbar-nav align-items-center d-none d-md-flex">
     <li class="nav-item dropdown">
         <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
             <div class="media align-items-center">
                 {{-- @if (isset($user_data)) --}}
-                    {{-- @foreach ($user_data as $users => $user) --}}
-                        <span class="avatar avatar-sm rounded-circle">
-                            <img alt="Image placeholder" src={{ asset('uploads/user/Thumb-' . auth()->user()->photo) }}  height="38"/>
-                        </span>
-                    {{-- @endforeach --}}
+                {{-- @foreach ($user_data as $users => $user) --}}
+                <span class="avatar avatar-sm rounded-circle">
+                    <img alt="Image placeholder" src={{ asset('uploads/user/Thumb-' . auth()->user()->photo) }}
+                        style="height:38px" />
+                </span>
+                {{-- @endforeach --}}
                 {{-- @endif --}}
                 <div class="media-body ml-2 d-none d-lg-block">
                     <span class="mb-0 text-sm font-weight-bold">{{ Auth::user()->first_name }}
@@ -32,14 +36,10 @@
             <div class="dropdown-header noti-title">
                 <h6 class="text-overflow m-0">Welcome!</h6>
             </div>
-            {{-- @if (isset($user_data)) --}}
-            {{-- @foreach ($user_data as $users => $user) --}}
             <a href="{{ url('admin/profile') }}" class="dropdown-item">
                 <i class="ni ni-single-02"></i>
                 <span>My profile</span>
             </a>
-            {{-- @endforeach --}}
-            {{-- @endif --}}
             <a href="#" class="dropdown-item">
                 <i class="ni ni-settings-gear-65"></i>
                 <span>Settings</span>

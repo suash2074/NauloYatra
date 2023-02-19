@@ -55,11 +55,11 @@ class CommentsController extends Controller
         $data = $request->except(['_token']);
         $this->comment->fill($data);
         $status = $this->comment->save();
-        // if($status){
-        //     notify()->success('Package added successfully');
-        // }else{
-        //     notify()->error('Sorry! There was problem in adding package');
-        // }
+        if($status){
+            notify()->success('Comment added successfully !');
+        }else{
+            notify()->error('Sorry! There was problem while adding comment.');
+        }
 
         return redirect()->route('comment.index');
     }
@@ -77,7 +77,7 @@ class CommentsController extends Controller
         $user_info = User::orderBy('id', 'DESC')->where('status', 'Active')->pluck('username', 'id');
         if (!$this->comment) {
             //message
-            // notify()->error('This comment doesnot exists');
+            notify()->error('This comment doesnot exists !!');
             return redirect()->route('comment.index');
         }
         return view('admin.comment.commentView')->with('comment_data', $this->comment)->with([
@@ -99,7 +99,7 @@ class CommentsController extends Controller
         $user_info = User::orderBy('id', 'DESC')->where('status', 'Active')->pluck('username', 'id');
         if (!$this->comment) {
             //message
-            // notify()->error('This comment doesnot exists');
+            notify()->error('This comment doesnot exists !!');
             return redirect()->route('comment.index');
         }
         return view('admin.comment.commentForm')->with('comment_data', $this->comment)->with([
@@ -122,7 +122,7 @@ class CommentsController extends Controller
         $user_info = User::orderBy('id', 'DESC')->where('status', 'Active')->pluck('username', 'id');
 
         if (!$this->comment) {
-            // notify()->error('This package doesnot exists');
+            notify()->error('This comment doesnot exists !!');
             return redirect()->route('comment.index');
         }
 
@@ -132,11 +132,11 @@ class CommentsController extends Controller
         $this->comment->fill($data);
 
         $status = $this->comment->save();
-        // if($status){
-        //     notify()->success('Package updated successfully');
-        // }else{
-        //     notify()->error('Sorry! There was problem in updating package');
-        // }
+        if($status){
+            notify()->success('Comment updated successfully !');
+        }else{
+            notify()->error('Sorry! There was problem in updating comment.');
+        }
 
         return redirect()->route('comment.index')->with([
             'trek_info' => $trek_info,
@@ -154,16 +154,16 @@ class CommentsController extends Controller
     {
         $this->comment = $this->comment->find($id);
         if (!$this->comment) {
-            // notify()->error('This trek doesnot exists');
+            notify()->error('This comment doesnot exists !!');
             return redirect()->route('comment.index');
         }
         $del = $this->comment->delete();
         if ($del) {
             //message
-            // notify()->success('trek deleted successfully');
+            notify()->success('Comment deleted successfully !');
         } else {
             //message
-            // notify()->error('Sorry! there was problem in deleting data');
+            notify()->error('Sorry! there was problem in deleting data.');
         }
 
         return redirect()->route('comment.index');

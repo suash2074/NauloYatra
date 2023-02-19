@@ -60,11 +60,11 @@ class TrekContreller extends Controller
         // dd($data['user_data']);
         $this->trek->fill($data);
         $status = $this->trek->save();
-        // if($status){
-        //     notify()->success('Package added successfully');
-        // }else{
-        //     notify()->error('Sorry! There was problem in adding package');
-        // }
+        if($status){
+            notify()->success('Trek added successfully !');
+        }else{
+            notify()->error('Sorry! There was problem while adding trek.');
+        }
         
         return redirect()->route('trek.index');
     }
@@ -79,6 +79,8 @@ class TrekContreller extends Controller
     {
         $this->trek = $this->trek->find($id);
         if (!$this->trek) {
+            //message
+            notify()->error('This trek doesnot exists !!');
             return redirect()->route('trek.index');
         }
 
@@ -113,7 +115,7 @@ class TrekContreller extends Controller
     {
         $this->trek = $this->trek->find($id);
         if (!$this->trek) {
-            // notify()->error('This trek doesnot exists');
+            notify()->error('This trek doesnot exists !!');
             redirect()->route('trek.index');
         }
         $rules = $this->trek->getRules('update');
@@ -133,11 +135,11 @@ class TrekContreller extends Controller
         $this->trek->fill($data);
 
         $status = $this->trek->save();
-        // if($status){
-        //     notify()->success('trek updated successfully');
-        // }else{
-        //     notify()->error('Sorry! There was problem in updating trek');
-        // }
+        if($status){
+            notify()->success('Trek updated successfully !');
+        }else{
+            notify()->error('Sorry! There was problem in updating trek.');
+        }
         return redirect()->route('trek.index');
     }
 
@@ -151,7 +153,7 @@ class TrekContreller extends Controller
     {
         $this->trek = $this->trek->find($id);
         if(!$this->trek){
-            // notify()->error('This trek doesnot exists');
+            notify()->error('This trek doesnot exists !!');
             return redirect()->route('trek.index');
         }
         $del = $this->trek->delete();
@@ -161,10 +163,10 @@ class TrekContreller extends Controller
                 unlink(public_path() . '/uploads/trek/' . $photo);
                 unlink(public_path() . '/uploads/trek/Thumb-' . $photo);
                 //message
-                // notify()->success('trek deleted successfully');
+                notify()->success('Trek deleted successfully !');
             } else {
                 //message
-                // notify()->error('Sorry! there was problem in deleting data');
+                notify()->error('Sorry! there was problem in deleting data.');
             }
 
             return redirect()->route('trek.index');

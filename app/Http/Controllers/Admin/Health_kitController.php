@@ -56,11 +56,11 @@ class Health_kitController extends Controller
         $data = $request->except(['_token']);
         $this->health_kit->fill($data);
         $status = $this->health_kit->save();
-        // if($status){
-        //     notify()->success('Package added successfully');
-        // }else{
-        //     notify()->error('Sorry! There was problem in adding package');
-        // }
+        if($status){
+            notify()->success('Health kit added successfully !');
+        }else{
+            notify()->error('Sorry! There was problem while adding health kit.');
+        }
 
         return redirect()->route('healthKit.index');
     }
@@ -78,7 +78,7 @@ class Health_kitController extends Controller
         $medicine_info = Medicine::orderBy('id', 'DESC')->where('status', 'Active')->pluck('medicine_name', 'id');
         if (!$this->health_kit) {
             //message
-            // notify()->error('This health_kit doesnot exists');
+            notify()->error('This health kit doesnot exists !!');
             return redirect()->route('healthKit.index');
         }
         return view('admin.health_kit.health_kitView')->with('health_kit_data', $this->health_kit)->with([
@@ -100,7 +100,7 @@ class Health_kitController extends Controller
         $medicine_info = Medicine::orderBy('id', 'DESC')->where('status', 'Active')->pluck('medicine_name', 'id');
         if (!$this->health_kit) {
             //message
-            // notify()->error('This health_kit doesnot exists');
+            notify()->error('This health kit doesnot exists !!');
             return redirect()->route('healthKit.index');
         }
         return view('admin.health_kit.health_kitForm')->with('health_kit_data', $this->health_kit)->with([
@@ -123,7 +123,7 @@ class Health_kitController extends Controller
         $medicine_info = Medicine::orderBy('id', 'DESC')->where('status', 'Active')->pluck('medicine_name', 'id');
 
         if (!$this->health_kit) {
-            // notify()->error('This package doesnot exists');
+            notify()->error('This hhealth kit doesnot exists !!');
             return redirect()->route('healthKit.index');
         }
 
@@ -133,11 +133,11 @@ class Health_kitController extends Controller
         $this->health_kit->fill($data);
 
         $status = $this->health_kit->save();
-        // if($status){
-        //     notify()->success('Package updated successfully');
-        // }else{
-        //     notify()->error('Sorry! There was problem in updating package');
-        // }
+        if($status){
+            notify()->success('Health kit updated successfully !');
+        }else{
+            notify()->error('Sorry! There was problem in updating health kit.');
+        }
 
         return redirect()->route('healthKit.index')->with([
             'trek_info' => $trek_info,
@@ -155,16 +155,16 @@ class Health_kitController extends Controller
     {
         $this->health_kit = $this->health_kit->find($id);
         if (!$this->health_kit) {
-            // notify()->error('This trek doesnot exists');
+            notify()->error('This health kit doesnot exists !!');
             return redirect()->route('healthKit.index');
         }
         $del = $this->health_kit->delete();
         if ($del) {
             //message
-            // notify()->success('trek deleted successfully');
+            notify()->success('Health kit deleted successfully');
         } else {
             //message
-            // notify()->error('Sorry! there was problem in deleting data');
+            notify()->error('Sorry! there was problem in deleting data.');
         }
 
         return redirect()->route('healthKit.index');

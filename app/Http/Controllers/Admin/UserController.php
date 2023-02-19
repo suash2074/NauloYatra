@@ -56,22 +56,14 @@ class UserController extends Controller
                 $data['photo'] = $file_name;
             }
         }
-        // if ($request->file('file')) {
-        //     $file = $request->file('file');
-        //     $filename = date('YmdHi') . $file->getClientOriginalName();
-        //     $file->move(public_path('uploads'), $filename);
-        //     $data['photo'] = $filename;
-        // }
-        // $selectedRole = $request->role;
-        // dd($selectedRole);
         $data['password'] = Hash::make($data['password']);
         $this->user->fill($data);
         $status = $this->user->save();
-        // if($status){
-        //     notify()->success('User added successfully');
-        // }else{
-        //     notify()->error('Sorry! There was problem while adding user');
-        // }
+        if($status){
+            notify()->success('User added successfully !');
+        }else{
+            notify()->error('Sorry! There was problem while adding user.');
+        }
         return redirect()->route('user.index');
     }
 
@@ -102,7 +94,7 @@ class UserController extends Controller
     {
         $this->user = $this->user->find($id);
         if(!$this->user){
-            // notify()->error('This user doesnot exists');
+            notify()->error('This user doesnot exists');
             return redirect()->route('user.index');
         }
         return view('admin.User.userForm')
@@ -120,7 +112,7 @@ class UserController extends Controller
     {
         $this->user = $this->user->find($id);
         if (!$this->user) {
-            // notify()->error('This user doesnot exists');
+            notify()->error('This user doesnot exists !!');
             redirect()->route('user.index');
         }
         $rules = $this->user->getRules('update');
@@ -145,11 +137,11 @@ class UserController extends Controller
         $this->user->fill($data);
 
         $status = $this->user->save();
-        // if($status){
-        //     notify()->success('User updated successfully');
-        // }else{
-        //     notify()->error('Sorry! There was problem in updating user');
-        // }
+        if($status){
+            notify()->success('User updated successfully !');
+        }else{
+            notify()->error('Sorry! There was problem in updating user.');
+        }
         return redirect()->route('user.index');
     }
 
@@ -163,7 +155,7 @@ class UserController extends Controller
     {
         $this->user = $this->user->find($id);
         if(!$this->user){
-            // notify()->error('This user doesnot exists');
+            notify()->error('This user doesnot exists !!');
             return redirect()->route('user.index');
         }
         $del = $this->user->delete();
@@ -173,10 +165,10 @@ class UserController extends Controller
                 unlink(public_path() . '/uploads/user/' . $photo);
                 unlink(public_path() . '/uploads/user/Thumb-' . $photo);
                 //message
-                // notify()->success('user deleted successfully');
+                notify()->success('user deleted successfully !');
             } else {
                 //message
-                // notify()->error('Sorry! there was problem in deleting data');
+                notify()->error('Sorry! there was problem in deleting data.');
             }
 
             return redirect()->route('user.index');

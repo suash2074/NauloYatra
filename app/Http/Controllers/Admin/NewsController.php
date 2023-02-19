@@ -59,11 +59,11 @@ class NewsController extends Controller
         $data['user_id'] = auth()->user()->id;
         $this->news->fill($data);
         $status = $this->news->save();
-        // if($status){
-        //     notify()->success('Package added successfully');
-        // }else{
-        //     notify()->error('Sorry! There was problem in adding package');
-        // }
+        if ($status) {
+            notify()->success('News added successfully !');
+        } else {
+            notify()->error('Sorry! There was problem while adding news.');
+        }
 
         return redirect()->route('news.index');
     }
@@ -80,7 +80,7 @@ class NewsController extends Controller
         $user_info = User::orderBy('id', 'DESC')->where('status', 'Active')->pluck('username', 'id');
         if (!$this->news) {
             //message
-            // notify()->error('This news doesnot exists');
+            notify()->error('This news doesnot exists !!');
             return redirect()->route('news.index');
         }
         return view('admin.newsSection.news.newsView')
@@ -99,7 +99,7 @@ class NewsController extends Controller
         $user_info = User::orderBy('id', 'DESC')->where('status', 'Active')->pluck('username', 'id');
         if (!$this->news) {
             //message
-            // notify()->error('This news doesnot exists');
+            notify()->error('This news doesnot exists !!');
             return redirect()->route('news.index');
         }
         return view('admin.newsSection.news.newsForm')
@@ -118,7 +118,7 @@ class NewsController extends Controller
         $this->news = $this->news->find($id);
         $user_info = User::orderBy('id', 'Desc')->where('status', 'Active')->pluck('username', 'id');
         if (!$this->news) {
-            // notify()->error('This package doesnot exists');
+            notify()->error('This news doesnot exists !!');
             return redirect()->route('news.index');
         }
 
@@ -140,11 +140,11 @@ class NewsController extends Controller
         $this->news->fill($data);
 
         $status = $this->news->save();
-        // if($status){
-        //     notify()->success('Package updated successfully');
-        // }else{
-        //     notify()->error('Sorry! There was problem in updating package');
-        // }
+        if($status){
+            notify()->success('News updated successfully !');
+        }else{
+            notify()->error('Sorry! There was problem in updating news.');
+        }
 
         return redirect()->route('news.index')->with('$user_info', $user_info);
     }
@@ -159,7 +159,7 @@ class NewsController extends Controller
     {
         $this->news = $this->news->find($id);
         if (!$this->news) {
-            // notify()->error('This trek doesnot exists');
+            notify()->error('This news doesnot exists !!');
             return redirect()->route('news.index');
         }
         $del = $this->news->delete();
@@ -169,10 +169,10 @@ class NewsController extends Controller
                 unlink(public_path() . '/uploads/news/' . $photo);
                 unlink(public_path() . '/uploads/news/Thumb-' . $photo);
                 //message
-                // notify()->success('trek deleted successfully');
+                notify()->success('News deleted successfully !');
             } else {
                 //message
-                // notify()->error('Sorry! there was problem in deleting data');
+                notify()->error('Sorry! there was problem in deleting data.');
             }
 
             return redirect()->route('news.index');
