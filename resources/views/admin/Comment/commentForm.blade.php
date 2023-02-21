@@ -22,7 +22,7 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-header border-0" style="display:flex; justify-content:space-between">
-                    <h3 class="mb-0">{{ isset($comment_data) ? 'Comment update Form' : 'Comment Form' }}
+                    <h3 class="mb-0 font-weight-bold">{{ isset($comment_data) ? 'Comment update Form' : 'Comment Form' }}
                     </h3>
                     <a class="nav-link " href="{{ route('comment.index') }}">
                         <i class="ni ni-bold-left text-orange"></i> Back
@@ -44,7 +44,8 @@
                     @endif
                     <div class="row">
                         <div class="form-group col-5">
-                            <label for="example-password-input" class="form-control-label">Trek Name</label>
+                            <label for="example-password-input" class="form-control-label">Trek Name <span
+                                class="text-danger">*</span></label>
                             <select class="form-control" name="trek_id" id="trek_id">
                                 <option value="" disabled selected hidden>Select Trek</option>
 
@@ -65,7 +66,8 @@
 
                     <div class="row">
                         <div class="form-group col-5">
-                            <label for="example-password-input" class="form-control-label">User Name</label>
+                            <label for="example-password-input" class="form-control-label">User Name <span
+                                class="text-danger">*</span></label>
                             <select class="form-control" name="user_id" id="user_id">
                                 <option value="" disabled selected hidden>Select User</option>
 
@@ -86,8 +88,8 @@
                     <div class="row">
                         <div class="form-group col-12">
                             <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Tetx <span class="text-danger">*</span></label>
-                                <textarea class="form-control" id="text" name="text" rows="3">{{ @$comment_data->text }}</textarea>
+                                <label for="exampleFormControlTextarea1">Text <span class="text-danger">*</span></label>
+                                <textarea class="form-control" id="summernote" name="text" rows="3">{{ @$comment_data->text }}</textarea>
                                 @error('text')
                                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                 @enderror

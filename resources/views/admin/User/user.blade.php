@@ -18,7 +18,7 @@
                     <div class="col">
                         <div class="card shadow">
                             <div class="card-header border-0" style="display:flex; justify-content:space-between">
-                                <h3 class="mb-0">User table</h3>
+                                <h3 class="mb-0 font-weight-bold">User table</h3>
                                 <a class="nav-link " href="{{ route('user.create') }}">
                                     <i class="ni ni-fat-add text-primary"></i> User
                                 </a>

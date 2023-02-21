@@ -160,7 +160,7 @@
                         </a>
 
                         <a href="{{ route('gallery.index') }}" class="dropdown-item">
-                            <i class="ni ni-collection text-green"></i>
+                            <i class="ni ni-album-2 text-green"></i>
                             <span>Galleries</span>
                         </a>
                     </div>
@@ -212,7 +212,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('booking.index') }}">
-                        <i class="ni ni-chat-round text-info"></i> Bookings
+                        <i class="ni ni-credit-card text-primary"></i> Bookings
                     </a>
                 </li>
             </ul>

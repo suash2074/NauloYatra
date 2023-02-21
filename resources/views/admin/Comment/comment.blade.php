@@ -18,7 +18,7 @@
                     <div class="col">
                         <div class="card shadow">
                             <div class="card-header border-0" style="display:flex; justify-content:space-between">
-                                <h3 class="mb-0">Comment table</h3>
+                                <h3 class="mb-0 font-weight-bold">Comment table</h3>
                                 <a class="nav-link " href="{{ route('comment.create') }}">
                                     <i class="ni ni-fat-add text-primary"></i> Comment
                                 </a>
@@ -57,7 +57,8 @@
                                                         @endif
                                                     </td>
 
-                                                    <td>{{ $comment->text }}</td>
+                                                    <td>{!! html_entity_decode( Str::limit($comment->text, 30)) !!}</td>
+
 
                                                     <td>{{ $comment->status }}</td>
 
@@ -80,7 +81,7 @@
                                                                     @method('delete')
                                                                     @csrf
                                                                     <button class="dropdown-item"
-                                                                        onclick="return confirm('Are you sure about deleting this user..!');"
+                                                                        onclick="return confirm('Are you sure about deleting this comment..!');"
                                                                         href="#">Delete</button>
                                                                 </form>
                                                             </div>

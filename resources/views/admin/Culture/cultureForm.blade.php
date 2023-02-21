@@ -20,7 +20,7 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-header border-0" style="display:flex; justify-content:space-between">
-                    <h3 class="mb-0">{{ isset($culture_data) ? 'Trek culture update Form' : 'Trek culture Form' }}
+                    <h3 class="mb-0 font-weight-bold">{{ isset($culture_data) ? 'Trek culture update Form' : 'Trek culture Form' }}
                     </h3>
                     <a class="nav-link " href="{{ route('culture.index') }}">
                         <i class="ni ni-bold-left text-orange"></i> Back
@@ -42,7 +42,8 @@
                     @endif
                     <div class="row d-flex justify-content-between">
                         <div class="form-group col-3">
-                            <label for="example-password-input" class="form-control-label">Trek Name</label>
+                            <label for="example-password-input" class="form-control-label">Trek Name <span
+                                class="text-danger">*</span></label>
                             <select class="form-control" name="trek_id" id="trek_id">
                                 <option value="" disabled selected hidden>Select Trek</option>
                                 @if (isset($trek_info))
@@ -75,7 +76,7 @@
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Description <span
                                         class="text-danger">*</span></label>
-                                <textarea class="form-control" id="description" name="description" rows="3">{{ @$culture_data->description }}</textarea>
+                                <textarea class="form-control" id="summernote" name="description" rows="3">{{ @$culture_data->description }}</textarea>
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                 @enderror
@@ -121,6 +122,10 @@
                             @enderror
                         </div>
                     </div>
+                    <a href="{{ route('medicine.index') }}" class="btn btn-warning"
+                        onclick="return confirm('Are you sure you want to skip this part !!');">
+                        Skip
+                    </a>
                     <button type="submit" value="submit" class="btn btn-info float-right">Submit</button>
                 </div>
             </div>

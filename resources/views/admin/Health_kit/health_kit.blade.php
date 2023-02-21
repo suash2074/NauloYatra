@@ -18,7 +18,7 @@
                     <div class="col">
                         <div class="card shadow">
                             <div class="card-header border-0" style="display:flex; justify-content:space-between">
-                                <h3 class="mb-0">Health Kit table</h3>
+                                <h3 class="mb-0 font-weight-bold">Health Kit table</h3>
                                 <a class="nav-link " href="{{ route('healthKit.create') }}">
                                     <i class="ni ni-fat-add text-primary"></i> Health Kit
                                 </a>
@@ -78,7 +78,7 @@
                                                                     @method('delete')
                                                                     @csrf
                                                                     <button class="dropdown-item"
-                                                                        onclick="return confirm('Are you sure about deleting this user..!');"
+                                                                        onclick="return confirm('Are you sure about deleting this health kit..!');"
                                                                         href="#">Delete</button>
                                                                 </form>
                                                             </div>

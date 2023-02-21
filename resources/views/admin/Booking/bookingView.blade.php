@@ -22,7 +22,7 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-header border-0" style="display:flex; justify-content:space-between">
-                    <h3 class="mb-0">
+                    <h3 class="mb-0 font-weight-bold">
                         Bookings Details
                     </h3>
                     <a class="nav-link " href="{{ route('booking.index') }}">
@@ -168,7 +168,6 @@
                         <div class="form-group col-2">
                         </div>
                     </div>
-                    <button type="submit" value="submit" class="btn btn-info float-right">Submit</button>
                 </div>
             </div>
         </div>

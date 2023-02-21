@@ -21,7 +21,7 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-header border-0" style="display:flex; justify-content:space-between">
-                    <h3 class="mb-0">{{ isset($package_data) ? 'Packages update Form' : 'Packages Form' }}
+                    <h3 class="mb-0 font-weight-bold">{{ isset($package_data) ? 'Packages update Form' : 'Packages Form' }}
                     </h3>
                     <a class="nav-link " href="{{ route('package.index') }}">
                         <i class="ni ni-bold-left text-orange"></i> Back
@@ -44,7 +44,8 @@
                     
                     <div class="row">
                         <div class="form-group col-6">
-                            <label for="example-password-input" class="form-control-label">Headline</label>
+                            <label for="example-password-input" class="form-control-label">Headline <span
+                                class="text-danger">*</span></label>
                             <select class="form-control" name="trek_id" id="trek_id" required>
                                 <option value="" disabled selected hidden>Select Headline</option>
                                 @if (isset($trek_info))

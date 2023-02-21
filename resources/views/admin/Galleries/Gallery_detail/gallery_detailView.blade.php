@@ -21,7 +21,7 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-header border-0" style="display:flex; justify-content:space-between">
-                    <h3 class="mb-0">Image Detail</h3>
+                    <h3 class="mb-0 font-weight-bold">Image Detail</h3>
                     <a class="nav-link " href="{{ route('galleryDetail.index') }}">
                         <i class="ni ni-bold-left text-orange"></i> Back
                     </a>

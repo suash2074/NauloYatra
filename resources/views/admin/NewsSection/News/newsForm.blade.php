@@ -21,7 +21,7 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-header border-0" style="display:flex; justify-content:space-between">
-                    <h3 class="mb-0">{{ isset($news_data) ? 'News update Form' : 'News Form' }}
+                    <h3 class="mb-0 font-weight-bold">{{ isset($news_data) ? 'News update Form' : 'News Form' }}
                     </h3>
                     <a class="nav-link " href="{{ route('news.index') }}">
                         <i class="ni ni-bold-left text-orange"></i> Back
@@ -58,7 +58,7 @@
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Short Description <span
                                         class="text-danger">*</span></label>
-                                <textarea class="form-control" id="short_description" name="short_description" rows="3">{{ @$news_data->short_description }}</textarea>
+                                <textarea class="form-control" id="summernote" name="short_description" rows="3">{{ @$news_data->short_description }}</textarea>
                                 @error('short_description')
                                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                 @enderror

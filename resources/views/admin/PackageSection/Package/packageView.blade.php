@@ -22,7 +22,7 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-header border-0" style="display:flex; justify-content:space-between">
-                    <h3 class="mb-0">Packages Details
+                    <h3 class="mb-0 font-weight-bold">Packages Details
                     </h3>
                     <a class="nav-link " href="{{ route('package.index') }}">
                         <i class="ni ni-bold-left text-orange"></i> Back

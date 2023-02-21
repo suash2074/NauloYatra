@@ -16,5 +16,12 @@
     <link href={{ asset('assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css') }} rel="stylesheet" />
     <!-- CSS Files -->
     <link href={{ asset('assets/css/argon-dashboard.css') }} rel="stylesheet" />
+
+    <!-- Summer Note CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+
+
+    {{-- <link rel="stylesheet" href="//cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css"> --}}
     @notifyCss
 </head>

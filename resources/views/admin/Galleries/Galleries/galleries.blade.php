@@ -19,7 +19,7 @@
                     <div class="col">
                         <div class="card shadow">
                             <div class="card-header border-0" style="display:flex; justify-content:space-between">
-                                <h3 class="mb-0">Gallery table</h3>
+                                <h3 class="mb-0 font-weight-bold">Gallery table</h3>
                                 <a class="nav-link " href="{{ route('gallery.create') }}">
                                     <i class="ni ni-fat-add text-primary"></i> Gallery
                                 </a>
@@ -51,19 +51,12 @@
 
                                                     <td>
                                                         <div class="avatar-group">
-                                                            <a href="#" class=""
-                                                                data-toggle="tooltip">
+                                                            <a href="#" class="" data-toggle="tooltip">
                                                                 <img alt="Avatar"
                                                                     src="{{ asset('uploads/gallery/Thumb-' . $gallery->gallery_info['gallery_image']) }}"
-                                                                    class="rounded-3" style="width: 100px;"
-                                                                   >
+                                                                    class="rounded-3" style="width: 100px;">
                                                             </a>
                                                         </div>
-                                                        {{-- @if (isset($gallery->gallery_info['gallery_image']))
-                                                            {{ $gallery->gallery_info['gallery_image'] }}
-                                                        @else
-                                                            --
-                                                        @endif --}}
                                                     </td>
 
 

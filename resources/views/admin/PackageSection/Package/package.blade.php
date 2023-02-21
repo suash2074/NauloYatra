@@ -19,7 +19,7 @@
                     <div class="col">
                         <div class="card shadow">
                             <div class="card-header border-0" style="display:flex; justify-content:space-between">
-                                <h3 class="mb-0">Packages table</h3>
+                                <h3 class="mb-0 font-weight-bold">Packages table</h3>
                                 <a class="nav-link " href="{{ route('package.create') }}">
                                     <i class="ni ni-fat-add text-primary"></i> Package
                                 </a>
@@ -80,7 +80,7 @@
                                                                     @method('delete')
                                                                     @csrf
                                                                     <button class="dropdown-item"
-                                                                        onclick="return confirm('Are you sure package deleting this user..!');"
+                                                                        onclick="return confirm('Are you sure package deleting this package..!');"
                                                                         href="#">Delete</button>
                                                                 </form>
                                                             </div>

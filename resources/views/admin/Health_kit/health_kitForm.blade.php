@@ -22,7 +22,8 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-header border-0" style="display:flex; justify-content:space-between">
-                    <h3 class="mb-0">{{ isset($health_kit_data) ? 'Health kit update Form' : 'Health kit Form' }}
+                    <h3 class="mb-0 font-weight-bold">
+                        {{ isset($health_kit_data) ? 'Health kit update Form' : 'Health kit Form' }}
                     </h3>
                     <a class="nav-link " href="{{ route('healthKit.index') }}">
                         <i class="ni ni-bold-left text-orange"></i> Back
@@ -44,7 +45,8 @@
                     @endif
                     <div class="row">
                         <div class="form-group col-5">
-                            <label for="example-password-input" class="form-control-label">Trek Name</label>
+                            <label for="example-password-input" class="form-control-label">Trek Name <span
+                                    class="text-danger">*</span></label>
                             <select class="form-control" name="trek_id" id="trek_id">
                                 <option value="" disabled selected hidden>Select Trek</option>
 
@@ -65,7 +67,8 @@
 
                     <div class="row">
                         <div class="form-group col-5">
-                            <label for="example-password-input" class="form-control-label">Medicine Name</label>
+                            <label for="example-password-input" class="form-control-label">Medicine Name <span
+                                    class="text-danger">*</span></label>
                             <select class="form-control" name="medicine_id" id="medicine_id">
                                 <option value="" disabled selected hidden>Select Medicine</option>
 
@@ -98,6 +101,10 @@
                             @enderror
                         </div>
                     </div>
+                    <a href="{{ route('healthKit.index') }}" class="btn btn-warning"
+                        onclick="return confirm('Are you sure you want to skip this part !!');">
+                        Skip
+                    </a>
                     <button type="submit" value="submit" class="btn btn-info float-right">Submit</button>
                 </div>
             </div>

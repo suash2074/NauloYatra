@@ -22,7 +22,7 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-header border-0" style="display:flex; justify-content:space-between">
-                    <h3 class="mb-0">Gallery Detail</h3>
+                    <h3 class="mb-0 font-weight-bold">Gallery Detail</h3>
                     <a class="nav-link " href="{{ route('gallery.index') }}">
                         <i class="ni ni-bold-left text-orange"></i> Back
                     </a>

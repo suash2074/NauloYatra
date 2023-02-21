@@ -21,7 +21,7 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-header border-0" style="display:flex; justify-content:space-between">
-                    <h3 class="mb-0">{{ isset($gallery_detail_data) ? 'Gallery Detail update Form' : 'Gallery Detail Form' }}
+                    <h3 class="mb-0 font-weight-bold">{{ isset($gallery_detail_data) ? 'Gallery Detail update Form' : 'Gallery Detail Form' }}
                     </h3>
                     <a class="nav-link " href="{{ route('galleryDetail.index') }}">
                         <i class="ni ni-bold-left text-orange"></i> Back
@@ -44,7 +44,8 @@
 
                     <div class="row">
                         <div class="form-group col-6">
-                            <label for="example-text-input" class="form-control-label">Image</label>
+                            <label for="example-text-input" class="form-control-label">Image <span
+                                class="text-danger">*</span></label>
                             <input class="form-control" type="file" value="" name="gallery_image" id="gallery_image">
                             <div class="col-md-4">
                                 <img src={{ asset('uploads/gallery/Thumb-' . @$gallery_detail_data->gallery_image) }}
@@ -69,7 +70,8 @@
                         </div>
 
                         <div class="form-group col-3">
-                            <label for="example-password-input" class="form-control-label">Best Season</label>
+                            <label for="example-password-input" class="form-control-label">Best Season <span
+                                class="text-danger">*</span></label>
                             <select class="form-control" name="best_season" id="best_season">
                                 <option {{ @$trek_data->best_season == 'Spring' ? 'selected' : '' }}>Spring
                                 </option>

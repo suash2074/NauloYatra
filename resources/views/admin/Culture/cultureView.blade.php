@@ -21,7 +21,7 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-header border-0" style="display:flex; justify-content:space-between">
-                    <h3 class="mb-0">Trek details</h3>
+                    <h3 class="mb-0 font-weight-bold">Trek details</h3>
                     <a class="nav-link " href="{{ route('culture.index') }}">
                         <i class="ni ni-bold-left text-orange"></i> Back
                     </a>

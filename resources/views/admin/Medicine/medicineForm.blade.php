@@ -22,7 +22,7 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-header border-0" style="display:flex; justify-content:space-between">
-                    <h3 class="mb-0">{{ isset($medicine_data) ? 'Medicine update Form' : 'Medicine Form' }}
+                    <h3 class="mb-0 font-weight-bold">{{ isset($medicine_data) ? 'Medicine update Form' : 'Medicine Form' }}
                     </h3>
                     <a class="nav-link " href="{{ route('medicine.index') }}">
                         <i class="ni ni-bold-left text-orange"></i> Back
@@ -81,6 +81,10 @@
                             @enderror
                         </div>
                     </div>
+                    <a href="{{ route('healthKit.create') }}" class="btn btn-warning"
+                        onclick="return confirm('Are you sure you want to skip this part !!');">
+                        Skip
+                    </a>
                     <button type="submit" value="submit" class="btn btn-info float-right">Submit</button>
                 </div>
             </div>

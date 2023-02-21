@@ -64,7 +64,7 @@ class AboutSectionContreller extends Controller
             notify()->error('Sorry! There was problem in while adding the details !');
         }
         
-        return redirect()->route('about.index');
+        return redirect()->route('culture.create');
     }
 
     /**

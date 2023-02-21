@@ -22,7 +22,7 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-header border-0" style="display:flex; justify-content:space-between">
-                    <h3 class="mb-0">{{ isset($trek_data) ? 'Trek update Form' : 'Trek Form' }}</h3>
+                    <h3 class="mb-0 font-weight-bold">{{ isset($trek_data) ? 'Trek update Form' : 'Trek Form' }}</h3>
                     <a class="nav-link " href="{{ route('trek.index') }}">
                         <i class="ni ni-bold-left text-orange"></i> Back
                     </a>
@@ -51,16 +51,6 @@
                                 <span class="invalid-feedback" role="alert">{{ $message }}</span>
                             @enderror
                         </div>
-
-                        {{-- <div class="form-group col-6">
-                            <label for="example-text-input" class="form-control-label">Last Name <span
-                                    class="text-danger">*</span></label>
-                            <input class="form-control" type="text" placeholder="Surname" name="last_name"
-                                value="{{ @$trek_data->last_name }}" required id="example-text-input">
-                            @error('last_name')
-                                <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                            @enderror
-                        </div> --}}
                     </div>
 
                     <div class="row">
@@ -104,7 +94,8 @@
 
                     <div class="row d-flex justify-content-between">
                         <div class="form-group col-3">
-                            <label for="example-password-input" class="form-control-label">Trek type</label>
+                            <label for="example-password-input" class="form-control-label">Trek type <span
+                                class="text-danger">*</span></label>
                             <select class="form-control" name="trek_type" id="trek_type">
                                 <option {{ @$trek_data->trek_type == 'Tea House Trek' ? 'selected' : '' }}>Tea House
                                     Trek
@@ -121,7 +112,8 @@
                         </div>
 
                         <div class="form-group col-3">
-                            <label for="example-password-input" class="form-control-label">Track difficulty</label>
+                            <label for="example-password-input" class="form-control-label">Track difficulty <span
+                                class="text-danger">*</span></label>
                             <select class="form-control" name="track_difficulty" id="track_difficulty">
                                 <option {{ @$trek_data->track_difficulty == 'Easy' ? 'selected' : '' }}>Easy
                                 </option>
@@ -136,7 +128,7 @@
                         </div>
 
                         <div class="form-group col-3">
-                            <label for="example-password-input" class="form-control-label">Best Season</label>
+                            <label for="example-password-input" class="form-control-label">Best Season </label>
                             <select class="form-control" name="best_season" id="best_season">
                                 <option {{ @$trek_data->best_season == 'Spring' ? 'selected' : '' }}>Spring
                                 </option>
@@ -165,6 +157,10 @@
                             @enderror
                         </div>
                     </div>
+                    <a href="{{ route('about.create') }}" class="btn btn-warning"
+                        onclick="return confirm('Are you sure you want to skip this part !!');">
+                        Skip
+                    </a>
                     <button type="submit" value="submit" class="btn btn-info float-right">Submit</button>
                 </div>
             </div>

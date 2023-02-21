@@ -20,10 +20,15 @@ class TrekContreller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $this->trek = $this->trek->orderby('id','DESC')->with('user_info')->get();
-        return view('admin.Trek.trek')->with('trek_data', $this->trek);
+        $search = $request['search'] ?? "";
+        if($search != ""){
+            $this->trek = $this->trek->orderby('id','DESC')->with('user_info')->where('trek_name', 'LIKE', "%$search%")->orWhere("trek_type", 'LIKE', "%$search%")->get();
+        }else{
+            $this->trek = $this->trek->orderby('id','DESC')->with('user_info')->paginate(5);
+        }
+        return view('admin.Trek.trek')->with('trek_data', $this->trek)->with('search', $search);
     }
 
     /**
@@ -66,7 +71,7 @@ class TrekContreller extends Controller
             notify()->error('Sorry! There was problem while adding trek.');
         }
         
-        return redirect()->route('trek.index');
+        return redirect()->route('about.create');
     }
 
     /**

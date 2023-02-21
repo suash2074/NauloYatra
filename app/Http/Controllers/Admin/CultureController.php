@@ -63,7 +63,7 @@ class CultureController extends Controller
             notify()->error('Sorry! There was problem while adding culture.');
         }
 
-        return redirect()->route('culture.index');
+        return redirect()->route('medicine.index');
     }
 
     /**

@@ -18,7 +18,7 @@
                     <div class="col">
                         <div class="card shadow">
                             <div class="card-header border-0" style="display:flex; justify-content:space-between">
-                                <h3 class="mb-0">Gallery detail table</h3>
+                                <h3 class="mb-0 font-weight-bold">Gallery detail table</h3>
                                 <a class="nav-link " href="{{ route('galleryDetail.create') }}">
                                     <i class="ni ni-fat-add text-primary"></i> Gallery
                                 </a>
@@ -78,7 +78,7 @@
                                                                     @method('delete')
                                                                     @csrf
                                                                     <button class="dropdown-item"
-                                                                        onclick="return confirm('Are you sure galleryDetail deleting this user..!');"
+                                                                        onclick="return confirm('Are you sure galleryDetail deleting this gallery image..!');"
                                                                         href="#">Delete</button>
                                                                 </form>
                                                             </div>

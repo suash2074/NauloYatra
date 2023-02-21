@@ -18,7 +18,7 @@
                     <div class="col">
                         <div class="card shadow">
                             <div class="card-header border-0" style="display:flex; justify-content:space-between">
-                                <h3 class="mb-0">Treks Cultures table</h3>
+                                <h3 class="mb-0 font-weight-bold">Treks Cultures table</h3>
                                 <a class="nav-link " href="{{ route('culture.create') }}">
                                     <i class="ni ni-fat-add text-primary"></i> Trek Culture
                                 </a>
@@ -51,7 +51,7 @@
 
                                                     <td>{{ $culture->title }}</td>
 
-                                                    <td>{{ $culture->description }}</td>
+                                                    <td>{!! html_entity_decode( Str::limit($culture->description, 30)) !!}</td>
 
                                                     <td>{{ $culture->status }}</td>
 
@@ -74,7 +74,7 @@
                                                                     @method('delete')
                                                                     @csrf
                                                                     <button class="dropdown-item"
-                                                                        onclick="return confirm('Are you sure about deleting this user..!');"
+                                                                        onclick="return confirm('Are you sure about deleting this trek detail..!');"
                                                                         href="#">Delete</button>
                                                                 </form>
                                                             </div>

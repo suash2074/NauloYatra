@@ -18,7 +18,7 @@
                     <div class="col">
                         <div class="card shadow">
                             <div class="card-header border-0" style="display:flex; justify-content:space-between">
-                                <h3 class="mb-0">News details table</h3>
+                                <h3 class="mb-0 font-weight-bold">News details table</h3>
                                 <a class="nav-link " href="{{ route('newsDetail.create') }}">
                                     <i class="ni ni-fat-add text-primary"></i> Details
                                 </a>
@@ -51,7 +51,8 @@
 
                                                     <td>{{ $news_detail->sub_headline }}</td>
 
-                                                    <td>{{ $news_detail->description }}</td>
+                                                    <td>{!! html_entity_decode( Str::limit($news_detail->description, 30)) !!}</td>
+
 
                                                     <td>{{ $news_detail->status }}</td>
 
@@ -74,7 +75,7 @@
                                                                     @method('delete')
                                                                     @csrf
                                                                     <button class="dropdown-item"
-                                                                        onclick="return confirm('Are you sure newsDetail deleting this user..!');"
+                                                                        onclick="return confirm('Are you sure newsDetail deleting this news detail..!');"
                                                                         href="#">Delete</button>
                                                                 </form>
                                                             </div>

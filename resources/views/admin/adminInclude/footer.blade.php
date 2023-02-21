@@ -32,6 +32,13 @@
 <!--   Argon JS   -->
 <script src={{ asset('assets/js/argon-dashboard.min.js?v=1.1.2') }}></script>
 <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+
+{{-- Summer note JS link --}}
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+<!-- Datatables JS link -->
+{{-- <script src="//cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script> --}}
+
 @notifyJs
 <script>
     window.TrackJS &&
@@ -51,6 +58,19 @@
         }
     }
 </script>
+
+<script>
+    $(document).ready(function() {
+        $("#summernote").summernote();
+        $('.dropdown-toggle').dropdown();
+    });
+</script>
+
+{{-- <script>
+    $(document).ready(function() {
+        $('#MyTable').DataTable();
+    });
+</script> --}}
 </body>
 
 </html>

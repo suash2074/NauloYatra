@@ -22,7 +22,7 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-header border-0" style="display:flex; justify-content:space-between">
-                    <h3 class="mb-0">
+                    <h3 class="mb-0 font-weight-bold">
                         {{ isset($booking_data) ? 'Booking update Form' : 'Booking Form' }}
                     </h3>
                     <a class="nav-link " href="{{ route('booking.index') }}">
@@ -45,7 +45,8 @@
                     @endif
                     <div class="row d-flex justify-content-between">
                         <div class="form-group col-5">
-                            <label for="example-password-input" class="form-control-label">User Name</label>
+                            <label for="example-password-input" class="form-control-label">User Name <span
+                                    class="text-danger">*</span></label>
                             <select class="form-control" name="user_id" id="user_id" required>
                                 <option value="" disabled selected hidden>Select User</option>
                                 @if (isset($user_info))
@@ -62,7 +63,8 @@
                         </div>
 
                         <div class="form-group col-5">
-                            <label for="example-password-input" class="form-control-label">Package Name</label>
+                            <label for="example-password-input" class="form-control-label">Package Name <span
+                                    class="text-danger">*</span></label>
                             <select class="form-control" name="package_id" id="package_id" required>
                                 <option value="" disabled selected hidden>Select Package</option>
                                 @if (isset($package_info))
@@ -81,7 +83,8 @@
 
                     <div class="row">
                         <div class="form-group col-5">
-                            <label for="example-password-input" class="form-control-label">Trek Name</label>
+                            <label for="example-password-input" class="form-control-label">Trek Name <span
+                                    class="text-danger">*</span></label>
                             <select class="form-control" name="trek_id" id="trek_id" required>
                                 <option value="" disabled selected hidden>Select Trek</option>
                                 @if (isset($trek_info))
@@ -100,7 +103,8 @@
 
                     <div class="row">
                         <div class="form-group col-5">
-                            <label for="example-password-input" class="form-control-label">Guide Name</label>
+                            <label for="example-password-input" class="form-control-label">Guide Name <span
+                                    class="text-danger">*</span></label>
                             <select class="form-control" name="guide_name" id="guide_name" required>
                                 <option value="" disabled selected hidden>Select Guide</option>
                                 @if (isset($guide_info))
@@ -119,7 +123,7 @@
 
                     <div class="row d-flex justify-content-between">
                         <div class="form-group col-5">
-                            <label for="example-tel-input" class="form-control-label">Email<span
+                            <label for="example-tel-input" class="form-control-label">Email <span
                                     class="text-danger">*</span></label>
                             <input class="form-control" type="email" placeholder="nauloyatra@gmail.com"
                                 value="{{ @$booking_data->email }}" name="email" id="email" required>
@@ -142,7 +146,7 @@
 
                     <div class="row">
                         <div class="form-group col-4">
-                            <label for="example-tel-input" class="form-control-label">Arrival Date<span
+                            <label for="example-tel-input" class="form-control-label">Arrival Date <span
                                     class="text-danger">*</span></label>
                             <input class="form-control" type="date" placeholder=""
                                 value="{{ @$booking_data->arrival_date }}" name="arrival_date" id="arrival_date"
@@ -175,15 +179,8 @@
                             @enderror
                         </div>
 
-                        <div class="form-group col-2"></div>
 
-                    </div>
-
-                    <div class="row d-flex justify-content-between">
-                        <div class="form-group col-7">
-                        </div>
-
-                        <div class="form-group col-3">
+                        <div class="form-group col-4">
                             <label for="example-password-input" class="form-control-label">Status</label>
                             <select class="form-control" name="status" id="status">
                                 <option {{ @$booking_data->status == 'Active' ? 'selected' : '' }}>Active
@@ -195,9 +192,6 @@
                             @error('status')
                                 <span class="invalid-feedback" role="alert">{{ $message }}</span>
                             @enderror
-                        </div>
-
-                        <div class="form-group col-2">
                         </div>
                     </div>
                     <button type="submit" value="submit" class="btn btn-info float-right">Submit</button>

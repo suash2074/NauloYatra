@@ -21,7 +21,7 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-header border-0" style="display:flex; justify-content:space-between">
-                    <h3 class="mb-0">{{ isset($news_detail_data) ? 'News details update Form' : 'News details Form' }}
+                    <h3 class="mb-0 font-weight-bold">{{ isset($news_detail_data) ? 'News details update Form' : 'News details Form' }}
                     </h3>
                     <a class="nav-link " href="{{ route('newsDetail.index') }}">
                         <i class="ni ni-bold-left text-orange"></i> Back
@@ -43,7 +43,8 @@
                     @endif
                     <div class="row d-flex justify-content-between">
                         <div class="form-group col-3">
-                            <label for="example-password-input" class="form-control-label">Headline</label>
+                            <label for="example-password-input" class="form-control-label">Headline  <span
+                                class="text-danger">*</span></label>
                             <select class="form-control" name="news_id" id="news_id" required>
                                 <option value="" disabled selected hidden>Select Headline</option>
                                 @if (isset($news_info))
@@ -75,7 +76,7 @@
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Description <span
                                         class="text-danger">*</span></label>
-                                <textarea class="form-control" id="description" name="description" rows="3">{{ @$news_detail_data->description }}</textarea>
+                                <textarea class="form-control" id="summernote" name="description" rows="3">{{ @$news_detail_data->description }}</textarea>
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                 @enderror
