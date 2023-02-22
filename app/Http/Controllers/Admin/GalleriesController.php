@@ -15,7 +15,7 @@ class GalleriesController extends Controller
     {
         $this->gallery = $gallery;
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -23,9 +23,8 @@ class GalleriesController extends Controller
      */
     public function index()
     {
-        $this->gallery = $this->gallery->orderBy('id', 'DESC')->with('trek_info')->with('gallery_info')->get();
+        $this->gallery = $this->gallery->orderBy('id', 'DESC')->with('trek_info')->with('gallery_info')->paginate(6);
         return view('admin.galleries.galleries.galleries')->with('gallery_data', $this->gallery);
-
     }
 
     /**
@@ -36,7 +35,7 @@ class GalleriesController extends Controller
     public function create()
     {
         $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
-        $gallery_info = Gallery_detail::orderBy('id', 'DESC')->where('status', 'Active')->pluck('image_caption','gallery_image', 'id');
+        $gallery_info = Gallery_detail::orderBy('id', 'DESC')->where('status', 'Active')->pluck('image_caption', 'id');
         return view('admin.galleries.galleries.galleriesForm')->with([
             'trek_info' => $trek_info,
             'gallery_info' => $gallery_info
@@ -56,9 +55,9 @@ class GalleriesController extends Controller
         $data = $request->except(['_token']);
         $this->gallery->fill($data);
         $status = $this->gallery->save();
-        if($status){
+        if ($status) {
             notify()->success('Gallery added successfully !');
-        }else{
+        } else {
             notify()->error('Sorry! There was problem while adding gallery.');
         }
 
@@ -133,9 +132,9 @@ class GalleriesController extends Controller
         $this->gallery->fill($data);
 
         $status = $this->gallery->save();
-        if($status){
+        if ($status) {
             notify()->success('Gallery updated successfully !');
-        }else{
+        } else {
             notify()->error('Sorry! There was problem in updating gallery.');
         }
 
@@ -153,7 +152,7 @@ class GalleriesController extends Controller
      */
     public function destroy($id)
     {
-        
+
         $this->gallery = $this->gallery->find($id);
         if (!$this->gallery) {
             notify()->error('This gallery doesnot exists !!');

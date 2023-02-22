@@ -21,10 +21,15 @@ class News_detailsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $this->news_detail = $this->news_detail->orderBy('id', 'DESC')->with('news_info')->get();
-        return view('admin.newsSection.news_detail.news_detail')->with('news_detail_data', $this->news_detail);
+        $search = $request['search'] ?? "";
+        if($search != ""){
+            $this->news_detail = $this->news_detail->orderBy('id', 'DESC')->with('news_info')->where('sub_headline', 'LIKE', "%$search%")->orwhere('description', 'LIKE', "%$search%")->paginate(6);
+        }else{
+            $this->news_detail = $this->news_detail->orderBy('id', 'DESC')->with('news_info')->paginate(6);
+        }
+        return view('admin.newsSection.news_detail.news_detail')->with('news_detail_data', $this->news_detail)->with('search', $search);
     }
 
     /**

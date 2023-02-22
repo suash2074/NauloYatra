@@ -23,10 +23,14 @@ class PackagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $this->package = $this->package->orderBy('id', 'DESC')->with('user_info')->with('trek_info')->get();
-        return view('admin.packageSection.package.package')->with('package_data', $this->package);
+    public function index(Request $request)
+    {$search = $request['search'] ?? "";
+        if($search != ""){
+            $this->package = $this->package->orderBy('id', 'DESC')->with('user_info')->with('trek_info')->where('package_name', 'LIKE', "%$search%")->paginate(6);
+        }else{
+            $this->package = $this->package->orderBy('id', 'DESC')->with('user_info')->with('trek_info')->paginate(6);
+        }
+        return view('admin.packageSection.package.package')->with('package_data', $this->package)->with('search', $search);
     }
 
     /**

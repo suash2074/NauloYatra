@@ -20,10 +20,15 @@ class CultureController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $this->culture = $this->culture->orderBy('id', 'DESC')->with('trek_info')->get();
-        return view('admin.culture.culture')->with('culture_data', $this->culture);
+        $search = $request['search'] ?? "";
+        if($search != ""){
+            $this->culture = $this->culture->orderBy('id', 'DESC')->with('trek_info')->where('title', 'LIKE', "%$search%")->orWhere("description", 'LIKE', "%$search%")->paginate(6);
+        }else{
+            $this->culture = $this->culture->orderBy('id', 'DESC')->with('trek_info')->paginate(6);
+        }
+        return view('admin.culture.culture')->with('culture_data', $this->culture)->with('search', $search);
     }
 
     /**

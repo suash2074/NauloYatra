@@ -21,11 +21,15 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $this->user = $this->user->orderBy('id', 'DESC')->get();
-        // dd("$this->user");
-        return view('admin.User.user')->with('user_data', $this->user);
+        $search = $request['search'] ?? "";
+        if($search != ""){
+            $this->user = $this->user->orderBy('id', 'DESC')->where('first_name', 'LIKE', "%$search%")->orWhere("last_name", 'LIKE', "%$search%")->orWhere("username", 'LIKE', "%$search%")->paginate(6);
+        }else{
+            $this->user = $this->user->orderBy('id', 'DESC')->paginate(6);
+        }
+        return view('admin.User.user')->with('user_data', $this->user)->with('search', $search);
     }
 
     /**

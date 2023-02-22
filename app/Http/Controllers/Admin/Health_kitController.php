@@ -24,7 +24,7 @@ class Health_kitController extends Controller
      */
     public function index()
     {
-        $this->health_kit = $this->health_kit->orderBy('id', 'DESC')->with('trek_info')->with('medicine_info')->get();
+        $this->health_kit = $this->health_kit->orderBy('id', 'DESC')->with('trek_info')->with('medicine_info')->paginate(6);
         return view('admin.health_kit.health_kit')->with('health_kit_data', $this->health_kit);
     }
 

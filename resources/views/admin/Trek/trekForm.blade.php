@@ -95,8 +95,10 @@
                     <div class="row d-flex justify-content-between">
                         <div class="form-group col-3">
                             <label for="example-password-input" class="form-control-label">Trek type <span
-                                class="text-danger">*</span></label>
+                                    class="text-danger">*</span></label>
                             <select class="form-control" name="trek_type" id="trek_type">
+                                <option value="" disabled selected hidden>Select Trek type</option>
+
                                 <option {{ @$trek_data->trek_type == 'Tea House Trek' ? 'selected' : '' }}>Tea House
                                     Trek
                                 </option>
@@ -113,8 +115,9 @@
 
                         <div class="form-group col-3">
                             <label for="example-password-input" class="form-control-label">Track difficulty <span
-                                class="text-danger">*</span></label>
+                                    class="text-danger">*</span></label>
                             <select class="form-control" name="track_difficulty" id="track_difficulty">
+                                <option value="" disabled selected hidden>Select Difficulty</option>
                                 <option {{ @$trek_data->track_difficulty == 'Easy' ? 'selected' : '' }}>Easy
                                 </option>
                                 <option {{ @$trek_data->track_difficulty == 'Moderate' ? 'selected' : '' }}>Moderate
@@ -130,6 +133,7 @@
                         <div class="form-group col-3">
                             <label for="example-password-input" class="form-control-label">Best Season </label>
                             <select class="form-control" name="best_season" id="best_season">
+                                <option value="" disabled selected hidden>Select Season</option>
                                 <option {{ @$trek_data->best_season == 'Spring' ? 'selected' : '' }}>Spring
                                 </option>
                                 <option {{ @$trek_data->best_season == 'Summer' ? 'selected' : '' }}>Summer

@@ -21,10 +21,16 @@ class AboutSectionContreller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $this->about_section = $this->about_section->orderBy('id', 'DESC')->with('trek_info')->get();
-        return view('admin.about_section.about_section')->with('about_section_data' , $this->about_section);
+
+        $search = $request['search'] ?? "";
+        if($search != ""){
+            $this->about_section = $this->about_section->orderBy('id', 'DESC')->with('trek_info')->where('title', 'LIKE', "%$search%")->orWhere("description", 'LIKE', "%$search%")->paginate(6);
+        }else{
+            $this->about_section = $this->about_section->orderBy('id', 'DESC')->with('trek_info')->paginate(6);
+        }
+        return view('admin.about_section.about_section')->with('about_section_data' , $this->about_section)->with('search', $search);
     }
 
     /**

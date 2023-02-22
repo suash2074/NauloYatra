@@ -21,10 +21,15 @@ class CommentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $this->comment = $this->comment->orderBy('id', 'DESC')->with('trek_info')->with('user_info')->get();
-        return view('admin.comment.comment')->with('comment_data', $this->comment);
+        $search = $request['search'] ?? "";
+        if($search != ""){
+            $this->comment = $this->comment->orderBy('id', 'DESC')->with('trek_info')->with('user_info')->where('text', 'LIKE', "%$search%")->paginate(6);
+        }else{
+            $this->comment = $this->comment->orderBy('id', 'DESC')->with('trek_info')->with('user_info')->paginate(6);
+        }
+        return view('admin.comment.comment')->with('comment_data', $this->comment)->with('search', $search);
     }
 
     /**

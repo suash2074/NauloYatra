@@ -44,10 +44,10 @@
                     
                     <div class="row">
                         <div class="form-group col-6">
-                            <label for="example-password-input" class="form-control-label">Headline <span
+                            <label for="example-password-input" class="form-control-label">Trek name <span
                                 class="text-danger">*</span></label>
                             <select class="form-control" name="trek_id" id="trek_id" required>
-                                <option value="" disabled selected hidden>Select Headline</option>
+                                <option value="" disabled selected hidden>Select Trek</option>
                                 @if (isset($trek_info))
                                     @foreach (@$trek_info as $trek => $data)
                                         <option value="{{ @$trek != null ? @$trek : '' }}"

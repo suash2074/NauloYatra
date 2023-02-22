@@ -21,10 +21,15 @@ class Package_detailsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $this->package_detail = $this->package_detail->orderBy('id', 'DESC')->with('package_info')->get();
-        return view('admin.packageSection.package_detail.package_detail')->with('package_detail_data', $this->package_detail);
+        $search = $request['search'] ?? "";
+        if($search != ""){
+            $this->package_detail = $this->package_detail->orderBy('id', 'DESC')->with('package_info')->where('trek_type', 'LIKE', "%$search%")->orwhere('days', 'LIKE', "%$search%")->orwhere('price_per_person', 'LIKE', "%$search%")->paginate(6);
+        }else{
+            $this->package_detail = $this->package_detail->orderBy('id', 'DESC')->with('package_info')->paginate(6);
+        }
+        return view('admin.packageSection.package_detail.package_detail')->with('package_detail_data', $this->package_detail)->with('search', $search);
     }
 
     /**

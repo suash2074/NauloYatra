@@ -24,9 +24,9 @@ class TrekContreller extends Controller
     {
         $search = $request['search'] ?? "";
         if($search != ""){
-            $this->trek = $this->trek->orderby('id','DESC')->with('user_info')->where('trek_name', 'LIKE', "%$search%")->orWhere("trek_type", 'LIKE', "%$search%")->get();
+            $this->trek = $this->trek->orderby('id','DESC')->with('user_info')->where('trek_name', 'LIKE', "%$search%")->orWhere("trek_type", 'LIKE', "%$search%")->orWhere("best_season", 'LIKE', "%$search%")->paginate(6);
         }else{
-            $this->trek = $this->trek->orderby('id','DESC')->with('user_info')->paginate(5);
+            $this->trek = $this->trek->orderby('id','DESC')->with('user_info')->paginate(6);
         }
         return view('admin.Trek.trek')->with('trek_data', $this->trek)->with('search', $search);
     }

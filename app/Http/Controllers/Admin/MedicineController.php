@@ -20,10 +20,15 @@ class MedicineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $this->medicine = $this->medicine->orderBy('id', 'DESC')->get();
-        return view('admin.medicine.medicine')->with('medicine_data', $this->medicine);
+        $search = $request['search'] ?? "";
+        if ($search != "") {
+            $this->medicine = $this->medicine->orderBy('id', 'DESC')->where('Illness_name', 'LIKE', "%$search%")->orWhere("medicine_name", 'LIKE', "%$search%")->paginate(6);
+        } else {
+            $this->medicine = $this->medicine->orderBy('id', 'DESC')->paginate(6);
+        }
+        return view('admin.medicine.medicine')->with('medicine_data', $this->medicine)->with('search', $search);
     }
 
     /**
@@ -49,9 +54,9 @@ class MedicineController extends Controller
         $data = $request->except(['_token']);
         $this->medicine->fill($data);
         $status = $this->medicine->save();
-        if($status){
+        if ($status) {
             notify()->success('Medicine added successfully !');
-        }else{
+        } else {
             notify()->error('Sorry! There was problem while adding medicine.');
         }
 
@@ -112,9 +117,9 @@ class MedicineController extends Controller
         $data = $request->except(['_token']);
         $this->medicine->fill($data);
         $status = $this->medicine->save();
-        if($status){
+        if ($status) {
             notify()->success('Medicine added successfully !');
-        }else{
+        } else {
             notify()->error('Sorry! There was problem in adding medicine.');
         }
 

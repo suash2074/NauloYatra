@@ -26,7 +26,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $this->booking = $this->booking->orderby('id', 'DESC')->with('user_info')->with('package_info')->with('trek_info')->get();
+        $this->booking = $this->booking->orderby('id', 'DESC')->with('user_info')->with('package_info')->with('trek_info')->paginate(6);
         return view('admin.booking.booking')->with('booking_data', $this->booking);
     }
 
@@ -62,9 +62,9 @@ class BookingController extends Controller
         $data = $request->except(['_token']);
         $this->booking->fill($data);
         $status = $this->booking->save();
-        if($status){
+        if ($status) {
             notify()->success('Package booking done sucessfully !');
-        }else{
+        } else {
             notify()->error('Sorry! There was problem in booking of package.');
         }
 
@@ -150,9 +150,9 @@ class BookingController extends Controller
         $this->booking->fill($data);
 
         $status = $this->booking->save();
-        if($status){
+        if ($status) {
             notify()->success('Booking updated successfully.');
-        }else{
+        } else {
             notify()->error('Sorry! There was problem in updating data');
         }
 

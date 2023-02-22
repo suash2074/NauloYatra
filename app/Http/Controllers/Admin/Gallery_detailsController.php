@@ -20,10 +20,15 @@ class Gallery_detailsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $this->gallery_detail = $this->gallery_detail->orderBy('id', 'DESC')->get();
-        return view('admin.galleries.gallery_detail.gallery_detail')->with('gallery_detail_data', $this->gallery_detail);
+        $search = $request['search'] ?? "";
+        if ($search != "") {
+            $this->gallery_detail = $this->gallery_detail->orderBy('id', 'DESC')->where('image_caption', 'LIKE', "%$search%")->orWhere("season", 'LIKE', "%$search%")->paginate(6);
+        } else {
+            $this->gallery_detail = $this->gallery_detail->orderBy('id', 'DESC')->paginate(6);
+        }
+        return view('admin.galleries.gallery_detail.gallery_detail')->with('gallery_detail_data', $this->gallery_detail)->with('search', $search);
     }
 
     /**

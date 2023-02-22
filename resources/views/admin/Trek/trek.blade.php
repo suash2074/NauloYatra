@@ -21,7 +21,7 @@
                             <div class="card-header border-0" style="display:flex; justify-content:space-between">
                                 <h3 class="mb-0 font-weight-bold">Trek table</h3>
 
-                                <!-- Form -->
+                                <!-- Form for searching-->
                                 <form action=""
                                     class="navbar-search form-inline mr-3 d-none d-md-flex ml-lg-auto">
                                     <div class="form-group mb-0">
@@ -29,9 +29,8 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-search"></i></span>
                                             </div>
-                                            <input class="form-control w-25 h-25" placeholder="Search" type="search" name="search" value="{{ $search }}"/>
+                                            <input class="form-control h-25" placeholder="Search by trek name, season or type" type="search" name="search" value="{{ $search }}"/>
                                         </div>
-                                        {{-- <button class="btn btn-info">search</button> --}}
                                     </div>
                                 </form>
 
@@ -106,28 +105,8 @@
                             </div>
                             <div class="card-footer py-4">
                                 <nav aria-label="...">
-                                    <ul class="pagination justify-content-end mb-0">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" tabindex="-1">
-                                                <i class="fas fa-angle-left"></i>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                        </li>
-                                        
-                                        <li class="page-item active">
-                                            <a class="page-link" href="{{$trek_data->onLastPage()}}">1</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="{{$trek_data->hasMorePages()}}">2 <span
-                                                    class="sr-only">(current)</span></a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">
-                                                <i class="fas fa-angle-right"></i>
-                                                <span class="sr-only">Next</span>
-                                            </a>
-                                        </li>
+                                    <ul class="pagination d-flex justify-content-between mb-0">
+                                        {{$trek_data->links()}}
                                     </ul>
                                 </nav>
                             </div>

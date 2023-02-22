@@ -30,7 +30,7 @@
                                         <tr>
                                             <th scope="col">No.</th>
                                             <th scope="col">Trek Name</th>
-                                            <th scope="col">Image caption</th>
+                                            <th scope="col">Gallery Image</th>
                                             <th scope="col">Status</th>
                                             <th scope="col">Action</th>
                                         </tr>
@@ -52,9 +52,10 @@
                                                     <td>
                                                         <div class="avatar-group">
                                                             <a href="#" class="" data-toggle="tooltip">
-                                                                <img alt="Avatar"
+                                                                <img alt="Image placeholder"
                                                                     src="{{ asset('uploads/gallery/Thumb-' . $gallery->gallery_info['gallery_image']) }}"
-                                                                    class="rounded-3" style="width: 100px;">
+                                                                    class="rounded-circle"
+                                                                    style="height:90px; width:90px">
                                                             </a>
                                                         </div>
                                                     </td>
@@ -95,27 +96,8 @@
                             </div>
                             <div class="card-footer py-4">
                                 <nav aria-label="...">
-                                    <ul class="pagination justify-content-end mb-0">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" tabindex="-1">
-                                                <i class="fas fa-angle-left"></i>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                        </li>
-                                        <li class="page-item active">
-                                            <a class="page-link" href="#">1</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">2 <span
-                                                    class="sr-only">(current)</span></a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">
-                                                <i class="fas fa-angle-right"></i>
-                                                <span class="sr-only">Next</span>
-                                            </a>
-                                        </li>
+                                    <ul class="pagination d-flex justify-content-between mb-0">
+                                        {{ $gallery_data->links() }}
                                     </ul>
                                 </nav>
                             </div>
