@@ -1,5 +1,18 @@
+   <div class="footer container">
+       <p>&#169; Carpoolvenom All Right Reserved</p>
+       <div class="social">
+           <a href="#"><i class="uil uil-facebook-f"></i></a>
+           <a href="#"><i class="uil uil-instagram"></i></a>
+           <a href="#"><i class="uil uil-twitter"></i></a>
+       </div>
+   </div>
+
+
    <!--jquery js -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+   {{-- <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+       crossorigin="anonymous"></script> --}}
 
    <!-- ionicons js -->
    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -23,8 +36,8 @@
 
    <!-- main js File -->
    <script src="{{ asset('js/main.js') }}"></script>
+   {{-- <script src="{{ asset('js/test.js') }}"></script> --}}
 
-  
    </body>
 
    </html>

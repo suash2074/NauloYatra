@@ -1,130 +1,7 @@
 
 (function () {
 
-    //Swiper slider
 
-    var swiper = new Swiper(".bg-slider-thumbs", {
-        loop: true,
-        spaceBetween: 0,
-        slidesPerView: 0,
-    });
-    var swiper2 = new Swiper(".bg-slider", {
-        loop: true,
-        spaceBetween: 0,
-        thumbs: {
-            swiper: swiper,
-        },
-    });
-
-
-    /*--------------------------------------------------------------
-    # Display Nav bar on scroll
-    --------------------------------------------------------------*/
-    var topNav = document.getElementById("nav-bar");
-
-    window.onscroll = function () { scrollFunction() };
-
-    // function scrollFunction() {
-    //     if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
-    //         topNav.style.display = "flex";
-    //     }
-    //     else {
-    //         topNav.style.display = "none";
-    //     }
-    // }
-
-    // function startFromTop() {
-    //     document.body.scrollTop = 0;
-    //     document.documentElement.scrollTop = 0;
-    // }
-
-
-    /*--------------------------------------------------------------
-    # Navigation bar effects 
-    --------------------------------------------------------------*/
-    window.addEventListener("scroll", function () {
-        const header = document.querySelector("header");
-        header.classList.toggle("sticky", window.scrollY > 400);
-    });
-
-    /*--------------------------------------------------------------
-    # Responsive navigation menu
-    --------------------------------------------------------------*/
-    const menuBtn = document.querySelector(".nav-menu-btn");
-    const closeBtn = document.querySelector(".nav-close-btn");
-    const navigation = document.querySelector(".navigation");
-
-    menuBtn.addEventListener("click", () => {
-        navigation.classList.add("active");
-    });
-
-    closeBtn.addEventListener("click", () => {
-        navigation.classList.remove("active");
-    });
-
-
-
-
-    /*--------------------------------------------------------------
-    # menu bar on click 
-    --------------------------------------------------------------*/
-    // const list = document.querySelectorAll('.list');
-
-    // function activeLink() {
-    //     list.forEach((item) =>
-    //         item.classList.remove('active'));
-    //     this.classList.add('active');
-    // }
-    // list.forEach((item) =>
-    //     item.addEventListener('click', activeLink));
-
-    //     const test = document.querySelectorAll('.test');
-
-    //     function activeLink1() {
-    //         test.forEach((item) =>
-    //             item.classList.remove('active'));
-    //         this.classList.add('active');
-    //     }
-    //     list.forEach((item) =>
-    //         item.addEventListener('click', activeLink1));
-    /*--------------------------------------------------------------
-    # Parallax background effect on scroll
-    --------------------------------------------------------------*/
-    let backgroundimg1 = document.getElementById('backgroundimg1')
-    // let backgroundImg2 = document.getElementById('backgroundImg2')
-    let logoText = document.getElementById('logoText')
-    let mediaIcons = document.getElementById('mediaIcons')
-
-    window.addEventListener('scroll', function () {
-        let value = window.scrollY
-        backgroundimg1.style.top = value * 0.3 + 'px';
-        // backgroundImg2.style.top = value * 0.27 + 'px';
-        logoText.style.marginTop = value * 0.7 + 'px';
-        mediaIcons.style.marginTop = value * 0.7 + 'px';
-    })
-
-
-    function scrollFunction() {
-
-        if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
-            topNav.style.display = "flex";
-        }
-        else {
-            topNav.style.display = "none";
-        }
-
-
-        if (document.body.scrollTop > 240 || document.documentElement.scrollTop > 240) {
-            mediaIcons.style.display = "none";
-        }
-        else {
-            mediaIcons.style.display = "flex";
-        }
-        function startFromTop() {
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
-        }
-    }
 
 
     /*--------------------------------------------------------------
@@ -179,14 +56,25 @@
 
     });
 
+    $(".filter-item").click(function () {
+        const value = $(this).attr("data-filter")
+        if (value == "all") {
+            $(".post-box").show("1000")
+        } else {
+            $(".post-box").not("." + value).hide("1000")
+            $(".post-box").filter("." + value).show("1000")
+        }
+    });
 
-    // function checkSelectedValue() {
-    //     var selectedValue = document.getElementById("role").value;
-    //     if (selectedValue == "guide") {
-    //         document.getElementById("guide_div").style.display = "block";
-    //     } else {
-    //         document.getElementById("guide_div").style.display = "none";
-    //     }
-    // }
+    $('.filter-item').click(function () {
+        $(this).addClass('active-filter').siblings().removeClass("active-filter");
+    });
 
+    
 })()
+
+let header = document.querySelector("header");
+
+window.addEventListener("scroll", () => {
+    header.classList.toggle('shadow', window.scrollY > 0);
+})

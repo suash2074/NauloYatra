@@ -4,7 +4,7 @@
     @include('include.navbar')
     <section class="blog" id="blog">
         <div class="blog-text container">
-            <h2 class="blog-title">The Traveller's Blog</h2>
+            <h2 class="blog-title">The Packages</h2>
             <span class="blog-subtitle">Your source of great content</span>
         </div>
     </section>
@@ -19,11 +19,11 @@
     <section class="post container">
 
         <div class="post-box design">
-            <img src="{{ asset('images/trek4.jfif') }}" alt="" class="post-img">
-            <h2 class="category">Design</h2>
             <a href="{{ route('content') }}" class="post-title">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae, explicabo?
+               Package Name
             </a>
+            <h3><span style="font-weight: 300">Guide name:</span> Suash rajbhandari</h3>
+            <h2 class="category">Design</h2>
             <span class="post-date">12 feb 2022</span>
             <hr>
             <p class="post-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, molestias labore
