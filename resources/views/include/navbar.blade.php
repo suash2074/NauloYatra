@@ -4,13 +4,21 @@
         <a href={{ route('home') }}></i>Home</a>
         <a href={{ route('blog') }}></i>Blogs</a>
         <a href={{ route('packages') }}></i>Packages</a>
-        <a href="">
+        <a href={{ route('profile.index') }}>
             <img src="{{ asset('images/view1.jfif') }}" alt="" class="profile-img">
             <span class="profile-name">Suash Rajbhandari</span>
         </a>
-        <a href="#" class="logout">logout</a>
 
-        
+        <a href="{{ route('logout') }}" class="logout"
+                    onclick="event.preventDefault();
+                         document.getElementById('logout-form').submit();">
+
+
+                    {{ __('Logout') }}
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
     </div>
 
     {{-- <div class="nav-bar" id="nav-bar">

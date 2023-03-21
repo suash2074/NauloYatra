@@ -24,9 +24,9 @@ class Package_detailsController extends Controller
     public function index(Request $request)
     {
         $search = $request['search'] ?? "";
-        if($search != ""){
+        if ($search != "") {
             $this->package_detail = $this->package_detail->orderBy('id', 'DESC')->with('package_info')->where('trek_type', 'LIKE', "%$search%")->orwhere('days', 'LIKE', "%$search%")->orwhere('price_per_person', 'LIKE', "%$search%")->paginate(6);
-        }else{
+        } else {
             $this->package_detail = $this->package_detail->orderBy('id', 'DESC')->with('package_info')->paginate(6);
         }
         return view('admin.packageSection.package_detail.package_detail')->with('package_detail_data', $this->package_detail)->with('search', $search);
@@ -56,9 +56,9 @@ class Package_detailsController extends Controller
         $data = $request->except(['_token']);
         $this->package_detail->fill($data);
         $status = $this->package_detail->save();
-        if($status){
+        if ($status) {
             notify()->success('Package details added successfully !');
-        }else{
+        } else {
             notify()->error('Sorry! There was problem while adding package details.');
         }
 
@@ -126,9 +126,9 @@ class Package_detailsController extends Controller
         $this->package_detail->fill($data);
 
         $status = $this->package_detail->save();
-        if($status){
+        if ($status) {
             notify()->success('Package detail updated successfully !');
-        }else{
+        } else {
             notify()->error('Sorry! There was problem in updating package detail.');
         }
 

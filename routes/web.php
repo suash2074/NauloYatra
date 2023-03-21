@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AboutSectionContreller;
+use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\CommentsController;
 use App\Http\Controllers\Admin\CultureController;
@@ -12,8 +13,21 @@ use App\Http\Controllers\Admin\News_detailsController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\Package_detailsController;
 use App\Http\Controllers\Admin\PackagesController;
+// use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 use App\Http\Controllers\Admin\TrekContreller;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Guide\AboutSectionController;
+use App\Http\Controllers\Guide\BookingController as GuideBookingController;
+use App\Http\Controllers\Guide\CultureController as GuideCultureController;
+use App\Http\Controllers\Guide\GalleriesController as GuideGalleriesController;
+use App\Http\Controllers\Guide\Gallery_DetailsController as GuideGallery_DetailsController;
+use App\Http\Controllers\Guide\Health_KitController as GuideHealth_KitController;
+use App\Http\Controllers\Guide\MedicineController as GuideMedicineController;
+use App\Http\Controllers\Guide\News_DetailsController as GuideNews_DetailsController;
+use App\Http\Controllers\Guide\NewsController as GuideNewsController;
+use App\Http\Controllers\Guide\Package_DetailsController as GuidePackage_DetailsController;
+use App\Http\Controllers\Guide\PackagesController as GuidePackagesController;
+use App\Http\Controllers\Guide\TrekController as GuideTrekController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -58,7 +72,10 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('/package', PackagesController::class);
     Route::resource('/packageDetail', Package_detailsController::class);
     Route::resource('/booking', BookingController::class);
-    Route::resource('/profile', ProfileController::class);
+    // Route::resource('/profile', AdminProfileController::class);
+    Route::resource('/profile', AdminProfileController::class, [
+        'names' => 'adminProfile'
+    ]);
 
 
     Route::get('/adminBlog', [App\Http\Controllers\HomeController::class, 'adminBlog'])->name('adminBlog');
@@ -73,8 +90,29 @@ Route::prefix('user')->middleware(['auth', 'user'])->group(function () {
     Route::get('/content', [App\Http\Controllers\BlogContentController::class, 'index'])->name('content');
     Route::get('/newsDetail', [App\Http\Controllers\NewsDetailsController::class, 'index'])->name('newsDetail');
     Route::get('/packages', [App\Http\Controllers\PackagesController::class, 'index'])->name('packages');
+    Route::resource('/profile', ProfileController::class);
+
 });
 
-Route::prefix('guide')->middleware(['auth', 'guide'])->group(function () {
-    
+Route::prefix('guide')->as('guide.')->middleware(['auth', 'guide'])->group(function () {
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'guide'])->name('guide');
+    Route::get('/home', [App\Http\Controllers\GuideHomeController::class, 'getHomeData'])->name('guideHome');
+    Route::resource('/trek', GuideTrekController::class);
+    // Route::resource('/user', UserController::class);
+    Route::resource('/about', AboutSectionController::class);
+    Route::resource('/culture', GuideCultureController::class);
+    Route::resource('/medicine', GuideMedicineController::class);
+    Route::resource('/healthKit', GuideHealth_KitController::class);
+    Route::resource('/galleryDetail', GuideGallery_DetailsController::class);
+    Route::resource('/gallery', GuideGalleriesController::class);
+    // Route::resource('/comment', CommentsController::class);
+    Route::resource('/news', GuideNewsController::class);
+    Route::resource('/newsDetail', GuideNews_DetailsController::class);
+    Route::resource('/package', GuidePackagesController::class);
+    Route::resource('/packageDetail', GuidePackage_DetailsController::class);
+    Route::resource('/booking', GuideBookingController::class);
+    // Route::resource('/profile', AdminProfileController::class);
+    // Route::resource('/profile', AdminProfileController::class, [
+    //     'names' => 'adminProfile'
+    // ]);
 });

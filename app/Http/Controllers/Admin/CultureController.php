@@ -15,6 +15,7 @@ class CultureController extends Controller
     {
         $this->culture = $culture;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -23,9 +24,9 @@ class CultureController extends Controller
     public function index(Request $request)
     {
         $search = $request['search'] ?? "";
-        if($search != ""){
+        if ($search != "") {
             $this->culture = $this->culture->orderBy('id', 'DESC')->with('trek_info')->where('title', 'LIKE', "%$search%")->orWhere("description", 'LIKE', "%$search%")->paginate(6);
-        }else{
+        } else {
             $this->culture = $this->culture->orderBy('id', 'DESC')->with('trek_info')->paginate(6);
         }
         return view('admin.culture.culture')->with('culture_data', $this->culture)->with('search', $search);
@@ -62,9 +63,9 @@ class CultureController extends Controller
         }
         $this->culture->fill($data);
         $status = $this->culture->save();
-        if($status){
+        if ($status) {
             notify()->success('Culture detail added successfully !');
-        }else{
+        } else {
             notify()->error('Sorry! There was problem while adding culture.');
         }
 
@@ -143,9 +144,9 @@ class CultureController extends Controller
         $this->culture->fill($data);
 
         $status = $this->culture->save();
-        if($status){
+        if ($status) {
             notify()->success('Culture detail updated successfully !');
-        }else{
+        } else {
             notify()->error('Sorry! There was problem in updating details.');
         }
 
@@ -172,10 +173,10 @@ class CultureController extends Controller
                 unlink(public_path() . '/uploads/culture/' . $photo);
                 unlink(public_path() . '/uploads/culture/Thumb-' . $photo);
                 //message
-                notify()->success('Culture details deleted successfully !');
+                notify()->error('Sorry! there was problem in deleting data.');
             } else {
                 //message
-                notify()->error('Sorry! there was problem in deleting data.');
+                notify()->success('Culture details deleted successfully !');
             }
 
             return redirect()->route('culture.index');

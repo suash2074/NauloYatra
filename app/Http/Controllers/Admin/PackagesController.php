@@ -24,10 +24,11 @@ class PackagesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {$search = $request['search'] ?? "";
-        if($search != ""){
+    {
+        $search = $request['search'] ?? "";
+        if ($search != "") {
             $this->package = $this->package->orderBy('id', 'DESC')->with('user_info')->with('trek_info')->where('package_name', 'LIKE', "%$search%")->paginate(6);
-        }else{
+        } else {
             $this->package = $this->package->orderBy('id', 'DESC')->with('user_info')->with('trek_info')->paginate(6);
         }
         return view('admin.packageSection.package.package')->with('package_data', $this->package)->with('search', $search);
@@ -62,9 +63,9 @@ class PackagesController extends Controller
         $data['user_id'] = auth()->user()->id;
         $this->package->fill($data);
         $status = $this->package->save();
-        if($status){
+        if ($status) {
             notify()->success('Package added successfully !');
-        }else{
+        } else {
             notify()->error('Sorry! There was problem while adding package.');
         }
 
@@ -89,8 +90,8 @@ class PackagesController extends Controller
         }
         return view('admin.packageSection.package.packageView')
             ->with('package_data', $this->package)->with([
-                'user_info'=> $user_info,
-                'trek_info'=> $trek_info
+                'user_info' => $user_info,
+                'trek_info' => $trek_info
             ]);
     }
 
@@ -139,9 +140,9 @@ class PackagesController extends Controller
         $this->package->fill($data);
 
         $status = $this->package->save();
-        if($status){
+        if ($status) {
             notify()->success('Package updated successfully !');
-        }else{
+        } else {
             notify()->error('Sorry! There was problem in updating package.');
         }
 

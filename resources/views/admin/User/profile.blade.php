@@ -6,6 +6,8 @@
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
         <div class="container-fluid">
             <!-- Brand -->
+            <a href={{ route('home') }} class="logo">Naulo <span>Yatra</span></a>
+
             <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{ route('profile.index') }}">Your
                 Profile</a>
 
@@ -37,7 +39,7 @@
                             <i class="ni ni-settings-gear-65"></i>
                             <span>Settings</span>
                         </a>
-                        <a href="#" class="dropdown-item">
+                        <a href={{ route('blog') }} class="dropdown-item">
                             <i class="ni ni-calendar-grid-58"></i>
                             <span>Blog</span>
                         </a>
@@ -46,14 +48,14 @@
                             onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">
                             <i class="ni ni-user-run"></i>
-            
-            
+
+
                             {{ __('Logout') }}
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
-            
+
                     </div>
                 </li>
             </ul>
@@ -89,7 +91,7 @@
                     @if ($errors->any())
                         {{ implode('', $errors->all('<div>:message</div>')) }}
                     @endif
-                    <form action="{{ route('profile.update', auth()->user()->id) }}" method="post" class="form"
+                    <form action="{{ route('adminProfile.update', auth()->user()->id) }}" method="post" class="form"
                         enctype="multipart/form-data">
                         @method('put')
                         @csrf
@@ -97,7 +99,8 @@
                             <div class="col-lg-3 order-lg-2">
                                 <div class="card-profile-image">
                                     <a href="#">
-                                        <img src={{ asset('uploads/user/' . auth()->user()->photo) }} style="height:180px; width:180px" class="rounded-circle">
+                                        <img src={{ asset('uploads/user/' . auth()->user()->photo) }}
+                                            style="height:180px; width:180px" class="rounded-circle">
                                     </a>
                                 </div>
                             </div>
@@ -114,21 +117,101 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-                                        {{-- <div>
-                      <span class="heading">22</span>
-                      <span class="description">Friends</span>
-                    </div>
-                    <div>
-                      <span class="heading">10</span>
-                      <span class="description">Photos</span>
-                    </div>
-                    <div>
-                      <span class="heading">89</span>
-                      <span class="description">Comments</span>
-                    </div> --}}
+                                        <div class="col-7">
+                                            <input class="form-control" type="file" value="" name="photo"
+                                                id="photo" style="border: none">
+                                            @error('photo')
+                                                <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="pl-lg-4 d-none">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-username">First
+                                                Name</label>
+                                            <input type="text" id="first_name" name="first_name"
+                                                class="form-control form-control-alternative"
+                                                value="{{ auth()->user()->first_name }}">
+                                            @error('first_name')
+                                                <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-username">Last
+                                                Name</label>
+                                            <input type="text" id="last_name" name="last_name"
+                                                class="form-control form-control-alternative"
+                                                value="{{ auth()->user()->last_name }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-first-name">Username</label>
+                                            <input type="text" id="username" name="username"
+                                                class="form-control form-control-alternative"
+                                                value="{{ auth()->user()->username }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pl-lg-4 d-none">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-email">Email
+                                                address</label>
+                                            <input type="email" id="email" name="email"
+                                                class="form-control form-control-alternative"
+                                                value="{{ auth()->user()->email }}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-address">Address</label>
+                                            <input id="address" name="address"
+                                                class="form-control form-control-alternative"
+                                                placeholder="Home Address" value="{{ auth()->user()->address }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label"
+                                                for="input-address">Contact_number</label>
+                                            <input id="phone" name="phone"
+                                                class="form-control form-control-alternative"
+                                                placeholder="Home Address" value="{{ auth()->user()->phone }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row d-none">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-address">Password</label>
+                                            <input type="password" id="password" name="password"
+                                                class="form-control form-control-alternative"
+                                                placeholder="Home Address" value="{{ auth()->user()->password }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
                             <div class="text-center">
                                 <h3>
                                     {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}<span
@@ -147,7 +230,8 @@
                                     <hr class="my-4" />
 
                                     <div>
-                                        <i class="ni education_hat mr-2"></i>I am excited to share a wonderful adventure
+                                        <i class="ni education_hat mr-2"></i>I am excited to share a wonderful
+                                        adventure
                                         with you, and am currently <span
                                             class="text-green">{{ auth()->user()->availability }}</span> for booking.
                                         Let's make it a great one!.
@@ -197,7 +281,7 @@
                         @if ($errors->any())
                             {{ implode('', $errors->all('<div>:message</div>')) }}
                         @endif
-                        <form action="{{ route('profile.update', auth()->user()->id) }}" method="post"
+                        <form action="{{ route('adminProfile.update', auth()->user()->id) }}" method="post"
                             class="form" enctype="multipart/form-data">
                             @method('put')
                             @csrf
@@ -305,7 +389,7 @@
                             @if ($errors->any())
                                 {{ implode('', $errors->all('<div>:message</div>')) }}
                             @endif
-                            <form action="{{ route('profile.update', auth()->user()->id) }}" method="post"
+                            <form action="{{ route('adminProfile.update', auth()->user()->id) }}" method="post"
                                 class="form" enctype="multipart/form-data">
                                 @method('put')
                                 @csrf
@@ -388,7 +472,8 @@
                                                 <label class="form-control-label" for="input-address">Password</label>
                                                 <input type="password" id="password" name="password"
                                                     class="form-control form-control-alternative"
-                                                    placeholder="Home Address" value="{{ auth()->user()->password }}">
+                                                    placeholder="Home Address"
+                                                    value="{{ auth()->user()->password }}">
                                             </div>
                                         </div>
                                     </div>
@@ -431,4 +516,4 @@
                 </div>
             </div>
         </div>
-        @include('admin.adminInclude.footer')
+        @include('adminInclude.footer')

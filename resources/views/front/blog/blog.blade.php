@@ -4,8 +4,20 @@
     @include('include.navbar')
     <section class="blog" id="blog">
         <div class="blog-text container">
-            <h2 class="blog-title">The Traveller's Blog</h2>
-            <span class="blog-subtitle">Your source of great content</span>
+            <h2 class="blog-title" style="color: #fff">The Traveller's Blog</h2>
+            <span class="blog-subtitle">Your next destination lies over here.</span>
+            <form action="" style="margin-top: 10px"
+                class="navbar-search form-inline mr-3 d-flex justify-content-center d-md-flex ml-lg-auto">
+                <div class="form-group mb-0 ">
+                    <div class="input-group input-group-alternative border-0 bg-white">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        </div>
+                        <input class="form-control h-25" placeholder="Search" type="search"
+                            name="search" value="" />
+                    </div>
+                </div>
+            </form>
         </div>
     </section>
 

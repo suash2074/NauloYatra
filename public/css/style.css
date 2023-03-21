@@ -162,6 +162,33 @@ section {
 
 }
 
+/* Guide From  */
+
+.guide-form-pannel{
+	width: 100%;
+	background: url(../images/bg-pattern.png);
+	background-color: #bebec224;
+	height: 20rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: justify;
+}
+
+.form-message{
+	width: 70%;
+	font-size: 1.4rem;
+	color: black;
+	font-weight: 400;
+}
+
+.compose-mail{
+	font-size: 1rem;
+	padding: 5px;
+	border: 0;
+	border-radius: 2px;
+	box-shadow: 3px 3px 5px #868886;
+}
 /*--------------------------------------------------------------
 # news
 --------------------------------------------------------------*/
@@ -454,6 +481,17 @@ Blog page
 	color: var(--second-color);
 }
 
+.price{
+	color: var(--second-color);
+	text-transform: uppercase;
+	margin-left: 5px;
+}
+
+.package{
+	color: var(--second-color);
+	margin-left: 5px;
+	margin-right: 5px;
+}
 .post-title {
 	font-size: 1.3rem;
 	font-weight: 600;
@@ -469,6 +507,14 @@ Blog page
 .post-box h3{
 	font-size: 1rem;
 	font-weight: 600;
+}
+
+.duration{
+	display: flex;
+	font-size: 0.875rem;
+	text-transform: uppercase;
+	font-weight: 400;
+	margin-top: 4px;
 }
 
 .post-date {
@@ -617,7 +663,33 @@ Blog page
 	font-weight: bold;
 }
 
+.booking{
+	display: flex;
+	justify-content: end;
+}
 
+.book{
+	padding: 6px 12px;
+	text-transform: uppercase;
+	font-weight: 500;
+	font-size: 0.9rem;
+	border-radius: 4px;
+	background: var(--second-color);
+	color: var(--bg-color);
+	border: 0px;
+}
+
+.post-description {
+	font-size: 0.9rem;
+	line-height: 1.5rem;
+	margin: 5px 0 10px;
+
+	/* to create title in 3 lines */
+	/* display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden; */
+}
 
 /*--------------------------------------------------------------
 #media Queries (max-width: 1100px)

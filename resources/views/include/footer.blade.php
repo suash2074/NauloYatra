@@ -1,5 +1,5 @@
    <div class="footer container">
-       <p>&#169; Carpoolvenom All Right Reserved</p>
+       <p>&#169; Naulo Yatra All Right Reserved 2023</p>
        <div class="social">
            <a href="#"><i class="uil uil-facebook-f"></i></a>
            <a href="#"><i class="uil uil-instagram"></i></a>

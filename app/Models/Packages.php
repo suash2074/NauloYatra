@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\MultiVendorTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Packages extends Model
 {
     use HasFactory;
+    // use MultiVendorTrait;
     protected $fillable = [
         'user_id',
         'trek_id',

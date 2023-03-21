@@ -61,9 +61,9 @@ class Gallery_detailsController extends Controller
         }
         $this->gallery_detail->fill($data);
         $status = $this->gallery_detail->save();
-        if($status){
+        if ($status) {
             notify()->success('Gallery details added successfully !');
-        }else{
+        } else {
             notify()->error('Sorry! There was problem while adding gallery details.');
         }
 
@@ -104,7 +104,6 @@ class Gallery_detailsController extends Controller
         }
         return view('admin.galleries.gallery_detail.gallery_detailForm')
             ->with('gallery_detail_data', $this->gallery_detail);
-   
     }
 
     /**
@@ -121,7 +120,7 @@ class Gallery_detailsController extends Controller
             notify()->error('This gallery detail doesnot exists !!');
             return redirect()->route('galleryDetail.index');
         }
-        
+
         $rules = $this->gallery_detail->getRules();
         $request->validate($rules);
         $data = $request->except(['_token', 'gallery_image']);
@@ -140,14 +139,13 @@ class Gallery_detailsController extends Controller
         $this->gallery_detail->fill($data);
 
         $status = $this->gallery_detail->save();
-        if($status){
+        if ($status) {
             notify()->success('Gallery details updated successfully !');
-        }else{
+        } else {
             notify()->error('Sorry! There was problem in updating details.');
         }
 
         return redirect()->route('galleryDetail.index');
-    
     }
 
     /**
@@ -159,7 +157,7 @@ class Gallery_detailsController extends Controller
     public function destroy($id)
     {
         $this->gallery_detail = $this->gallery_detail->find($id);
-        if(!$this->gallery_detail){
+        if (!$this->gallery_detail) {
             notify()->error('This gallery detail doesnot exists !!');
             return redirect()->route('galleryDetail.index');
         }

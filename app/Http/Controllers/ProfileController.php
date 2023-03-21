@@ -25,7 +25,7 @@ class ProfileController extends Controller
         if (!auth()->user()) {
             return redirect('/login');
         }
-        return view('admin.user.profile');
+        return view('front.user.profile');
     }
 
     /**
@@ -71,10 +71,10 @@ class ProfileController extends Controller
         $this->user = $this->user->find($id);
         if (!$this->user) {
             //message
-            // notify()->error('This user doesnot exists');
+            notify()->error('This user doesnot exists !!');
             return redirect()->route('profile.index');
         }
-        return view('admin.user.profile')
+        return view('front.user.profile')
             ->with('user_data', $this->user);
     }
 
@@ -89,7 +89,7 @@ class ProfileController extends Controller
     {
         $this->user = $this->user->find($id);
         if (!$this->user) {
-            // notify()->error('This user doesnot exists');
+            notify()->error('This user doesnot exists !!');
             redirect()->route('profile.index');
         }
 
@@ -129,7 +129,7 @@ class ProfileController extends Controller
                     $data['password'] = Hash::make($request->newPassword);
                 } else {
                     // notify()->error("Password conformation failed.");
-                    return redirect()->route('adminProfile.index');
+                    return redirect()->route('profile.index');
                 }
             }
         }
@@ -137,11 +137,11 @@ class ProfileController extends Controller
         $this->user->fill($data);
 
         $status = $this->user->save();
-        // if ($status) {
-        //     notify()->success('Details updated successfully');
-        // } else {
-        //     notify()->error('Sorry! There was problem in updating details');
-        // }
+        if ($status) {
+            notify()->success('Details updated successfully');
+        } else {
+            notify()->error('Sorry! There was problem in updating details');
+        }
         return redirect()->route('profile.index');
     }
 
