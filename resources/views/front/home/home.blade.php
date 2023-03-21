@@ -30,7 +30,8 @@
             <a
                 href="mailto:suash.rb@gmail.com?subject=Submitting a request fro NAULO YATRA guide. &body=Dear [Reader],
             I hope this email finds you well. I am reaching out to inquire about your interest in becoming a guide for our upcoming project. Before we proceed further, we would like to gather some information about your personal details and qualifications.
-            Would you kindly provide us with some information on your background, skills, and experience? This will help us determine if you are a good fit for the role of a guide.Thank you for considering this opportunity. We look forward to hearing back from you soon.Best regards, [Your Name]"><button
+            Would you kindly provide us with some information on your background, skills, and experience? This will help us determine if you are a good fit for the role of a guide.Thank you for considering this opportunity. We look forward to hearing back from you soon.Best regards, [Your Name].
+            Kindly remove this body and fill your data also don't forget to submit your NAULO YATRA'S 'username'."><button
                     class="compose-mail">Compose Mail</button></a>
         </p>
 
@@ -55,28 +56,34 @@
                         </div>
                     </div>
 
-                    <div class="row news-container" data-aos="fade-up" data-aos-delay="200">
+                    @if (isset($news_info))
+                    
+                        @foreach ($news_info as $news)
+                            <div class="row news-container" data-aos="fade-up" data-aos-delay="200">
 
-                        <div class="col-lg-4 col-md-6 news-item filter-recently">
-                            <div class="news-wrap">
-                                <img src="images/trek1.png" class="img-fluid" alt="">
-                                <div class="news-info">
-                                    <h4>Recently-Title</h4>
+                                <div class="col-lg-4 col-md-6 news-item filter-recently">
+                                    <div class="news-wrap">
+                                        <img src="{{ asset('uploads/news/' . $news->image) }}" class="img-fluid" alt="">
+                                        <div class="news-info">
+                                            <h4>{{ $news->headline}}</h4>
 
-                                    <p>short description</p>
-                                    <div class="news-links">
-                                        {{-- <a href="{{ route('blog') }}" data-gallery="newsGallery" class="news-lightbox"
-                                            title="Recently Posted 1"><i class="bx bx-plus"></i></a> --}}
-                                        <a href="{{ route('newsDetail') }}" class="news-details-lightbox"
-                                            data-glightbox="type: external" title="news Details"><i
-                                                class="bx bx-link"></i></a>
+                                            <p>{{ $news->short_description}}</p>
+                                            <div class="news-links">
+                                                {{-- <a href="{{ route('blog') }}" data-gallery="newsGallery" class="news-lightbox"
+                                        title="Recently Posted 1"><i class="bx bx-plus"></i></a> --}}
+                                        
+                                                <a href="{{ route('newsDetail', $news->id) }}" class="news-details-lightbox"
+                                                    data-glightbox="type: external" title="news Details"><i
+                                                        class="bx bx-link"></i></a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                        @endforeach
+                    @endif
 
 
-                        <div class="col-lg-4 col-md-6 news-item filter-recently">
+                    {{-- <div class="col-lg-4 col-md-6 news-item filter-recently">
                             <div class="news-wrap">
                                 <img src="images/trek2.jfif" class="img-fluid" alt="">
                                 <div class="news-info">
@@ -159,11 +166,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        </div> --}}
                 </div>
-            </section>
         </div>
+        </section>
+    </div>
     </div>
     <script>
         let backgroundImg1 = document.getElementById('backgroundImg1')

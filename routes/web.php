@@ -88,7 +88,7 @@ Route::prefix('user')->middleware(['auth', 'user'])->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'user'])->name('user');
     Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index'])->name('blog');
     Route::get('/content', [App\Http\Controllers\BlogContentController::class, 'index'])->name('content');
-    Route::get('/newsDetail', [App\Http\Controllers\NewsDetailsController::class, 'index'])->name('newsDetail');
+    Route::get('/newsDetail{id}', [App\Http\Controllers\NewsDetailsController::class, 'index'])->name('newsDetail');
     Route::get('/packages', [App\Http\Controllers\PackagesController::class, 'index'])->name('packages');
     Route::resource('/profile', ProfileController::class);
 

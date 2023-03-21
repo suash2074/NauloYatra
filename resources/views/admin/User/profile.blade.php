@@ -516,4 +516,4 @@
                 </div>
             </div>
         </div>
-        @include('adminInclude.footer')
+        @include('admin.adminInclude.footer')

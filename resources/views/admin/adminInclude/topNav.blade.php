@@ -1,4 +1,3 @@
-
 <!-- User -->
 <div style="z-index: 2">
     <x:notify-messages />
@@ -26,17 +25,17 @@
             <div class="dropdown-header noti-title">
                 <h6 class="text-overflow m-0">Welcome!</h6>
             </div>
-            <a href={{ url("admin/profile") }} class="dropdown-item">
+            <a href={{ url('admin/profile') }} class="dropdown-item">
                 <i class="ni ni-single-02"></i>
                 <span>My profile</span>
             </a>
-            <a href="#" class="dropdown-item">
-                <i class="ni ni-settings-gear-65"></i>
-                <span>Settings</span>
+            <a href="{{ route('user.index') }}" class="dropdown-item">
+                <i class="ni ni-circle-08"></i>
+                <span>Users</span>
             </a>
-            <a href="#" class="dropdown-item">
+            <a href="{{ route('trek.index') }}" class="dropdown-item">
                 <i class="ni ni-calendar-grid-58"></i>
-                <span>Blog</span>
+                <span>Treks</span>
             </a>
             <div class="dropdown-divider"></div>
             <a href="{{ route('logout') }}" class="dropdown-item"

@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <!-- Brand -->
             <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"
-                href="{{ route('admin.medicine.index') }}">Medicines</a>
+                href="{{ route('medicine.index') }}">Medicines</a>
 
             @include('admin.adminInclude.topNav')
 
@@ -24,7 +24,7 @@
                 <div class="card-header border-0" style="display:flex; justify-content:space-between">
                     <h3 class="mb-0 font-weight-bold">{{ isset($medicine_data) ? 'Medicine update Form' : 'Medicine Form' }}
                     </h3>
-                    <a class="nav-link " href="{{ route('admin.medicine.index') }}">
+                    <a class="nav-link " href="{{ route('medicine.index') }}">
                         <i class="ni ni-bold-left text-orange"></i> Back
                     </a>
                 </div>
@@ -33,12 +33,12 @@
                         {{ implode('', $errors->all('<div>:message</div>')) }}
                     @endif
                     @if (isset($medicine_data))
-                        <form action="{{ route('admin.medicine.update', @$medicine_data->id) }}" method="post"
+                        <form action="{{ route('medicine.update', @$medicine_data->id) }}" method="post"
                             class="form" enctype="multipart/form-data">
                             @method('put')
                             @csrf
                         @else
-                            <form action="{{ route('admin.medicine.store') }}" method="post" class="form"
+                            <form action="{{ route('medicine.store') }}" method="post" class="form"
                                 enctype="multipart/form-data">
                                 @csrf
                     @endif
@@ -81,7 +81,7 @@
                             @enderror
                         </div>
                     </div>
-                    <a href="{{ route('admin.healthKit.create') }}" class="btn btn-warning"
+                    <a href="{{ route('healthKit.create') }}" class="btn btn-warning"
                         onclick="return confirm('Are you sure you want to skip this part !!');">
                         Skip
                     </a>
