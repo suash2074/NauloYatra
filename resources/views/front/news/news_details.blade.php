@@ -74,7 +74,7 @@
                 @csrf
                 <section class="post-container post-content">
                     <h2 class="sub-heading">{{ $news_details->sub_headline }}</h2>
-                    <p class="post-text">{{$news_details->description}}</p>
+                    <p class="post-text">{!! html_entity_decode($news_details->description) !!}</p>
                     
                     <p style="font-weight:500">Link: <a href="{{$news_details->link}}"><u> Link Here </u></a></p>
                     <img src="{{ asset('uploads/news_detail/' . $news_details->image) }}" alt="About image" class="header-img">
@@ -94,17 +94,3 @@
     @include('include.footer')
 
 
-    {{-- <hr style="margin-top:150px">
-    <section class="post-container post-content">
-        <img src="{{ asset('images/trek5.jfif') }}" alt="About image" class="post-img">
-        <h2 class="sub-heading">About Trek</h2>
-        <p class="post-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo alias, explicabo voluptas
-            qui animi maxime error labore similique doloremque asperiores repellendus saepe quidem repellat eligendi
-            laborum culpa porro dolorum, totam voluptate nostrum magnam eaque dignissimos numquam quas. Id, deserunt.
-            Obcaecati quidem itaque quo accusantium temporibus?</p>
-        <p class="post-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo alias, explicabo voluptas
-            qui animi maxime error labore similique doloremque asperiores repellendus saepe quidem repellat eligendi
-            laborum culpa porro dolorum, totam voluptate nostrum magnam eaque dignissimos numquam quas. Id, deserunt.
-            Obcaecati quidem itaque quo accusantium temporibus?</p>
-<p style="font-family:'Times New Roman', Times, serif"><span style="font-weight:600">Note: </span>Note here</p>
-    </section> --}}

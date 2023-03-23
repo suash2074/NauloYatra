@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('trek_name');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('background_image')->nullable();
-            $table->enum('trek_type', ['Tea House Trek', 'Camping Trekking', 'Gap Trek']);
+            $table->enum('trek_type', ['Tea-House-Trek', 'Camping-Trekking', 'Gap-Trek']);
             $table->integer('duration')->nullable();
             $table->enum('track_difficulty',['Easy', 'Moderate', 'Difficult']);
             $table->integer('average_budget');

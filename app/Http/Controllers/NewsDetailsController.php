@@ -8,13 +8,9 @@ use Illuminate\Http\Request;
 
 class NewsDetailsController extends Controller
 {
-    public function index($id){
-        // return 
-// return $id;
-$news_info= News::where('id',$id)->orderBy('id', 'DESC')->where('status', 'Active')->with('user_info')->get();
-// return $news;
-
-        // $news_info = News::orderBy('id', 'DESC')->where('status', 'Active')->with('user_info')->get();
+    public function index($id)
+    {
+        $news_info = News::where('id', $id)->orderBy('id', 'DESC')->where('status', 'Active')->with('user_info')->get();
         $news_details_info = News_details::where('news_id', $id)->orderBy('id', 'DESC')->where('status', 'Active')->get();
         return view('front/news/news_details')->with([
             'news_info' => $news_info,

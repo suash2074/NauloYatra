@@ -66,11 +66,6 @@
     });
 </script>
 
-{{-- <script>
-    $(document).ready(function() {
-        $('#MyTable').DataTable();
-    });
-</script> --}}
 </body>
 
 </html>

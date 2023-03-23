@@ -73,7 +73,7 @@
                         <div class="form-group col-6">
                             <label for="example-tel-input" class="form-control-label">Duration <span
                                     class="text-danger">*</span></label>
-                            <input class="form-control" type="number" placeholder="Rs 1600"
+                            <input class="form-control" type="number" placeholder="12"
                                 value="{{ @$trek_data->duration }}" name="duration" id="duration">
                             @error('duration')
                                 <span class="invalid-feedback" role="alert">{{ $message }}</span>
@@ -99,13 +99,11 @@
                             <select class="form-control" name="trek_type" id="trek_type">
                                 <option value="" disabled selected hidden>Select Trek type</option>
 
-                                <option {{ @$trek_data->trek_type == 'Tea House Trek' ? 'selected' : '' }}>Tea House
-                                    Trek
+                                <option {{ @$trek_data->trek_type == 'Tea-House-Trek' ? 'selected' : '' }}>Tea-House-Trek
                                 </option>
-                                <option {{ @$trek_data->trek_type == 'Camping Trekking' ? 'selected' : '' }}>Camping
-                                    Trekking
+                                <option {{ @$trek_data->trek_type == 'Camping-Trekking' ? 'selected' : '' }}>Camping-Trekking
                                 </option>
-                                <option {{ @$trek_data->trek_type == 'Gap Trek' ? 'selected' : '' }}>Gap Trek
+                                <option {{ @$trek_data->trek_type == 'Gap-Trek' ? 'selected' : '' }}>Gap-Trek
                                 </option>
                             </select>
                             @error('trek_type')

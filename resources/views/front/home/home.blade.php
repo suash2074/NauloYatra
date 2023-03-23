@@ -57,24 +57,23 @@
                     </div>
 
                     @if (isset($news_info))
-                    
+
                         @foreach ($news_info as $news)
                             <div class="row news-container" data-aos="fade-up" data-aos-delay="200">
 
                                 <div class="col-lg-4 col-md-6 news-item filter-recently">
                                     <div class="news-wrap">
-                                        <img src="{{ asset('uploads/news/' . $news->image) }}" class="img-fluid" alt="">
+                                        <img src="{{ asset('uploads/news/' . $news->image) }}" class="img-fluid"
+                                            alt="">
                                         <div class="news-info">
-                                            <h4>{{ $news->headline}}</h4>
+                                            <h4>{{ $news->headline }}</h4>
 
-                                            <p>{{ $news->short_description}}</p>
+                                            <p>{!! html_entity_decode($news->short_description) !!}</p>
                                             <div class="news-links">
-                                                {{-- <a href="{{ route('blog') }}" data-gallery="newsGallery" class="news-lightbox"
-                                        title="Recently Posted 1"><i class="bx bx-plus"></i></a> --}}
-                                        
-                                                <a href="{{ route('newsDetail', $news->id) }}" class="news-details-lightbox"
-                                                    data-glightbox="type: external" title="news Details"><i
-                                                        class="bx bx-link"></i></a>
+
+                                                <a href="{{ route('newsDetail', $news->id) }}"
+                                                    class="news-details-lightbox" data-glightbox="type: external"
+                                                    title="news Details"><i class="bx bx-link"></i></a>
                                             </div>
                                         </div>
                                     </div>

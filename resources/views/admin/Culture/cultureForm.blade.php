@@ -64,7 +64,7 @@
                             <label for="trek_name" class="form-control-label">Title <span
                                     class="text-danger">*</span></label>
                             <input class="form-control" type="text" placeholder="Culture you encounter while travelling"
-                                name="title" id="title" value="{{ @$culture_data->title }}" required>
+                                name="title" id="title" value="Culture" readonly required>
                             @error('trek_name')
                                 <span class="invalid-feedback" role="alert">{{ $message }}</span>
                             @enderror
