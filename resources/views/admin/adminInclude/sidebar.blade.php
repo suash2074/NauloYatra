@@ -167,6 +167,13 @@
                 </li>
 
                 <li class="nav-item">
+                    <a href="{{ route('map.index') }}" class="nav-link">
+                        <i class="ni ni-compass-04 text-orange"></i>
+                        <span>Map</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('comment.index') }}">
                         <i class="ni ni-chat-round text-info"></i> Comments
                     </a>

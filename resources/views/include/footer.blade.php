@@ -2,7 +2,7 @@
        <p>&#169; Naulo Yatra All Right Reserved 2023</p>
        <div class="social">
            <a href="#"><i class="uil uil-facebook-f"></i></a>
-           <a href="#"><i class="uil uil-instagram"></i></a>
+           <a href="#" style="color: #69abf2"><i class="uil uil-instagram"></i></a>
            <a href="#"><i class="uil uil-twitter"></i></a>
        </div>
    </div>
@@ -30,8 +30,13 @@
    <!-- Vendor JS Files -->
    <script src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
 
+   {{-- Map JS --}}
    <!-- main js File -->
    <script src="{{ asset('js/main.js') }}"></script>
+
+   <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+
+  
    </body>
 
    </html>

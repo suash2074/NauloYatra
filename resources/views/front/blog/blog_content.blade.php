@@ -93,24 +93,75 @@
 
                     <h2 class="sub-heading">First Aid to carry and Illness</h2>
                     <h5 class="sub-title">Illness</h5>
-                    <p style="margin-left: 15px">-{{$health_kit->medicine_info['illness_name']}}</p>
+                    <p style="margin-left: 15px">-{{ $health_kit->medicine_info['illness_name'] }}</p>
 
                     <h5 class="sub-title">First Aid</h5>
-                    <p style="margin-left: 15px">- {{$health_kit->medicine_info['medicine_name']}}</p>
-                    
+                    <p style="margin-left: 15px">- {{ $health_kit->medicine_info['medicine_name'] }}</p>
             @endforeach
         @endif
     </section>
 
     <section class="post-container post-content">
         Map
+        <div id='map' style='width: 100%; height: 500px;'></div>
+
     </section>
+
     <br>
+    {{-- {{$map_infos}} --}}
     <br>
     <br>
     <br>
     <br>
     <hr>
 
-    @include('include.footer')
 
+    @include('include.footer')
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1Ijoic3Vhc2giLCJhIjoiY2w3bGs2YmZrMWl6bjNvcXUyYnl1MHdqbiJ9.IaGj0K14VoIswPrPUayS_w';
+        const map = new mapboxgl.Map({
+            container: 'map', // container ID
+            // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+            style: 'mapbox://styles/mapbox/streets-v12', // style URL
+            //    latitude: 37.830348,
+            //    longitude:  -122.486052,
+            @foreach ($map_infos as $map)
+                center: [{{ $map->start_point }}], // starting position
+            @endforeach
+            zoom: 13 // starting zoom
+        });
+
+        map.on('load', () => {
+            map.addSource('route', {
+                'type': 'geojson',
+                'data': {
+                    'type': 'Feature',
+                    'properties': {},
+                    'geometry': {
+                        'type': 'LineString',
+                        @foreach ($map_infos as $map)
+                            'coordinates': [
+                                {{$map->path_coordinates}}
+                            ]
+                        @endforeach
+
+                    }
+                }
+            });
+            map.addLayer({
+                'id': 'route',
+                'type': 'line',
+                'source': 'route',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-color': '#69abf2',
+                    'line-width': 8
+                }
+            });
+        });
+        // Add zoom and rotation controls to the map.
+        map.addControl(new mapboxgl.NavigationControl());
+    </script>

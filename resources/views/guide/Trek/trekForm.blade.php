@@ -99,13 +99,11 @@
                             <select class="form-control" name="trek_type" id="trek_type">
                                 <option value="" disabled selected hidden>Select Trek type</option>
 
-                                <option {{ @$trek_data->trek_type == 'Tea House Trek' ? 'selected' : '' }}>Tea House
-                                    Trek
+                                <option {{ @$trek_data->trek_type == 'Tea-House-Trek' ? 'selected' : '' }}>Tea-House-Trek
                                 </option>
-                                <option {{ @$trek_data->trek_type == 'Camping Trekking' ? 'selected' : '' }}>Camping
-                                    Trekking
+                                <option {{ @$trek_data->trek_type == 'Camping-Trekking' ? 'selected' : '' }}>Camping-Trekking
                                 </option>
-                                <option {{ @$trek_data->trek_type == 'Gap Trek' ? 'selected' : '' }}>Gap Trek
+                                <option {{ @$trek_data->trek_type == 'Gap-Trek' ? 'selected' : '' }}>Gap-Trek
                                 </option>
                             </select>
                             @error('trek_type')

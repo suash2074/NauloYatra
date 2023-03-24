@@ -123,7 +123,7 @@ class CultureController extends Controller
         $trek_info = Trek::orderBy('id', 'Desc')->where('status', 'Active')->pluck('trek_name', 'id');
         if (!$this->culture) {
             notify()->error('This culture doesnot exists');
-            redirect()->route('about.index');
+            redirect()->route('culture.index');
         }
 
         $rules = $this->culture->getRules();

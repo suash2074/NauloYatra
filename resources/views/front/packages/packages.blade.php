@@ -31,7 +31,7 @@
     <section class="post container">
 
         <div class="post-box tea-house">
-            <a href="{{ route('content') }}" class="post-title">
+            <a href="" class="post-title">
                 Package Name
             </a>
             <h3><span style="font-weight: 300">Guide name:</span> Suash rajbhandari</h3>

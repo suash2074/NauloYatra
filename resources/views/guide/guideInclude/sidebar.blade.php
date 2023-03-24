@@ -123,16 +123,16 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                    <i class="ni ni-sound-wave text-red"></i>
-                    <span class="mb-0 text-sm"> First Aid</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-                    <a href="{{ route('guide.medicine.index') }}" class="dropdown-item">
-                        <i class="ni ni-favourite-28 text-orange"></i>
-                        <span>Medicines</span>
+                        aria-expanded="false">
+                        <i class="ni ni-sound-wave text-red"></i>
+                        <span class="mb-0 text-sm"> First Aid</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+                        <a href="{{ route('guide.medicine.index') }}" class="dropdown-item">
+                            <i class="ni ni-favourite-28 text-orange"></i>
+                            <span>Medicines</span>
                         </a>
-                        
+
                         <a href="{{ route('guide.healthKit.index') }}" class="dropdown-item">
                             <i class="ni ni-ruler-pencil text-info"></i>
                             <span>Health Kit</span>
@@ -142,29 +142,30 @@
 
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                    <i class="ni ni-image text-default"></i>
-                    <span class="mb-0 text-sm">Images</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-                    <a href="{{ route('guide.galleryDetail.index') }}" class="dropdown-item">
-                        <i class="ni ni-archive-2 text-orange"></i>
-                        <span>Gallery Detail</span>
+                        aria-expanded="false">
+                        <i class="ni ni-image text-default"></i>
+                        <span class="mb-0 text-sm">Images</span>
                     </a>
-                    
-                    <a href="{{ route('guide.gallery.index') }}" class="dropdown-item">
-                        <i class="ni ni-album-2 text-green"></i>
-                        <span>Galleries</span>
-                    </a>
-                </div>
-            </li>
-            {{-- 
+                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+                        <a href="{{ route('guide.galleryDetail.index') }}" class="dropdown-item">
+                            <i class="ni ni-archive-2 text-orange"></i>
+                            <span>Gallery Detail</span>
+                        </a>
+
+                        <a href="{{ route('guide.gallery.index') }}" class="dropdown-item">
+                            <i class="ni ni-album-2 text-green"></i>
+                            <span>Galleries</span>
+                        </a>
+                    </div>
+                </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('guide.comment.index') }}">
-                        <i class="ni ni-chat-round text-info"></i> Comments
+                    <a href="{{ route('guide.map.index') }}" class="nav-link">
+                        <i class="ni ni-compass-04 text-orange"></i>
+                        <span>Map</span>
                     </a>
-                </li> --}}
+                </li>
+
 
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -185,7 +186,7 @@
                     </div>
                 </li>
 
-                
+
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
@@ -197,14 +198,14 @@
                             <i class="ni ni-bag-17 text-orange"></i>
                             <span>Packages</span>
                         </a>
-                        
+
                         <a href="{{ route('guide.packageDetail.index') }}" class="dropdown-item">
                             <i class="ni ni-ruler-pencil text-yellow"></i>
                             <span>Package Details</span>
                         </a>
                     </div>
                 </li>
-                
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('guide.booking.index') }}">
                         <i class="ni ni-credit-card text-primary"></i> Bookings

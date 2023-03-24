@@ -33,9 +33,6 @@
                             <label for="illness_name" class="form-control-label">Illness Name</label>
                             <input class="form-control" type="text" placeholder="Name of illness" name="illness_name"
                                 id="example-text-input" value="{{ @$medicine_data->illness_name }}" readonly>
-                            @error('illness_name')
-                                <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                            @enderror
                         </div>
                     </div>
 
@@ -45,9 +42,6 @@
                             <input class="form-control" type="text" placeholder="Name of medicine"
                                 name="medicine_name" id="example-text-input"
                                 value="{{ @$medicine_data->medicine_name }}" readonly>
-                            @error('medicine_name')
-                                <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                            @enderror
                         </div>
                     </div>
 

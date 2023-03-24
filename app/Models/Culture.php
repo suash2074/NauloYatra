@@ -28,7 +28,8 @@ class Culture extends Model
             'trek_id' => 'nullable|exists:treks,id',
             'description' => 'required|string',
             'image' => 'nullable|image|max:5120',
-            'note' => 'nullable|string',            'photo' => 'nullable|image|max:5120',
+            'note' => 'nullable|string',            
+            'photo' => 'nullable|image|max:5120',
 
         ];
 
