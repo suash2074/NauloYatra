@@ -39,7 +39,7 @@
 	scroll-behavior: smooth;
 }
 
- /* ---------- Navbar ---------- */
+/* ---------- Navbar ---------- */
 
 
 header {
@@ -115,7 +115,7 @@ section {
 
 
 
- /* ---------- Home image parallex scroll ---------- */
+/* ---------- Home image parallex scroll ---------- */
 
 .homeBackground {
 	position: relative;
@@ -164,7 +164,7 @@ section {
 
 /* Guide From  */
 
-.guide-form-pannel{
+.guide-form-pannel {
 	width: 100%;
 	background: url(../images/bg-pattern.png);
 	background-color: #bebec224;
@@ -175,20 +175,21 @@ section {
 	text-align: justify;
 }
 
-.form-message{
+.form-message {
 	width: 70%;
 	font-size: 1.4rem;
 	color: black;
 	font-weight: 400;
 }
 
-.compose-mail{
+.compose-mail {
 	font-size: 1rem;
 	padding: 5px;
 	border: 0;
 	border-radius: 2px;
 	box-shadow: 3px 3px 5px #868886;
 }
+
 /*--------------------------------------------------------------
 # news
 --------------------------------------------------------------*/
@@ -481,17 +482,18 @@ Blog page
 	color: var(--second-color);
 }
 
-.price{
+.price {
 	color: var(--second-color);
 	text-transform: uppercase;
 	margin-left: 5px;
 }
 
-.package{
+.package {
 	color: var(--second-color);
 	margin-left: 5px;
 	margin-right: 5px;
 }
+
 .post-title {
 	font-size: 1.3rem;
 	font-weight: 600;
@@ -504,12 +506,12 @@ Blog page
 	overflow: hidden;
 }
 
-.post-box h3{
+.post-box h3 {
 	font-size: 1rem;
 	font-weight: 600;
 }
 
-.duration{
+.duration {
 	display: flex;
 	font-size: 0.875rem;
 	text-transform: uppercase;
@@ -627,14 +629,14 @@ Blog page
 	object-position: center;
 }
 
-.publisher-detail{
+.publisher-detail {
 	width: 100%;
 	margin: 10px;
 	display: flex;
 	justify-content: space-between;
 }
 
-.publisher-detail span{
+.publisher-detail span {
 	color: var(--second-color);
 }
 
@@ -663,12 +665,12 @@ Blog page
 	font-weight: bold;
 }
 
-.booking{
+.booking {
 	display: flex;
 	justify-content: end;
 }
 
-.book{
+.book {
 	padding: 6px 12px;
 	text-transform: uppercase;
 	font-weight: 500;
@@ -691,6 +693,123 @@ Blog page
 	overflow: hidden; */
 }
 
+/* Gallery page */
+.gallery-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	margin: 40px 20px 0 20px;
+}
+
+.gallery-container .heading {
+	width: 100%;
+	padding-bottom: 50px;
+
+}
+
+.gallery-container .heading h3 {
+	font-size: 3em;
+	font-weight: bolder;
+	padding-bottom: 10px;
+	border-bottom: 3px solid rgb(186, 186, 186);
+}
+
+.gallery-container .heading h3 span {
+	font-weight: 100;
+}
+
+/* Comment */
+.comment-text{
+	font-size: 15px;
+}
+
+.name{
+	color: #007bff;
+}
+
+.cursor:hover{
+	color: blue;
+}
+
+.cursor{
+	cursor: pointer;
+}
+ .date{
+	font-size: 11px;
+ }
+
+
+ /* Popup fourm */
+ .popupForm {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .popupForm form {
+	background-color: #fff;
+	width: 80%;
+	max-width: 500px;
+	margin: 10% auto;
+	padding: 30px;
+	border-radius: 5px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .popupForm h2 {
+	margin-top: 0;
+	font-size: 24px;
+	font-weight: 600;
+	text-align: center;
+  }
+  
+  .popupForm label {
+	display: block;
+	font-size: 16px;
+	font-weight: 500;
+	margin-bottom: 5px;
+  }
+  
+  .popupForm input[type=text],
+  .popupForm input[type=email],
+  .popupForm input[type=number],
+  .popupForm input[type=date],
+  .popupForm input[type=tel] {
+	display: block;
+	width: 100%;
+	padding: 12px;
+	margin-bottom: 20px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background-color: #f5f5f5;
+	font-size: 16px;
+	font-weight: 400;
+	color: #333;
+  }
+  
+  .popupForm input[type=submit] {
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: 500;
+	border-radius: 5px;
+  }
+  
+  .popupForm input[type=submit]:hover {
+	background-color: #0062cc;
+  }
+  
 /*--------------------------------------------------------------
 #media Queries (max-width: 1100px)
 --------------------------------------------------------------*/

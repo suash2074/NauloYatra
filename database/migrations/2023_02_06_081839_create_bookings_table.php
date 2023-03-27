@@ -25,6 +25,7 @@ return new class extends Migration
 
             $table->integer('days');
             $table->unsignedBigInteger('trek_id')->nullable();
+            $table->enum('payment_status',['Paid', 'Unpaid'])->default('Unpaid');
             $table->enum('status',['Active', 'Inactive'])->default('Active');
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');

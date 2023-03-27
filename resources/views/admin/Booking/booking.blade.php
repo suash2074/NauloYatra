@@ -34,6 +34,7 @@
                                             <th scope="col">Trek Name</th>
                                             <th scope="col">Arrival Date</th>
                                             <th scope="col">Days</th>
+                                            <th scope="col">Payment Status</th>
                                             <th scope="col">Status</th>
                                             <th scope="col">Action</th>
                                         </tr>
@@ -72,6 +73,8 @@
 
                                                     <td>{{ $booking->days }}</td>
 
+                                                    <td>{{ $booking->payment_status }}</td>
+
                                                     <td>{{ $booking->status }}</td>
 
                                                     <td class="text-right d-flex">
@@ -87,7 +90,8 @@
                                                                     href="{{ route('booking.edit', $booking->id) }}">Edit</a>
                                                                 <a class="dropdown-item"
                                                                     href="{{ route('booking.show', $booking->id) }}">View</a>
-                                                                <form action="{{ route('booking.destroy', $booking->id) }}"
+                                                                <form
+                                                                    action="{{ route('booking.destroy', $booking->id) }}"
                                                                     method="post">
                                                                     @method('delete')
                                                                     @csrf

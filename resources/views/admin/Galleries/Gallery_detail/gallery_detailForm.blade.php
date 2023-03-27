@@ -7,7 +7,8 @@
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
         <div class="container-fluid">
             <!-- Brand -->
-            <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{ route('galleryDetail.index') }}">Galleries</a>
+            <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"
+                href="{{ route('galleryDetail.index') }}">Galleries</a>
 
             @include('admin.adminInclude.topNav')
 
@@ -21,7 +22,8 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-header border-0" style="display:flex; justify-content:space-between">
-                    <h3 class="mb-0 font-weight-bold">{{ isset($gallery_detail_data) ? 'Gallery Detail update Form' : 'Gallery Detail Form' }}
+                    <h3 class="mb-0 font-weight-bold">
+                        {{ isset($gallery_detail_data) ? 'Gallery Detail update Form' : 'Gallery Detail Form' }}
                     </h3>
                     <a class="nav-link " href="{{ route('galleryDetail.index') }}">
                         <i class="ni ni-bold-left text-orange"></i> Back
@@ -45,8 +47,9 @@
                     <div class="row">
                         <div class="form-group col-6">
                             <label for="example-text-input" class="form-control-label">Image <span
-                                class="text-danger">*</span></label>
-                            <input class="form-control" type="file" value="" name="gallery_image" id="gallery_image">
+                                    class="text-danger">*</span></label>
+                            <input class="form-control" type="file" value="" name="gallery_image"
+                                id="gallery_image">
                             <div class="col-md-4">
                                 <img src={{ asset('uploads/gallery/Thumb-' . @$gallery_detail_data->gallery_image) }}
                                     alt="" class="img img-fluid img-responsive" style="max-width: 10rem">
@@ -71,23 +74,23 @@
 
                         <div class="form-group col-3">
                             <label for="example-password-input" class="form-control-label">Best Season <span
-                                class="text-danger">*</span></label>
-                            <select class="form-control" name="best_season" id="best_season">
-                                <option {{ @$trek_data->best_season == 'Spring' ? 'selected' : '' }}>Spring
+                                    class="text-danger">*</span></label>
+                            <select class="form-control" name="season" id="season">
+                                <option {{ @$gallery_data->season == 'Spring' ? 'selected' : '' }}>Spring
                                 </option>
-                                <option {{ @$trek_data->best_season == 'Summer' ? 'selected' : '' }}>Summer
+                                <option {{ @$gallery_data->season == 'Summer' ? 'selected' : '' }}>Summer
                                 </option>
-                                <option {{ @$trek_data->best_season == 'Autumn' ? 'selected' : '' }}>Autumn
+                                <option {{ @$gallery_data->season == 'Autumn' ? 'selected' : '' }}>Autumn
                                 </option>
-                                <option {{ @$trek_data->best_season == 'Winter' ? 'selected' : '' }}>Winter
+                                <option {{ @$gallery_data->season == 'Winter' ? 'selected' : '' }}>Winter
                                 </option>
                             </select>
-                            @error('best_season')
+                            @error('season')
                                 <span class="invalid-feedback" role="alert">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
-                    
+
                     <div class="row d-flex justify-content-between">
                         <div class="form-group col-3">
                             <label for="example-password-input" class="form-control-label">Status</label>

@@ -78,8 +78,8 @@
 
                                                     <td>{{ $gallery_detail->status }}</td>
 
-                                                    <td class="text-right d-flex">
-                                                        <div class="dropdown">
+                                                    <td class="text-righ">
+                                                        <div class="dropdown d-flex align-items-center">
                                                             <a class="btn btn-sm btn-icon-only text-light"
                                                                 href="#" role="button" data-toggle="dropdown"
                                                                 aria-haspopup="true" aria-expanded="false">

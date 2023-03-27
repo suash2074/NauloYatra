@@ -78,98 +78,12 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                         @endforeach
                     @endif
-
-
-                    {{-- <div class="col-lg-4 col-md-6 news-item filter-recently">
-                            <div class="news-wrap">
-                                <img src="images/trek2.jfif" class="img-fluid" alt="">
-                                <div class="news-info">
-                                    <h4>Recently-Title</h4>
-                                    <p>short description</p>
-                                    <div class="news-links">
-                                        <a href="images/trek2.jfif" data-gallery="newsGallery" class="news-lightbox"
-                                            title="Recently posted 2"><i class="bx bx-plus"></i></a>
-                                        <a href="news-details.html" class="news-details-lightbox"
-                                            data-glightbox="type: external" title="news Details"><i
-                                                class="bx bx-link"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 news-item filter-popular ">
-                            <div class="news-wrap">
-                                <img src="images/trek3.jfif" class="img-fluid" alt="">
-                                <div class="news-info">
-                                    <h4>Popular-Title</h4>
-                                    <p>short description</p>
-                                    <div class="news-links">
-                                        <a href="images/trek3.jfif" data-gallery="newsGallery" class="news-lightbox"
-                                            title="Card 2"><i class="bx bx-plus"></i></a>
-                                        <a href="news-details.html" class="news-details-lightbox"
-                                            data-glightbox="type: external" title="news Details"><i
-                                                class="bx bx-link"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 news-item filter-recently">
-                            <div class="news-wrap">
-                                <img src="images/trek4.jfif" class="img-fluid" alt="">
-                                <div class="news-info">
-                                    <h4>Recently-Title</h4>
-                                    <p>short description</p>
-                                    <div class="news-links">
-                                        <a href="images/trek4.jfif" data-gallery="newsGallery" class="news-lightbox"
-                                            title="Recently posted 3"><i class="bx bx-plus"></i></a>
-                                        <a href="news-details.html" class="news-details-lightbox"
-                                            data-glightbox="type: external" title="news Details"><i
-                                                class="bx bx-link"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 news-item filter-popular ">
-                            <div class="news-wrap">
-                                <img src="images/trek5.jfif" class="img-fluid" alt="">
-                                <div class="news-info">
-                                    <h4>Popular-Title</h4>
-                                    <p>short description</p>
-                                    <div class="news-links">
-                                        <a href="images/trek5.jfif" data-gallery="newsGallery" class="news-lightbox"
-                                            title="Card 1"><i class="bx bx-plus"></i></a>
-                                        <a href="news-details.html" class="news-details-lightbox"
-                                            data-glightbox="type: external" title="news Details"><i
-                                                class="bx bx-link"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 news-item filter-popular ">
-                            <div class="news-wrap">
-                                <img src="images/trek6.png" class="img-fluid" alt="">
-                                <div class="news-info">
-                                    <h4>Popular-Title</h4>
-                                    <p>short description</p>
-                                    <div class="news-links">
-                                        <a href="images/trek6.png" data-gallery="newsGallery" class="news-lightbox"
-                                            title="Card 3"><i class="bx bx-plus"></i></a>
-                                        <a href="news-details.html" class="news-details-lightbox"
-                                            data-glightbox="type: external" title="news Details"><i
-                                                class="bx bx-link"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
                 </div>
+            </section>
         </div>
-        </section>
-    </div>
     </div>
     <script>
         let backgroundImg1 = document.getElementById('backgroundImg1')
