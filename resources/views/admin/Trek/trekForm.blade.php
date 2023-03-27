@@ -58,7 +58,7 @@
                             <label for="example-text-input" class="form-control-label">Background Image <span
                                     class="text-danger">*</span></label>
                             <input class="form-control" type="file" value="" name="background_image"
-                                id="background_image">
+                                id="background_image" required>
                             <div class="col-md-4">
                                 <img src={{ asset('uploads/trek/Thumb-' . @$trek_data->background_image) }}
                                     alt="" class="img img-fluid img-responsive" style="max-width: 10rem">

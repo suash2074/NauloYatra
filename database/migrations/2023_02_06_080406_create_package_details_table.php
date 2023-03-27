@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('price_per_person');
             $table->text('details');
             $table->string('link');
-            $table->enum('category', ['Basic', 'Standred'])->default('Basic');
+            $table->enum('category', ['Basic', 'Standard']);
             $table->enum('status', ['Active', 'Inactive'])->default('Active');
             $table->foreign('package_id')->references('id')->on('packages')->onDelete('set null');
             $table->timestamps();

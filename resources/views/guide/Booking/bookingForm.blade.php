@@ -144,7 +144,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row d-flex justify-content-between">
                         <div class="form-group col-4">
                             <label for="example-tel-input" class="form-control-label">Arrival Date <span
                                     class="text-danger">*</span></label>
@@ -152,6 +152,20 @@
                                 value="{{ @$booking_data->arrival_date }}" name="arrival_date" id="arrival_date"
                                 required>
                             @error('arrival_date')
+                                <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group col-4">
+                            <label for="example-password-input" class="form-control-label">Payment Status</label>
+                            <select class="form-control" name="payment_status" id="payment_status">
+                                <option {{ @$booking_data->payment_status == 'Paid' ? 'selected' : '' }}>Paid
+                                </option>
+                                <option {{ @$booking_data->payment_status == 'Unpaid' ? 'selected' : '' }}>
+                                    Unpaid
+                                </option>
+                            </select>
+                            @error('payment_status')
                                 <span class="invalid-feedback" role="alert">{{ $message }}</span>
                             @enderror
                         </div>

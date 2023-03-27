@@ -1,4 +1,3 @@
-
 <!-- User -->
 <div style="z-index: 2">
     <x:notify-messages />
@@ -11,8 +10,15 @@
                 {{-- @if (isset($user_data)) --}}
                 {{-- @foreach ($user_data as $users => $user) --}}
                 <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src={{ asset('uploads/user/Thumb-' . auth()->user()->photo) }}
-                        style="height:38px" />
+                    @if (isset(auth()->user()->photo) &&
+                            auth()->user()->photo != null &&
+                            file_exists(public_path() . '/uploads/user/' . auth()->user()->photo))
+                        <img alt="Image placeholder" src={{ asset('uploads/user/Thumb-' . auth()->user()->photo) }}
+                            style="height:38px">
+                    @else
+                        <img class="profile-user-img img-circle elevation-3" src="{{ asset('images/defaultUser.png') }}"
+                            alt="User profile picture">
+                    @endif
                 </span>
                 {{-- @endforeach --}}
                 {{-- @endif --}}
@@ -26,17 +32,17 @@
             <div class="dropdown-header noti-title">
                 <h6 class="text-overflow m-0">Welcome!</h6>
             </div>
-            <a href={{ url("admin/profile") }} class="dropdown-item">
+            <a href={{ route ('guide.guideProfile.index') }} class="dropdown-item">
                 <i class="ni ni-single-02"></i>
                 <span>My profile</span>
             </a>
-            <a href="#" class="dropdown-item">
-                <i class="ni ni-settings-gear-65"></i>
-                <span>Settings</span>
+            <a href="{{ url('home') }}" class="dropdown-item">
+                <i class="ni ni-building"></i>
+                <span>Home</span>
             </a>
-            <a href="#" class="dropdown-item">
+            <a href="{{ route('guide.trek.index') }}" class="dropdown-item">
                 <i class="ni ni-calendar-grid-58"></i>
-                <span>Blog</span>
+                <span>Treks</span>
             </a>
             <div class="dropdown-divider"></div>
             <a href="{{ route('logout') }}" class="dropdown-item"

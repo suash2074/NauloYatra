@@ -49,7 +49,7 @@
                             <label for="example-text-input" class="form-control-label">Image <span
                                     class="text-danger">*</span></label>
                             <input class="form-control" type="file" value="" name="gallery_image"
-                                id="gallery_image">
+                                id="gallery_image" required>
                             <div class="col-md-4">
                                 <img src={{ asset('uploads/gallery/Thumb-' . @$gallery_detail_data->gallery_image) }}
                                     alt="" class="img img-fluid img-responsive" style="max-width: 10rem">

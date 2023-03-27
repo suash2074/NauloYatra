@@ -54,6 +54,7 @@ class Package_detailsController extends Controller
         $rules = $this->package_detail->getRules();
         $request->validate($rules);
         $data = $request->except(['_token']);
+        $data['category'] = $request->category;
         $this->package_detail->fill($data);
         $status = $this->package_detail->save();
         if ($status) {

@@ -18,8 +18,16 @@
                         aria-expanded="false">
                         <div class="media align-items-center">
                             <span class="avatar avatar-sm rounded-circle">
-                                <img alt="Image placeholder"
-                                    src={{ asset('uploads/user/Thumb-' . auth()->user()->photo) }} style="height:38px">
+                                @if (isset(auth()->user()->photo) &&
+                                        auth()->user()->photo != null &&
+                                        file_exists(public_path() . '/uploads/user/' . auth()->user()->photo))
+                                    <img alt="Image placeholder"
+                                        src={{ asset('uploads/user/Thumb-' . auth()->user()->photo) }}
+                                        style="height:38px">
+                                @else
+                                    <img class="profile-user-img img-circle elevation-3"
+                                        src="{{ asset('images/defaultUser.png') }}" alt="User profile picture">
+                                @endif
                             </span>
                             <div class="media-body ml-2 d-none d-lg-block">
                                 <span class="mb-0 text-sm font-weight-bold">{{ Auth::user()->first_name }}
@@ -99,8 +107,15 @@
                             <div class="col-lg-3 order-lg-2">
                                 <div class="card-profile-image">
                                     <a href="#">
-                                        <img src={{ asset('uploads/user/' . auth()->user()->photo) }}
-                                            style="height:180px; width:180px" class="rounded-circle">
+                                        @if (isset(auth()->user()->photo) &&
+                                                auth()->user()->photo != null &&
+                                                file_exists(public_path() . '/uploads/user/' . auth()->user()->photo))
+                                            <img src={{ asset('uploads/user/' . auth()->user()->photo) }}
+                                                style="height:180px; width:180px" class="rounded-circle">
+                                        @else
+                                            <img class="profile-user-img img-circle elevation-3"
+                                                src="{{ asset('images/defaultUser.png') }}" alt="User profile picture">
+                                        @endif
                                     </a>
                                 </div>
                             </div>

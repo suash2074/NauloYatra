@@ -73,7 +73,7 @@
 
                                                     <td>{{ $booking->days }}</td>
 
-                                                    <td>{{ $booking->payment_status }}</td>
+                                                    <td class="{{ @$booking->payment_status == 'Paid' ? 'text-success' : 'text-warning' }}">{{ $booking->payment_status }}</td>
 
                                                     <td>{{ $booking->status }}</td>
 

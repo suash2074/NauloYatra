@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
-    // use MultiVendorTrait;
+    use MultiVendorTrait;
     protected $fillable = [
         'trek_id',
         'user_id',

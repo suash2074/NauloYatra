@@ -20,6 +20,7 @@ class Bookings extends Model
         'contact_number',
         'days',
         'trek_id',
+        'payment_status',
         'status'
     ];
 

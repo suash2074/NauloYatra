@@ -85,22 +85,29 @@
         @endforeach
     @endif
 
-    @if (isset($health_kit_info))
-        @foreach ($health_kit_info as $health_kit)
-            <section class="post-container post-content">
+    <section class="post-container post-content">
+        <h2 class="sub-heading">First Aid to carry and Illness</h2>
+        <h5 class="sub-title">Illness</h5>
+        @if (isset($health_kit_info))
+            @foreach ($health_kit_info as $health_kit)
                 <form action="{{ route('content', $trek->id) }}" method="get">
                     @csrf
 
-                    <h2 class="sub-heading">First Aid to carry and Illness</h2>
-                    <h5 class="sub-title">Illness</h5>
                     <p style="margin-left: 15px">-{{ $health_kit->medicine_info['illness_name'] }}</p>
+                </form>
+            @endforeach
+        @endif
+        <h5 class="sub-title">First Aid</h5>
+        @if (isset($health_kit_info))
+            @foreach ($health_kit_info as $health_kit)
+                <form action="{{ route('content', $trek->id) }}" method="get">
+                    @csrf
 
-                    <h5 class="sub-title">First Aid</h5>
                     <p style="margin-left: 15px">- {{ $health_kit->medicine_info['medicine_name'] }}</p>
                 </form>
-            </section>
-        @endforeach
-    @endif
+            @endforeach
+        @endif
+    </section>
 
     <section class="post-container post-content">
         <h2 class="sub-heading">Gallery</h2>
@@ -178,7 +185,7 @@
                                 class="text-danger">*</span></label>
                         <input class="form-control" type="text" placeholder="Best thing about trek something"
                             name="trek_id" id="trek_id" value="{{ @$trek->id }}" required>
-                        
+
                     </div>
                 @endforeach
             @endif
@@ -188,7 +195,7 @@
 
                 <textarea class="form-control ml-1 shadow-none textarea" name="text" id="text" cols="30"
                     rows="" style="resize: none" required></textarea>
-                
+
             </div>
             <div class="mt-2 text-right">
                 <button class="btn btn-success btn-sm shadow-none" type="submit">Post Feedback</button>

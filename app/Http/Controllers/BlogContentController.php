@@ -26,7 +26,7 @@ class BlogContentController extends Controller
         $culture_info = Culture::where('trek_id', $id)->orderBy('id', 'DESC')->where('status', 'Active')->get();
         $health_kit_info = Health_kit::where('trek_id', $id)->orderBy('id', 'DESC')->where('status', 'Active')->with('medicine_info')->get();
         $map_infos = Map::where('trek_id', $id)->orderBy('id', 'DESC')->where('status', 'Active')->with('trek_info')->get();
-        $gallery_infos = Gallery::inRandomOrder()->where('trek_id', $id)->orderBy('id', 'DESC')->where('status', 'Active')->with('trek_info')->with('gallery_info')->limit(3)->get();
+        $gallery_infos = Gallery::inRandomOrder()->where('trek_id', $id)->where('status', 'Active')->with('trek_info')->with('gallery_info')->limit(3)->get();
         $comment_infos = Comment::where('trek_id', $id)->orderBy('id', 'DESC')->with('trek_info')->with('user_info')->get();
         // $comment = Comment::all();
         // dd($comment);

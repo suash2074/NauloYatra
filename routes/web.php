@@ -22,6 +22,7 @@ use App\Http\Controllers\Guide\BookingController as GuideBookingController;
 use App\Http\Controllers\Guide\CultureController as GuideCultureController;
 use App\Http\Controllers\Guide\GalleriesController as GuideGalleriesController;
 use App\Http\Controllers\Guide\Gallery_DetailsController as GuideGallery_DetailsController;
+use App\Http\Controllers\Guide\GuideProfileController;
 use App\Http\Controllers\Guide\Health_KitController as GuideHealth_KitController;
 use App\Http\Controllers\Guide\MapController as GuideMapController;
 use App\Http\Controllers\Guide\MedicineController as GuideMedicineController;
@@ -96,7 +97,6 @@ Route::prefix('user')->middleware(['auth', 'user'])->group(function () {
     Route::get('/packages', [App\Http\Controllers\PackagesController::class, 'index'])->name('packages');
     Route::get('/gallery{id}', [App\Http\Controllers\GalleryController::class, 'index'])->name('gallery');
     Route::resource('/profile', ProfileController::class);
-
 });
 
 Route::prefix('guide')->as('guide.')->middleware(['auth', 'guide'])->group(function () {
@@ -118,7 +118,7 @@ Route::prefix('guide')->as('guide.')->middleware(['auth', 'guide'])->group(funct
     Route::resource('/packageDetail', GuidePackage_DetailsController::class);
     Route::resource('/booking', GuideBookingController::class);
     // Route::resource('/profile', AdminProfileController::class);
-    // Route::resource('/profile', AdminProfileController::class, [
-    //     'names' => 'adminProfile'
-    // ]);
+    Route::resource('/profile', GuideProfileController::class, [
+        'names' => 'guideProfile'
+    ]);
 });

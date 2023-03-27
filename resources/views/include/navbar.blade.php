@@ -5,20 +5,28 @@
         <a href={{ route('blog') }}></i>Blogs</a>
         <a href={{ route('packages') }}></i>Packages</a>
         <a href={{ route('profile.index') }}>
-            <img src="{{ asset('images/view1.jfif') }}" alt="" class="profile-img">
-            <span class="profile-name">Suash Rajbhandari</span>
+            @if (isset(auth()->user()->photo) &&
+                    auth()->user()->photo != null &&
+                    file_exists(public_path() . '/uploads/user/' . auth()->user()->photo))
+                <img alt="Image placeholder" src={{ asset('uploads/user/Thumb-' . auth()->user()->photo) }}
+                    class="profile-img">
+            @else
+                <img class="profile-user-img img-circle elevation-3" src="{{ asset('images/defaultUser.png') }}"
+                    alt="User profile picture" class="profile-img">
+            @endif
+            <span class="profile-name">{{ Auth()->user()->first_name }} {{ Auth()->user()->last_name }}</span>
         </a>
 
         <a href="{{ route('logout') }}" class="logout"
-                    onclick="event.preventDefault();
+            onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();">
 
 
-                    {{ __('Logout') }}
-                </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
+            {{ __('Logout') }}
+        </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+        </form>
     </div>
 
     {{-- <div class="nav-bar" id="nav-bar">

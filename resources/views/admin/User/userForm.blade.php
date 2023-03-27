@@ -100,7 +100,7 @@
                             <label for="example-tel-input" class="form-control-label">Phone <span
                                     class="text-danger">*</span></label>
                             <input class="form-control" type="tel" placeholder="+977-9827100545" name="phone"
-                                value="{{ @$user_data->phone }}" required id="example-tel-input">
+                                value="{{ @$user_data->phone }}" required id="example-tel-input" required>
                             @error('phone')
                                 <span class="invalid-feedback" role="alert">{{ $message }}</span>
                             @enderror

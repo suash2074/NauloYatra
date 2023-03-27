@@ -70,12 +70,22 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row d-flex justify-content-between">
                         <div class="form-group col-4">
                             <label for="example-tel-input" class="form-control-label">Price Per person</label>
                             <input class="form-control" type="number" placeholder="Rs 1600"
                                 value="{{ @$package_detail_data->price_per_person }}" name="price_per_person"
                                 id="price_per_person" readonly>
+                        </div>
+
+                        <div class="form-group col-3">
+                            <label for="example-password-input" class="form-control-label">Category</label>
+                            <select class="form-control" name="category" id="category" readonly>
+                                <option {{ @$package_detail_data->category == 'Basic' ? 'selected' : '' }} Name="Basic">Basic
+                                </option>
+                                <option {{ @$package_detail_data->category == 'Standard' ? 'selected' : '' }} Name="Standard">Standard
+                                </option>
+                            </select>
                         </div>
                     </div>
 

@@ -10,8 +10,15 @@
                 {{-- @if (isset($user_data)) --}}
                 {{-- @foreach ($user_data as $users => $user) --}}
                 <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src={{ asset('uploads/user/Thumb-' . auth()->user()->photo) }}
-                        style="height:38px" />
+                    @if (isset(auth()->user()->photo) &&
+                            auth()->user()->photo != null &&
+                            file_exists(public_path() . '/uploads/user/' . auth()->user()->photo))
+                        <img alt="Image placeholder" src={{ asset('uploads/user/Thumb-' . auth()->user()->photo) }}
+                            style="height:38px">
+                    @else
+                        <img class="profile-user-img img-circle elevation-3" src="{{ asset('images/defaultUser.png') }}"
+                            alt="User profile picture">
+                    @endif
                 </span>
                 {{-- @endforeach --}}
                 {{-- @endif --}}

@@ -108,12 +108,23 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row d-flex justify-content-between">
                         <div class="form-group col-4">
                             <label for="example-tel-input" class="form-control-label">Arrival Date</label>
                             <input class="form-control" type="date" placeholder=""
                                 value="{{ @$booking_data->arrival_date }}" name="arrival_date" id="arrival_date"
                                 readonly>
+                        </div>
+
+                        <div class="form-group col-4">
+                            <label for="example-password-input" class="form-control-label">Payment Status</label>
+                            <select class="form-control" name="payment_status" id="payment_status" readonly> 
+                                <option {{ @$booking_data->payment_status == 'Paid' ? 'selected' : '' }}>Paid
+                                </option>
+                                <option {{ @$booking_data->payment_status == 'Unpaid' ? 'selected' : '' }}>
+                                    Unpaid
+                                </option>
+                            </select>
                         </div>
                     </div>
 

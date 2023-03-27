@@ -13,8 +13,8 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-search"></i></span>
                         </div>
-                        <input class="form-control h-25" placeholder="Search" type="search" name="search"
-                            value="" />
+                        <input class="form-control h-25" placeholder="Search price, days or trek type" type="search" name="search"
+                            value="{{$search}}" />
                     </div>
                 </div>
             </form>
@@ -35,8 +35,13 @@
                     <a href="" class="post-title">
                         {{ $package->package_info['package_name'] }}
                     </a>
-                    <h3><span style="font-weight: 300">Guide name:</span> {{ $package->package_info['user_id'] }}
-                        {{ $package->package_info['last_name'] }}</h3>
+                    @if (isset($packages))
+                        @foreach ($packages as $package_username)
+                            <h3><span style="font-weight: 300">Guide name:</span>
+                                {{ $package_username->user_info['first_name'] }}
+                                {{ $package_username->user_info['last_name'] }}</h3>
+                        @endforeach
+                    @endif
                     <h2 class="category">{{ $package->trek_type }}</h2>
                     <span class="duration">Duration: {{ $package->days }}</span>
                     <span class="post-date">Price per person: <span class="price"> RS.
@@ -53,28 +58,31 @@
                             Book Now
                         </button> --}}
 
-                        <button class="book" id="popupBtn">Click here to book</button>
 
-                        <div id="popupForm" class="popupForm">
+                        <button class="book" onclick="showPopup()">Open Popup Form</button>
+
+                        <div class="popupForm">
                             <form>
-                                <label for="userName">Name:</label>
-                                <input type="text" id="userName" name="userName">
-
+                                <h2>Booking Form</h2>
+                                <label for="name">Name:</label>
+                                <input type="text" id="name" name="name" required>
                                 <label for="email">Email:</label>
-                                <input type="email" id="email" name="email">
-
-                                <label for="numberOfPeople">Number of people:</label>
-                                <input type="number" id="numberOfPeople" name="numberOfPeople">
-
-                                <label for="arrivalDate">Arrival date:</label>
-                                <input type="date" id="arrivalDate" name="arrivalDate">
-
-                                <label for="contactNumber">Contact number:</label>
-                                <input type="tel" id="contactNumber" name="contactNumber">
-
-                                <input type="submit" value="Submit">
+                                <input type="email" id="email" name="email" required>
+                                <label for="numPeople">Number of People:</label>
+                                <input type="number" id="numPeople" name="numPeople" min="1" max="10"
+                                    required>
+                                <label for="arrivalDate">Arrival Date:</label>
+                                <input type="date" id="arrivalDate" name="arrivalDate" required>
+                                <label for="contactNum">Contact Number:</label>
+                                <input type="tel" id="contactNum" name="contactNum" required>
+                                <input class="btn btn-success" type="submit" value="Submit">
+                                <button class="closeBtn btn btn-danger" onclick="hidePopup()"
+                                    style="margin-right: 5px">Close</button>
                             </form>
                         </div>
+
+
+
                     </div>
                     {{-- <div class="profile">
                         <img src="{{ asset('images/view1.jfif') }}" alt="" class="profile-img">
@@ -87,6 +95,16 @@
 
 
     </section>
+
+    <script>
+        function showPopup() {
+            document.querySelector(".popupForm").style.display = "block";
+        }
+
+        function hidePopup() {
+            document.querySelector(".popupForm").style.display = "none";
+        }
+    </script>
     <script>
         const popupBtn = document.getElementById("popupBtn");
         const popupForm = document.getElementById("popupForm");

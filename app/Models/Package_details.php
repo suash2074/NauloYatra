@@ -13,6 +13,7 @@ class Package_details extends Model
         'trek_type',
         'days',
         'price_per_person',
+        'category',
         'details',
         'link',
         'status'

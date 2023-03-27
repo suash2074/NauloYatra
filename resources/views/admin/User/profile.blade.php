@@ -18,8 +18,16 @@
                         aria-expanded="false">
                         <div class="media align-items-center">
                             <span class="avatar avatar-sm rounded-circle">
-                                <img alt="Image placeholder"
-                                    src={{ asset('uploads/user/Thumb-' . auth()->user()->photo) }} style="height:38px">
+                                @if (isset(auth()->user()->photo) &&
+                                        auth()->user()->photo != null &&
+                                        file_exists(public_path() . '/uploads/user/' . auth()->user()->photo))
+                                    <img alt="Image placeholder"
+                                        src={{ asset('uploads/user/Thumb-' . auth()->user()->photo) }}
+                                        style="height:38px">
+                                @else
+                                    <img class="profile-user-img img-circle elevation-3"
+                                        src="{{ asset('images/defaultUser.png') }}" alt="User profile picture">
+                                @endif
                             </span>
                             <div class="media-body ml-2 d-none d-lg-block">
                                 <span class="mb-0 text-sm font-weight-bold">{{ Auth::user()->first_name }}
@@ -31,17 +39,17 @@
                         <div class=" dropdown-header noti-title">
                             <h6 class="text-overflow m-0">Welcome!</h6>
                         </div>
-                        <a href="{{ url('admin/profile') }}" class="dropdown-item">
+                        <a href={{ url('admin/profile') }} class="dropdown-item">
                             <i class="ni ni-single-02"></i>
                             <span>My profile</span>
                         </a>
-                        <a href="#" class="dropdown-item">
-                            <i class="ni ni-settings-gear-65"></i>
-                            <span>Settings</span>
+                        <a href="{{ route('user.index') }}" class="dropdown-item">
+                            <i class="ni ni-circle-08"></i>
+                            <span>Users</span>
                         </a>
-                        <a href={{ route('blog') }} class="dropdown-item">
+                        <a href="{{ route('trek.index') }}" class="dropdown-item">
                             <i class="ni ni-calendar-grid-58"></i>
-                            <span>Blog</span>
+                            <span>Treks</span>
                         </a>
                         <div class="dropdown-divider"></div>
                         <a href="{{ route('logout') }}" class="dropdown-item"
@@ -99,8 +107,15 @@
                             <div class="col-lg-3 order-lg-2">
                                 <div class="card-profile-image">
                                     <a href="#">
-                                        <img src={{ asset('uploads/user/' . auth()->user()->photo) }}
-                                            style="height:180px; width:180px" class="rounded-circle">
+                                        @if (isset(auth()->user()->photo) &&
+                                                auth()->user()->photo != null &&
+                                                file_exists(public_path() . '/uploads/user/' . auth()->user()->photo))
+                                            <img src={{ asset('uploads/user/' . auth()->user()->photo) }}
+                                                style="height:180px; width:180px" class="rounded-circle">
+                                        @else
+                                            <img class="profile-user-img img-circle elevation-3"
+                                                src="{{ asset('images/defaultUser.png') }}" alt="User profile picture">
+                                        @endif
                                     </a>
                                 </div>
                             </div>

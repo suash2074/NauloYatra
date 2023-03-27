@@ -751,63 +751,58 @@ Blog page
 	width: 100%;
 	height: 100%;
 	overflow: auto;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(0, 0, 0, 0.4);
   }
   
   .popupForm form {
 	background-color: #fff;
-	width: 80%;
-	max-width: 500px;
-	margin: 10% auto;
-	padding: 30px;
+	margin: auto;
+	padding: 20px;
 	border-radius: 5px;
-	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+	width: 50%;
+	max-width: 500px;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
   }
   
-  .popupForm h2 {
-	margin-top: 0;
-	font-size: 24px;
-	font-weight: 600;
+  .popupForm form h2 {
 	text-align: center;
+	margin-top: 0;
   }
   
-  .popupForm label {
+  .popupForm form label {
 	display: block;
-	font-size: 16px;
-	font-weight: 500;
-	margin-bottom: 5px;
+	margin-bottom: 10px;
   }
   
-  .popupForm input[type=text],
-  .popupForm input[type=email],
-  .popupForm input[type=number],
-  .popupForm input[type=date],
-  .popupForm input[type=tel] {
-	display: block;
+  .popupForm form input[type="text"],
+  .popupForm form input[type="email"],
+  .popupForm form input[type="number"],
+  .popupForm form input[type="date"],
+  .popupForm form input[type="tel"] {
 	width: 100%;
-	padding: 12px;
+	padding: 10px;
 	margin-bottom: 20px;
 	border: 1px solid #ccc;
-	border-radius: 5px;
-	background-color: #f5f5f5;
-	font-size: 16px;
-	font-weight: 400;
-	color: #333;
+	border-radius: 4px;
+	box-sizing: border-box;
   }
   
-  .popupForm input[type=submit] {
-	background-color: #007bff;
+  .popupForm form input[type="submit"],
+  .popupForm form button.closeBtn {
+	/* background-color: #4CAF50; */
 	color: #fff;
 	border: none;
 	padding: 10px 20px;
+	border-radius: 4px;
 	cursor: pointer;
-	font-size: 16px;
-	font-weight: 500;
-	border-radius: 5px;
+	float: right;
   }
   
-  .popupForm input[type=submit]:hover {
-	background-color: #0062cc;
+  .popupForm form input[type="submit"]:hover,
+  .popupForm form button.closeBtn:hover {
+	/* background-color: #45a049; */
   }
   
 /*--------------------------------------------------------------
