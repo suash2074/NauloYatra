@@ -9,9 +9,9 @@
         <div class="container-fluid">
             <!-- Brand -->
             <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{ route('home') }}">Dashboard</a>
-            @include('admin.adminInclude.topNav')
+            @include('guide.guideInclude.topNav')
 
-            @include('admin.adminInclude.status')
+            @include('guide.guideInclude.status')
 
 
             <div class="container-fluid mt--7">

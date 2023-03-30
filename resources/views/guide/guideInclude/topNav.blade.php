@@ -7,8 +7,6 @@
         <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
             <div class="media align-items-center">
-                {{-- @if (isset($user_data)) --}}
-                {{-- @foreach ($user_data as $users => $user) --}}
                 <span class="avatar avatar-sm rounded-circle">
                     @if (isset(auth()->user()->photo) &&
                             auth()->user()->photo != null &&
@@ -20,8 +18,6 @@
                             alt="User profile picture">
                     @endif
                 </span>
-                {{-- @endforeach --}}
-                {{-- @endif --}}
                 <div class="media-body ml-2 d-none d-lg-block">
                     <span class="mb-0 text-sm font-weight-bold">{{ Auth::user()->username }}</span>
                 </div>
@@ -31,7 +27,7 @@
             <div class="dropdown-header noti-title">
                 <h6 class="text-overflow m-0">Welcome!</h6>
             </div>
-            <a href={{ route ('guide.guideProfile.index') }} class="dropdown-item">
+            <a href={{ route('guide.guideProfile.index') }} class="dropdown-item">
                 <i class="ni ni-single-02"></i>
                 <span>My profile</span>
             </a>

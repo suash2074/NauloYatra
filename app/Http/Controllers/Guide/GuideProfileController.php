@@ -132,7 +132,7 @@ class GuideProfileController extends Controller
                     $data['password'] = Hash::make($request->newPassword);
                 } else {
                     notify()->error("Password conformation failed.");
-                    return redirect()->route('guide.Profile.index');
+                    return redirect()->route('guide.profile.index');
                 }
             }
         }
@@ -145,7 +145,7 @@ class GuideProfileController extends Controller
         } else {
             notify()->error('Sorry! There was problem in updating details.');
         }
-        return redirect()->route('guide.profile.index');
+        return redirect()->route('profile.index');
    
     }
 
