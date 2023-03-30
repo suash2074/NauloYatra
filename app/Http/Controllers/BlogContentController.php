@@ -28,8 +28,6 @@ class BlogContentController extends Controller
         $map_infos = Map::where('trek_id', $id)->orderBy('id', 'DESC')->where('status', 'Active')->with('trek_info')->get();
         $gallery_infos = Gallery::inRandomOrder()->where('trek_id', $id)->where('status', 'Active')->with('trek_info')->with('gallery_info')->limit(3)->get();
         $comment_infos = Comment::where('trek_id', $id)->orderBy('id', 'DESC')->with('trek_info')->with('user_info')->get();
-        // $comment = Comment::all();
-        // dd($comment);
         return view('front/Blog/blog_content')->with([
             'trek_info' => $trek_info,
             'about_info' => $about_info,
@@ -43,13 +41,10 @@ class BlogContentController extends Controller
 
     public function postComment(Request $request){
         $rules = $this->comment->getRules();
-        $trek_id = $request->trek_id;
         $request->validate($rules);
         $data = $request->except(['_token']);
         $data['user_id'] = auth()->user()->id;
         $this->comment->fill($data);
-        // dd($data);
-        // $data['trek_id'] = 
         $status = $this->comment->save();
         if($status){
             notify()->success('Comment added successfully !');

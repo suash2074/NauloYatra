@@ -158,6 +158,6 @@ class Package_detailsController extends Controller
             notify()->error('Sorry! there was problem in deleting data.');
         }
 
-        return redirect()->route('newsDetail.index');
+        return redirect()->route('packageDetail.index');
     }
 }

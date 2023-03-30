@@ -30,8 +30,7 @@
                                 @endif
                             </span>
                             <div class="media-body ml-2 d-none d-lg-block">
-                                <span class="mb-0 text-sm font-weight-bold">{{ Auth::user()->first_name }}
-                                    {{ Auth::user()->last_name }} </span>
+                                <span class="mb-0 text-sm font-weight-bold">{{ Auth::user()->username }}</span>
                             </div>
                         </div>
                     </a>
@@ -43,9 +42,9 @@
                             <i class="ni ni-single-02"></i>
                             <span>My profile</span>
                         </a>
-                        <a href="#" class="dropdown-item">
-                            <i class="ni ni-settings-gear-65"></i>
-                            <span>Settings</span>
+                        <a href="{{ url('home') }}" class="dropdown-item">
+                            <i class="ni ni-building"></i>
+                            <span>Home</span>
                         </a>
                         <a href={{ route('blog') }} class="dropdown-item">
                             <i class="ni ni-calendar-grid-58"></i>

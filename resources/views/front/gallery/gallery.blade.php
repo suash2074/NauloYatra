@@ -8,9 +8,9 @@
                 <div class="heading">
                     <h3 style="color: rgb(186, 186, 186);">Photo <span>Gallery</span></h3>
                 </div>
-                @if (isset($gallery_infos))
-                    @foreach ($gallery_infos as $gallery)
-                        <h3 style="color: rgb(186, 186, 186);">OF {{ $gallery->trek_info['trek_name'] }}</h3>
+                @if (isset($trek_infos))
+                    @foreach ($trek_infos as $trek)
+                        <h3 style="color: rgb(186, 186, 186);">OF {{ $trek->trek_name }}</h3>
                     @endforeach
                 @endif
             </div>

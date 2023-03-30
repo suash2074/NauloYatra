@@ -13,9 +13,9 @@ class BlogController extends Controller
 
         $search = $request['search'] ?? "";
         if ($search != "") {
-            $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->with('user_info')->Where("trek_name", 'LIKE', "%$search%")->get();
+            $trek_info = Trek::inRandomOrder()->orderBy('id', 'DESC')->where('status', 'Active')->with('user_info')->Where("trek_name", 'LIKE', "%$search%")->get();
         } else {
-            $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->with('user_info')->get();
+            $trek_info = Trek::inRandomOrder()->where('status', 'Active')->with('user_info')->get();
         }
         // dd($trek_info);
         $about_info = About_section::orderBy('id', 'DESC')->where('status', 'Active')->with('trek_info')->get();

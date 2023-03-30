@@ -407,12 +407,14 @@ section {
 Blog page
 --------------------------------------------------------------*/
 
-
-
 .blog {
 	width: 100%;
 	min-height: 440px;
-	background: var(--container-color);
+	/* background: var(--container-color); */
+	background-image: url(../images/Wildflowers\ and\ pink\ sky\ on\ Mount\ Ashland\,\ OR\ [OC][3000x2000].jpeg);
+	/* background-repeat: no-repeat; */
+	object-fit: cover;
+	object-position: center;
 	display: grid;
 	justify-content: center;
 	align-items: center;
@@ -811,6 +813,30 @@ Blog page
 @media screen and (max-width: 1100px) {
 
 	.homeBackground {
+		padding: 50px;
+	  }
+	  
+	  .homeBackground #logoText {
+		font-size: 5vw;
+	  }
+	  
+	  .card {
+		width: 30%;
+	  }
+	  
+	  .moto {
+		font-size: 2rem;
+	  }
+	  
+	  .form-message {
+		font-size: 1.8rem;
+	  }
+	  
+	  .compose-mail {
+		font-size: 1.2rem;
+	  }
+
+	/* .homeBackground {
 		min-height: 57vh;
 	}
 
@@ -834,7 +860,7 @@ Blog page
 	.container {
 		margin: 0 auto;
 		width: 95%;
-	}
+	} */
 
 	/* .home-text{
 		width: 100%;

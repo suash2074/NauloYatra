@@ -8,18 +8,27 @@ use Illuminate\Http\Request;
 
 class PackagesController extends Controller
 {
-    public function index(Request $request){
+    public function index(Request $request)
+    {
         $search = $request['search'] ?? "";
         if ($search != "") {
-            $package_infos = Package_details::inRandomOrder()->where('status', 'Active')->with('package_info')->Where("price_per_person", 'LIKE', "%$search%")->orWhere("days", 'LIKE', "%$search%")->orWhere("trek_type", 'LIKE', "%$search%")->get();
+            $package_detail_infos = Package_details::inRandomOrder()->where('status', 'Active')->with('package_info')->Where("price_per_person", 'LIKE', "%$search%")->orWhere("days", 'LIKE', "%$search%")->orWhere("trek_type", 'LIKE', "%$search%")->get();
         } else {
-            $package_infos = Package_details::orderBy('id', 'DESC')->where('status', 'Active')->with('package_info')->get();
+            $package_detail_infos = Package_details::inRandomOrder()->where('status', 'Active')->with('package_info')->get();
         }
+        $packages_infos = Packages::orderBy('id', 'DESC')->where('status', 'Active')->with('user_info')->with('trek_info')->get();
 
-        $packages = Packages::orderBy('id', 'DESC')->where('status', 'Active')->with('user_info')->get();
+        // return $packages;
         return view('front/packages/packages')->with([
-            'package_infos' => $package_infos,
-            'packages' => $packages
+            'package_detail_infos' => $package_detail_infos,
+            'packages_infos' => $packages_infos
         ])->with('search', $search);
+    }
+
+    public function book($id, Request $request)
+    {
+        
+        $packages = Package_details::where('id', $id)->get();
+        dd($packages);
     }
 }

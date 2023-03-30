@@ -95,6 +95,7 @@ Route::prefix('user')->middleware(['auth', 'user'])->group(function () {
     Route::post('/post/comment', [App\Http\Controllers\BlogContentController::class, 'postComment'])->name('postComment');
     Route::get('/newsDetail{id}', [App\Http\Controllers\NewsDetailsController::class, 'index'])->name('newsDetail');
     Route::get('/packages', [App\Http\Controllers\PackagesController::class, 'index'])->name('packages');
+    Route::post('/packages/book/{id}', [App\Http\Controllers\PackagesController::class, 'book'])->name('book');
     Route::get('/gallery{id}', [App\Http\Controllers\GalleryController::class, 'index'])->name('gallery');
     Route::resource('/profile', ProfileController::class);
 });

@@ -5,9 +5,6 @@
     <!-- Navbar -->
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
         <div class="container-fluid">
-            <!-- Brand -->
-            <a href={{ route('home') }} class="logo">Naulo <span>Yatra</span></a>
-
             <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{ route('profile.index') }}">Your
                 Profile</a>
 

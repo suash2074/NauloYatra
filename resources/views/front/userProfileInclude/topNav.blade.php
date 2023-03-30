@@ -19,8 +19,7 @@
                     @endif
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
-                    <span class="mb-0 text-sm font-weight-bold">{{ Auth::user()->first_name }}
-                        {{ Auth::user()->last_name }} </span>
+                    <span class="mb-0 text-sm font-weight-bold">{{ Auth::user()->username }}</span>
                 </div>
             </div>
         </a>

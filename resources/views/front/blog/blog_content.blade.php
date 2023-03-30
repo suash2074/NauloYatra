@@ -24,7 +24,7 @@
                                         {{ $trek->user_info['last_name'] }}</span></h5>
                             </div>
                             <div>
-                                <h5>Published Date: <span style="font-weight:300 ">2002/02/08 {{ $trek->created_at }}
+                                <h5>Published Date: <span style="font-weight:300 ">{{ $trek->created_at }}
                                     </span></h5>
                             </div>
                         </div>
@@ -149,8 +149,16 @@
                         <div class="col-md-8">
                             <div class="p-2">
                                 <div class="d-flex flex-row user-info">
-                                    <img src="{{ asset('uploads/user/' . $comment->user_info['photo']) }}"
-                                        style="width: 50px" height="50px" class="rounded-circle" alt="">
+                                    @if (isset(auth()->user()->photo) &&
+                                            auth()->user()->photo != null &&
+                                            file_exists(public_path() . '/uploads/user/' . auth()->user()->photo))
+                                        <img src="{{ asset('uploads/user/' . $comment->user_info['photo']) }}"
+                                            style="width: 50px" height="50px" class="rounded-circle" alt="">
+                                    @else
+                                        <img src={{ asset('images/defaultUser.png') }} style="width: 50px"
+                                            height="50px" class="rounded-circle" alt="">
+                                    @endif
+
                                     <div class="d-flex flex-column justify-content-start ml-2">
                                         <span
                                             class="d-block font-weight-bold name">{{ $comment->user_info['first_name'] }}
@@ -171,9 +179,6 @@
         @endif
 
         <div class="p-2">
-            {{-- @if ($errors->any())
-                {{ implode('', $errors->all('<div>:message</div>')) }}
-            @endif --}}
             @if (isset($comment_infos))
                 <form action="{{ route('postComment') }}" method="post" class="form" enctype="multipart/form-data">
                     @csrf
@@ -190,8 +195,16 @@
                 @endforeach
             @endif
             <div class="d-flex flex-row align-items-start">
-                <img src="{{ asset('uploads/user/' . Auth::user()->photo) }}" style="width: 50px" height="50px"
-                    class="rounded-circle" alt="">
+                @if (isset(auth()->user()->photo) &&
+                        auth()->user()->photo != null &&
+                        file_exists(public_path() . '/uploads/user/' . auth()->user()->photo))
+                    <img src="{{ asset('uploads/user/' . Auth::user()->photo) }}" style="width: 50px" height="50px"
+                        class="rounded-circle" alt="">
+                @else
+                    <img src={{ asset('images/defaultUser.png') }} style="width: 50px" height="50px"
+                        class="rounded-circle" alt="">
+                @endif
+
 
                 <textarea class="form-control ml-1 shadow-none textarea" name="text" id="text" cols="30"
                     rows="" style="resize: none" required></textarea>

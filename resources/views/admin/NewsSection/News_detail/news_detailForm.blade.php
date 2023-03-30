@@ -43,7 +43,7 @@
                     @endif
                     <div class="row d-flex justify-content-between">
                         <div class="form-group col-3">
-                            <label for="example-password-input" class="form-control-label">Headline  <span
+                            <label for="example-password-input" class="form-control-label">Headline <span
                                 class="text-danger">*</span></label>
                             <select class="form-control" name="news_id" id="news_id" required>
                                 <option value="" disabled selected hidden>Select Headline</option>
@@ -76,7 +76,7 @@
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Description <span
                                         class="text-danger">*</span></label>
-                                <textarea class="form-control" id="summernote" name="description" rows="3">{{ @$news_detail_data->description }}</textarea>
+                                <textarea class="form-control" id="summernote" name="description" rows="3" required>{{ @$news_detail_data->description }}</textarea>
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                 @enderror
@@ -86,7 +86,8 @@
 
                     <div class="row">
                         <div class="form-group col-6">
-                            <label for="example-text-input" class="form-control-label">Image</label>
+                            <label for="example-text-input" class="form-control-label">Image <span
+                                class="text-danger">*</span></label>
                             <input class="form-control" type="file" value="" name="image" id="image" required>
                             <div class="col-md-4">
                                 <img src={{ asset('uploads/news_detail/Thumb-' . @$news_detail_data->image) }}
@@ -101,8 +102,9 @@
                     <div class="row d-flex justify-content-between">
                         <div class="form-group col-8">
                             <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Link</label>
-                                <textarea class="form-control" id="link" name="link" rows="1">{{ @$news_detail_data->link }}</textarea>
+                                <label for="exampleFormControlTextarea1">Link <span
+                                    class="text-danger">*</span></label>
+                                <textarea class="form-control" id="link" name="link" rows="1" required>{{ @$news_detail_data->link }}</textarea>
                                 @error('link')
                                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                 @enderror

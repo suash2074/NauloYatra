@@ -45,9 +45,8 @@ class HomeController extends Controller
 
     public function user()
     {
-        $news_info = News::orderBy('id', 'DESC')->where('status', 'Active')->get();
+        $news_info = News::inRandomOrder()->where('status', 'Active')->get();
         $news_details_info = News_details::orderBy('id', 'DESC')->where('status', 'Active')->get();
-        // dd($news_info);
         
         return view('front/Home/home')->with([
             'news_info' => $news_info,

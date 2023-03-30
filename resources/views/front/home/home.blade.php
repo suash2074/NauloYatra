@@ -56,11 +56,9 @@
                         </div>
                     </div>
 
-                    @if (isset($news_info))
-
-                        @foreach ($news_info as $news)
-                            <div class="row news-container" data-aos="fade-up" data-aos-delay="200">
-
+                    <div class="row news-container" data-aos="fade-up" data-aos-delay="200">
+                        @if (isset($news_info))
+                            @foreach ($news_info as $news)
                                 <div class="col-lg-4 col-md-6 news-item filter-recently">
                                     <div class="news-wrap">
                                         <img src="{{ asset('uploads/news/' . $news->image) }}" class="img-fluid"
@@ -78,9 +76,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
-                    @endif
+                            @endforeach
+                        @endif
+                    </div>
                 </div>
             </section>
         </div>

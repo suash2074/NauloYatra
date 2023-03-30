@@ -42,7 +42,7 @@
                     <a href="{{ route('content', $trek->id) }}" class="post-title">
                         {{ $trek->trek_name }}
                     </a>
-                    <span class="post-date">12 feb 2022 {{ $trek->created_at }}</span>
+                    <span class="post-date">{{ $trek->created_at }}</span>
                     <hr>
                     @if (isset($about_info))
                         @foreach ($about_info as $about)
@@ -52,8 +52,17 @@
                         @endforeach
                     @endif
                     <div class="profile">
-                        <img src="{{ asset('uploads/user/' . $trek->user_info['photo']) }}" alt="" class="profile-img">
-                        <span class="profile-name">{{$trek->user_info['first_name']}} {{$trek->user_info['last_name']}}</span>
+                        @if (isset(auth()->user()->photo) &&
+                                auth()->user()->photo != null &&
+                                file_exists(public_path() . '/uploads/user/' . auth()->user()->photo))
+                            <img src="{{ asset('uploads/user/' . $trek->user_info['photo']) }}" alt=""
+                                class="profile-img">
+                        @else
+                            <img src={{ asset('images/defaultUser.png') }} alt="" class="profile-img">
+                        @endif
+
+                        <span class="profile-name">{{ $trek->user_info['first_name'] }}
+                            {{ $trek->user_info['last_name'] }}</span>
 
                     </div>
                 </div>

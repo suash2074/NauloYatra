@@ -89,7 +89,7 @@
                         <div class="form-group col-4">
                             <label for="example-tel-input" class="form-control-label">Days <span
                                     class="text-danger">*</span></label>
-                            <input class="form-control" type="number" placeholder="Rs 1400"
+                            <input class="form-control" type="number" placeholder="10"
                                 value="{{ @$package_detail_data->days }}" name="days" id="days">
                             @error('days')
                                 <span class="invalid-feedback" role="alert">{{ $message }}</span>
@@ -110,7 +110,8 @@
                         </div>
 
                         <div class="form-group col-3">
-                            <label for="example-password-input" class="form-control-label">Category</label>
+                            <label for="example-password-input" class="form-control-label">Category <span
+                                class="text-danger">*</span></label>
                             <select class="form-control" name="category" id="category">
                                 <option {{ @$package_detail_data->category == 'Basic' ? 'selected' : '' }} Name="Basic">Basic
                                 </option>
@@ -127,6 +128,7 @@
                         <div class="form-group col-12">
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Details <span
+                                    class="text-danger">*</span> <span
                                         class="text-danger">*</span></label>
                                 <textarea class="form-control" id="summernote" name="details" rows="3">{{ @$package_detail_data->details }}</textarea>
                                 @error('details')
