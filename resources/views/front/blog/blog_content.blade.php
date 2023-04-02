@@ -223,7 +223,6 @@
     <br>
     <hr>
 
-
     @include('include.footer')
     <script>
         mapboxgl.accessToken = 'pk.eyJ1Ijoic3Vhc2giLCJhIjoiY2w3bGs2YmZrMWl6bjNvcXUyYnl1MHdqbiJ9.IaGj0K14VoIswPrPUayS_w';
@@ -231,13 +230,20 @@
             container: 'map', // container ID
             // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
             style: 'mapbox://styles/mapbox/streets-v12', // style URL
-            //    latitude: 37.830348,
-            //    longitude:  -122.486052,
             @foreach ($map_infos as $map)
                 center: [{{ $map->start_point }}], // starting position
             @endforeach
             zoom: 14 // starting zoom
         });
+
+        // Set marker options.
+        const marker = new mapboxgl.Marker({
+                color: "rgb(0, 132, 255)",
+                draggable: true
+                @foreach ($map_infos as $map)
+            }).setLngLat([{{ $map->start_point }}])
+            @endforeach
+            .addTo(map);
 
         map.on('load', () => {
             map.addSource('route', {

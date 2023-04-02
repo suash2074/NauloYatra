@@ -21,11 +21,12 @@ return new class extends Migration
             $table->string('email');
             $table->integer('number_of_people');
             $table->date('arrival_date');
-            $table->integer('contact_number');
+            $table->string('contact_number');
 
             $table->integer('days');
             $table->unsignedBigInteger('trek_id')->nullable();
             $table->enum('payment_status',['Paid', 'Unpaid'])->default('Unpaid');
+            $table->enum('trip_status',['Ongoing', 'Completed', 'Cancelled'])->default('Ongoing');
             $table->enum('status',['Active', 'Inactive'])->default('Active');
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');

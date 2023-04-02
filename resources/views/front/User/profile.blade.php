@@ -235,7 +235,7 @@
                                     <i class="ni location_pin mr-2"></i>{{ auth()->user()->address }}, Nepal
                                 </div>
                                 <div class="h5 mt-4">
-                                    <i class="ni business_briefcase-24 mr-2"></i>Welcome to my profile, feel free to
+                                    <i class="ni business_briefcase-24 mr-2"></i>Welcome to your profile, feel free to
                                     take a
                                     look around!
                                 </div>

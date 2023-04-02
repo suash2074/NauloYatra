@@ -35,6 +35,7 @@
                     <a href="" class="post-title">
                         {{ $package_details->package_info['package_name'] }}
                     </a>
+
                     @if (isset($packages_infos))
                         @foreach ($packages_infos as $package)
                             @if ($package->id == $package_details->package_id)
@@ -58,59 +59,75 @@
 
                     <p class="package-description">{!! html_entity_decode($package_details->details) !!}</p>
                     <p>Want to know about the trek click the <a href="{{ $package_details->link }}">LINK</a></p>
-                    <div class="booking">
-                        {{-- <button class="book">
-                            Book Now
-                        </button> --}}
 
-
-                        <button class="book" onclick="showPopup(), '{{ $package_details->id }}'">Open booking
-                            Form</button>
-
-                        <div class="popupForm">
-                            @if (isset($package_detail_infos))
-                                <form action="{{ route('book', $package_details->id) }}" method="POST">
+                    @if (isset($packages_infos))
+                        @foreach ($packages_infos as $package)
+                            @if ($package->id == $package_details->package_id)
+                                {{-- @if ($package_details->id == $package_details->id) --}}
+                                <div class="booking">
+                                    <button class="book"
+                                        onclick="showPopup('<?php echo $package_details->id; ?>', '<?php echo $package->user_info['id']; ?>', '<?php echo $package_details->days; ?>', '<?php echo $package->trek_info['id']; ?>' )">Open
+                                        booking
+                                        Form</button>
+                                </div>
                             @endif
-                            @csrf
-                            <h2>Booking Form</h2>
-                            <label for="name">Name:</label>
-                            <input type="text" id="name" name="name" required>
-
-                            <label for="email">Email:</label>
-                            <input type="email" id="email" name="email" required>
-
-                            <label for="numPeople">Number of People:</label>
-                            <input type="number" id="numPeople" name="numPeople" min="1" max="10"
-                                required>
-
-                            <label for="arrivalDate">Arrival Date:</label>
-                            <input type="date" id="arrivalDate" name="arrivalDate" required>
-
-                            <label for="contactNum">Contact Number:</label>
-                            <input type="tel" id="contactNum" name="contactNum" required>
-                            
-                            <input class="btn btn-success" type="submit" value="Submit">
-                            <button class="closeBtn btn btn-danger" onclick="hidePopup()" style="margin-right: 5px">
-                                Close
-                            </button>
-                            </form>
-
-                        </div>
-                    </div>
+                        @endforeach
+                    @endif
+                    {{-- @endif --}}
                 </div>
             @endforeach
         @endif
+
+        <div class="popupForm">
+            @if (isset($package_detail_infos))
+                <form action="{{ route('book') }}" method="POST">
+            @endif
+            @csrf
+            <h2>Booking Form</h2>
+
+            <input type="hidden" id="package_id" name="package_id">
+
+            <input type="hidden" id="guide_name" name="guide_name">
+
+            <input type="hidden" id="days" name="days">
+
+            <input type="hidden" id="trek_id" name="trek_id">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="number_of_people">Number of People:</label>
+            <input type="number" id="number_of_people" name="number_of_people" required>
+
+            <label for="arrival_date">Arrival Date:</label>
+            <input type="date" id="arrival_date" name="arrival_date" required>
+
+            <label for="contact_number">Contact:</label>
+            <input type="text" id="contact_number" name="contact_number" required>
+
+            <input class="btn btn-success" type="submit" value="Submit">
+            <button class="closeBtn btn btn-danger" onclick="hidePopup()" style="margin-right: 5px">
+                Close
+            </button>
+            </form>
+
+        </div>
 
 
     </section>
 
     <script>
-        function showPopup() {
+        function showPopup(package_id, guide_name, days, trek_id) {
+            document.querySelector("#package_id").value = package_id;
+            document.querySelector("#guide_name").value = guide_name;
+            document.querySelector("#trek_id").value = trek_id;
+            document.querySelector("#days").value = days;
             document.querySelector(".popupForm").style.display = "block";
         }
 
         function hidePopup() {
             document.querySelector(".popupForm").style.display = "none";
+            document.querySelector(".popupForm").reset();
         }
     </script>
     <script>
@@ -123,18 +140,16 @@
 
         popupForm.addEventListener("submit", function(event) {
             event.preventDefault();
-            const userName = document.getElementById("userName").value;
             const email = document.getElementById("email").value;
-            const numberOfPeople = document.getElementById("numberOfPeople").value;
-            const arrivalDate = document.getElementById("arrivalDate").value;
-            const contactNumber = document.getElementById("contactNumber").value;
+            const number_of_people = document.getElementById("number_of_people").value;
+            const arrival_date = document.getElementById("arrival_date").value;
+            const contact_number = document.getElementById("contact_number").value;
 
             // Send the form data to your server or do something else with it
-            console.log("Name: " + userName);
             console.log("Email: " + email);
-            console.log("Number of people: " + numberOfPeople);
-            console.log("Arrival date: " + arrivalDate);
-            console.log("Contact number: " + contactNumber);
+            console.log("Number of people: " + number_of_people);
+            console.log("Arrival date: " + arrival_date);
+            console.log("Contact number: " + contact_number);
 
             // Close the popup form
             popupForm.style.display = "none";

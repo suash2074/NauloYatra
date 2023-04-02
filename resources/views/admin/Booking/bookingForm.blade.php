@@ -157,15 +157,35 @@
                         </div>
 
                         <div class="form-group col-4">
-                            <label for="example-password-input" class="form-control-label">Payment Status</label>
+                            <label for="example-password-input" class="form-control-label">Payment Status <span
+                                    class="text-danger">*</span></label>
                             <select class="form-control" name="payment_status" id="payment_status">
-                                <option {{ @$booking_data->payment_status == 'Paid' ? 'selected' : '' }}>Paid
+                                <option value="" disabled selected hidden>Select Payment Status</option>
+
+                                <option {{ @$booking_data->payment_status == 'Unpaid' ? 'selected' : '' }}>Unpaid
                                 </option>
-                                <option {{ @$booking_data->payment_status == 'Unpaid' ? 'selected' : '' }}>
-                                    Unpaid
+                                <option {{ @$booking_data->payment_status == 'Paid' ? 'selected' : '' }}>Paid
                                 </option>
                             </select>
                             @error('payment_status')
+                                <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group col-4">
+                            <label for="example-password-input" class="form-control-label">Trip Status <span
+                                    class="text-danger">*</span></label>
+                            <select class="form-control" name="trip_status" id="trip_status">
+                                <option value="" disabled selected hidden>Select Trip Status</option>
+
+                                <option {{ @$booking_data->trip_status == 'Ongiong' ? 'selected' : '' }}>Ongiong
+                                </option>
+                                <option {{ @$booking_data->trip_status == 'Completed' ? 'selected' : '' }}>Completed
+                                </option>
+                                <option {{ @$booking_data->trip_status == 'Cancelled' ? 'selected' : '' }}>Cancelled
+                                </option>
+                            </select>
+                            @error('trip_status')
                                 <span class="invalid-feedback" role="alert">{{ $message }}</span>
                             @enderror
                         </div>

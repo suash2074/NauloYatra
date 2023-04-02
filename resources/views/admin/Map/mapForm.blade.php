@@ -64,7 +64,7 @@
                         <div class="form-group col-6">
                             <label for="start_point" class="form-control-label">Start point<span
                                     class="text-danger">*</span></label>
-                            <input class="form-control" type="text" placeholder="Starting point of the Trek "
+                            <input class="form-control" type="text" placeholder="Format longitude, latitude: 85.3247, 27.6588"
                                 name="start_point" id="start_point" value="{{ @$map_data->start_point }}"
                                 required>
                             @error('start_point')
@@ -78,7 +78,7 @@
                             <div class="form-group">
                                 <label class="form-control-label" for="exampleFormControlTextarea1">Path Coordinates <span
                                         class="text-danger">*</span></label>
-                                <textarea class="form-control" id="path_coordinates" name="path_coordinates" rows="5">{{ @$map_data->path_coordinates }}</textarea>
+                                <textarea class="form-control" id="path_coordinates" name="path_coordinates" placeholder="Format [longitude, latitude]: [85.3247, 27.6588], [87.3247, 24.6588], [93.3247, 30.6588]" rows="5">{{ @$map_data->path_coordinates }}</textarea>
                                 @error('path_coordinates')
                                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                 @enderror

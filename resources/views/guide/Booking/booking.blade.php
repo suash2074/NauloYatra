@@ -33,7 +33,8 @@
                                             <th scope="col">Guide Name</th>
                                             <th scope="col">Trek Name</th>
                                             <th scope="col">Arrival Date</th>
-                                            <th scope="col">Days</th>
+                                            <th scope="col">Trek Status</th>
+                                            <th scope="col">Payment Status</th>
                                             <th scope="col">Status</th>
                                             <th scope="col">Action</th>
                                         </tr>
@@ -70,7 +71,9 @@
 
                                                     <td>{{ $booking->arrival_date }}</td>
 
-                                                    <td>{{ $booking->days }}</td>
+                                                    <td>{{ $booking->trek_status }}</td>
+
+                                                    <td class="{{ @$booking->payment_status == 'Paid' ? 'text-success' : 'text-warning' }}">{{ $booking->payment_status }}</td>
 
                                                     <td>{{ $booking->status }}</td>
 

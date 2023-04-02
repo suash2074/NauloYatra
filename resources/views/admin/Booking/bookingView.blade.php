@@ -115,7 +115,7 @@
                                 value="{{ @$booking_data->arrival_date }}" name="arrival_date" id="arrival_date"
                                 readonly>
                         </div>
-
+ 
                         <div class="form-group col-4">
                             <label for="example-password-input" class="form-control-label">Payment Status</label>
                             <select class="form-control" name="payment_status" id="payment_status" readonly>
@@ -126,14 +126,26 @@
                                 </option>
                             </select>
                         </div>
+
+                        <div class="form-group col-4">
+                            <label for="example-password-input" class="form-control-label">Trip Status</label>
+                            <select class="form-control" name="trip_status" id="trip_status" readonly>
+                                <option {{ @$booking_data->trip_status == 'Ongiong' ? 'selected' : '' }}>Ongiong
+                                </option>
+                                <option {{ @$booking_data->trip_status == 'Completed' ? 'selected' : '' }}>Completed
+                                </option>
+                                <option {{ @$booking_data->trip_status == 'Cancelled' ? 'selected' : '' }}>Cancelled
+                                </option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="row d-flex justify-content-between">
                         <div class="form-group col-5">
                             <label for="example-tel-input" class="form-control-label">Contact Number</label>
                             <input class="form-control" type="text" placeholder="nauloyatra@gmail.com"
-                                value="{{ @$booking_data->contact_number }}" name="contact_number" id="contact_number"
-                                readonly>
+                                value="{{ @$booking_data->contact_number }}" name="contact_number"
+                                id="contact_number" readonly>
                         </div>
 
                         <div class="form-group col-1">

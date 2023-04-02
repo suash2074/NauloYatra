@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bookings;
 use App\Models\Package_details;
 use App\Models\Packages;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PackagesController extends Controller
 {
@@ -25,10 +27,53 @@ class PackagesController extends Controller
         ])->with('search', $search);
     }
 
-    public function book($id, Request $request)
+    protected $booking = null;
+    public function __construct(Bookings $booking)
     {
-        
-        $packages = Package_details::where('id', $id)->get();
-        dd($packages);
+        $this->booking = $booking;
+    }
+
+
+    public function book(Request $request)
+    {
+        $packages = Package_details::where('id', $request->package_id)->get();
+        // dd($packages);
+        // dd($request->all());
+        $rules = $this->booking->getRules();
+        // $request->validate($rules);
+        $data = $request->except(['_token']);
+        $data['user_id'] = auth()->user()->id;
+        $data['payment_status'] = 'Unpaid';
+        DB::table('users')
+            ->where('id', $request->guide_id)
+            ->update(array('availability' => 'Not Available'));
+        $this->booking->fill($data);
+        $status = $this->booking->save();
+        if ($status) {
+            notify()->success('Package booking done sucessfully !');
+        } else {
+            notify()->error('Sorry! There was problem in booking of package.');
+        }
+
+        return redirect()->back();
+    }
+
+    public function booking(Request $request)
+    {
+        // dd($request->all());
+        // $rules = $this->booking->getRules();
+        // $request->validate($rules);
+        // $data = $request->except(['_token']);
+
+        // $data['user_id'];
+        // $this->booking->fill($data);
+        // $status = $this->booking->save();
+        // if ($status) {
+        //     notify()->success('Package booking done sucessfully !');
+        // } else {
+        //     notify()->error('Sorry! There was problem in booking of package.');
+        // }
+
+        // return redirect()->route('booking.index');
     }
 }
