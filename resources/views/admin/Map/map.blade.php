@@ -30,6 +30,7 @@
                                         <tr>
                                             <th scope="col">No.</th>
                                             <th scope="col">Trek Name</th>
+                                            <th scope="col">Route Name</th>
                                             <th scope="col">Start Point</th>
                                             <th scope="col">Status</th>
                                             <th scope="col">Action</th>
@@ -48,6 +49,8 @@
                                                             --
                                                         @endif
                                                     </td>
+
+                                                    <td>{{ $map->route_name }}</td>
 
                                                     <td>{{ $map->start_point }}</td>
 

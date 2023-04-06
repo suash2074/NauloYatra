@@ -21,6 +21,7 @@ class Bookings extends Model
         'days',
         'trek_id',
         'payment_status',
+        'trip_status',
         'status'
     ];
 

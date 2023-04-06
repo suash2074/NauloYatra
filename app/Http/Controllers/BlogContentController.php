@@ -22,7 +22,7 @@ class BlogContentController extends Controller
     public function index($id)
     {
         $trek_info = Trek::where('id', $id)->orderBy('id', 'DESC')->where('status', 'Active')->with('user_info')->get();
-        $about_info = About_section::where('trek_id', $id)->orderBy('id', 'DESC')->where('status', 'Active')->get();
+        $about_info = About_section::where('trek_id', $id)->orderBy('id', 'ASC')->where('status', 'Active')->get();
         $culture_info = Culture::where('trek_id', $id)->orderBy('id', 'DESC')->where('status', 'Active')->get();
         $health_kit_info = Health_kit::where('trek_id', $id)->orderBy('id', 'DESC')->where('status', 'Active')->with('medicine_info')->get();
         $map_infos = Map::where('trek_id', $id)->orderBy('id', 'DESC')->where('status', 'Active')->with('trek_info')->get();

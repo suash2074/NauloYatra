@@ -16,6 +16,10 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
+            TrekSeeder::class,
+            // CommentSeeder::class,
+            // NewsSeeder::class,
+            // PackageSeeder::class,
         ]);
     }
 }

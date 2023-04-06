@@ -19,11 +19,12 @@ class PackagesController extends Controller
             $package_detail_infos = Package_details::inRandomOrder()->where('status', 'Active')->with('package_info')->get();
         }
         $packages_infos = Packages::orderBy('id', 'DESC')->where('status', 'Active')->with('user_info')->with('trek_info')->get();
-
+        $booking_infos = Bookings::where('user_id', auth()->user()->id)->get();
         // return $packages;
         return view('front/packages/packages')->with([
             'package_detail_infos' => $package_detail_infos,
-            'packages_infos' => $packages_infos
+            'packages_infos' => $packages_infos,
+            'booking_infos' => $booking_infos
         ])->with('search', $search);
     }
 
@@ -56,24 +57,5 @@ class PackagesController extends Controller
         }
 
         return redirect()->back();
-    }
-
-    public function booking(Request $request)
-    {
-        // dd($request->all());
-        // $rules = $this->booking->getRules();
-        // $request->validate($rules);
-        // $data = $request->except(['_token']);
-
-        // $data['user_id'];
-        // $this->booking->fill($data);
-        // $status = $this->booking->save();
-        // if ($status) {
-        //     notify()->success('Package booking done sucessfully !');
-        // } else {
-        //     notify()->error('Sorry! There was problem in booking of package.');
-        // }
-
-        // return redirect()->route('booking.index');
     }
 }

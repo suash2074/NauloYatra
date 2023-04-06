@@ -65,9 +65,17 @@
                                                             <a href="{{ route('user.show', $user->id) }}"
                                                                 class="avatar avatar-sm" data-toggle="tooltip"
                                                                 data-original-title="{{ Auth::user()->first_name }} {{ Auth::user()->last_Fname }}">
-                                                                <img alt="Image placeholder"
-                                                                    src="{{ asset('uploads/user/Thumb-' . $user->photo) }}"
-                                                                    style="height:35px" class="rounded-circle">
+                                                                @if (isset(auth()->user()->photo) &&
+                                                                        auth()->user()->photo != null &&
+                                                                        file_exists(public_path() . '/uploads/user/' . auth()->user()->photo))
+                                                                    <img alt="Image placeholder"
+                                                                        src="{{ asset('uploads/user/Thumb-' . $user->photo) }}"
+                                                                        style="height:34px" class="rounded-circle">
+                                                                @else
+                                                                    <img class="profile-user-img img-circle elevation-3"
+                                                                        src="{{ asset('images/defaultUser.png') }}"
+                                                                        alt="User profile picture" style="height:34px">
+                                                                @endif
                                                             </a>
                                                         </div>
                                                     </td>

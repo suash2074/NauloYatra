@@ -52,6 +52,16 @@
                     </div>
 
                     <div class="row">
+                        <div class="form-group col-6">
+                            <label for="route_name" class="form-control-label">Route Name<span
+                                    class="text-danger">*</span></label>
+                            <input class="form-control" type="text"
+                                placeholder="Format longitude, latitude: 85.3247, 27.6588" name="route_name"
+                                id="route_name" value="{{ @$map_data->route_name }}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="row">
                         <div class="form-group col-12">
                             <div class="form-group">
                                 <label class="form-control-label" for="exampleFormControlTextarea1">Path Coordinates</label>

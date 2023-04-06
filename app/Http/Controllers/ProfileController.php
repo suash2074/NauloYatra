@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bookings;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
     protected $user = null;
+    protected $booking = null;
 
-    public function __construct(User $user)
+    public function __construct(User $user, Bookings $booking)
     {
         $this->user = $user;
+        $this->booking = $booking;
     }
 
     /**
@@ -25,7 +29,11 @@ class ProfileController extends Controller
         if (!auth()->user()) {
             return redirect('/login');
         }
-        return view('front.user.profile');
+        $guide_info = User::orderBy('id', 'DESC')->where('status', 'Active')->where('role', 'guide')->pluck('username', 'id');
+        $this->booking = $this->booking->orderby('id', 'DESC')->with('user_info')->with('package_info')->with('trek_info')->where('user_id', Auth()->user()->id)->get();
+        return view('front.user.profile')->with('booking_data', $this->booking)->with([
+            'guide_info' => $guide_info
+        ]);
     }
 
     /**
@@ -151,8 +159,13 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        DB::table('bookings')
+        ->where('id', $id)
+        ->update(array('trip_status' => 'Cancelled'));
+
+        notify()->success('Trip cancelled sucessfully!! It was really sad to see you cancel the trip🥲');
+        return redirect()->route('profile.index');
     }
 }

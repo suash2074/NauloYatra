@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -27,9 +28,10 @@ class UserSeeder extends Seeder
                 'email' => 'suash.rb@gmail.com',
                 'password' => Hash::make('@suash2074'),
                 'role' => 'admin',
-                'photo' => {{assets('uploads/')}}
+                'photo' => 'User-2023040206390942.jpg',
                 'cost_per_day' => null,
                 'availability' => null,
+                'created_at' => Carbon::now(),
                 'status' => 'Active'
             ],
 
@@ -42,8 +44,10 @@ class UserSeeder extends Seeder
                 'email' => 'kapil@gmail.com',
                 'password' => Hash::make('@kapil2074'),
                 'role' => 'user',
+                'photo' => 'User-2023040206484353.JPG',
                 'cost_per_day' => null,
                 'availability' => null,
+                'created_at' => Carbon::now(),
                 'status' => 'Active'
             ],
 
@@ -56,8 +60,10 @@ class UserSeeder extends Seeder
                 'email' => 'knetex.bhandari@gmail.com',
                 'password' => Hash::make('@nitesh2074'),
                 'role' => 'guide',
+                'photo' => 'User-2023040206461160.JPG',
                 'cost_per_day' => 1500,
                 'availability' => 'Available',
+                'created_at' => Carbon::now(),
                 'status' => 'Active'
             ],
 
@@ -70,9 +76,10 @@ class UserSeeder extends Seeder
                 'email' => 'aastha.udas@gmail.com',
                 'password' => Hash::make('@aastha2074'),
                 'role' => 'guide',
+                'photo' => 'User-2023040206425712.JPG',
                 'cost_per_day' => 1600,
                 'availability' => 'Available',
-
+                'created_at' => Carbon::now(),
                 'status' => 'Active'
             ],
         ];

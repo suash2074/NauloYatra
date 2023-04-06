@@ -41,8 +41,11 @@
                 <section class="post-container post-content">
                     <h2 class="sub-heading">{{ $about->title }}</h2>
                     <p class="post-text">{!! html_entity_decode($about->description) !!}</p>
-                    <p style="font-family:'Times New Roman', Times, serif"><span style="font-weight:600">Note:
-                        </span>{{ Str::ucfirst($about->note) }}</p>
+
+                    @if ($about->note != null)
+                        <p style="font-family:'Times New Roman', Times, serif"><span style="font-weight:600">Note:
+                            </span>{{ Str::ucfirst($about->note) }}</p>
+                    @endif
                     <img src="{{ asset('uploads/about_section/' . $about->image) }}" alt="About image"
                         class="header-img">
                 </section>
@@ -58,8 +61,10 @@
                     <h2 class="sub-heading">Culture</h2>
                     <p class="post-text">{!! html_entity_decode($culture->description) !!}</p>
 
-                    <p style="font-family:'Times New Roman', Times, serif"><span style="font-weight:600">Note:
-                        </span>{{ Str::ucfirst($culture->note) }}</p>
+                    @if ($culture->note != null)
+                        <p style="font-family:'Times New Roman', Times, serif"><span style="font-weight:600">Note:
+                            </span>{{ Str::ucfirst($culture->note) }}</p>
+                    @endif
                     <img src="{{ asset('uploads/culture/' . $culture->image) }}" alt="About image" class="header-img">
                 </section>
             </form>
@@ -75,9 +80,9 @@
                     <h2 class="sub-heading">Trip Iternity & Cost</h2>
                     <p class="post-text"><span style="font-weight:600">Trek Type: </span> {{ $trek->trek_type }}</p>
                     <p><span style="font-weight:600">Track Difficulty: </span> {{ $trek->track_difficulty }}</p>
-                    <p><span style="font-weight:600">Average Budget: </span> {{ $trek->average_budget }}</p>
-                    <p><span style="font-weight:600">Best season to visit: </span> {{ $trek->best_season }}</p>
-                    <p><span style="font-weight:600">Duration: </span> {{ $trek->duration }}</p>
+                    <p><span style="font-weight:600">Average Budget: </span>NRS {{ $trek->average_budget }}</p>
+                    <p><span style="font-weight:600">Best season to visit: </span> {{ $trek->best_season }} Season</p>
+                    <p><span style="font-weight:600">Duration: </span> {{ $trek->duration }} Days</p>
 
                     <hr style="background-color: rgba(118, 115, 115, 0.743)">
                 </section>
@@ -132,7 +137,9 @@
 
     <section class="post-container post-content">
         <h2 class="sub-heading">Map</h2>
-
+        @foreach ($map_infos as $map)
+            <p><span style="font-weight:600">Route From: </span>{{$map->route_name}}</p>
+        @endforeach
         <div id='map' style='width: 100%; height: 500px;'></div>
 
     </section>
@@ -238,10 +245,9 @@
 
         // Set marker options.
         const marker = new mapboxgl.Marker({
-                color: "rgb(0, 132, 255)",
-                draggable: true
-                @foreach ($map_infos as $map)
-            }).setLngLat([{{ $map->start_point }}])
+                    color: "rgb(0, 132, 255)",
+                    draggable: true
+                    @foreach ($map_infos as $map)}).setLngLat([{{ $map->start_point }}])
             @endforeach
             .addTo(map);
 

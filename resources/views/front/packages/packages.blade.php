@@ -60,20 +60,30 @@
                     <p class="package-description">{!! html_entity_decode($package_details->details) !!}</p>
                     <p>Want to know about the trek click the <a href="{{ $package_details->link }}">LINK</a></p>
 
-                    @if (isset($packages_infos))
-                        @foreach ($packages_infos as $package)
-                            @if ($package->id == $package_details->package_id)
-                                {{-- @if ($package_details->id == $package_details->id) --}}
+                    @if (isset($booking_infos))
+                        @foreach ($booking_infos as $booking)
+                            @if ($booking->trip_status != 'Ongoing')
+                                @if (isset($packages_infos))
+                                    @foreach ($packages_infos as $package)
+                                        @if ($package->id == $package_details->package_id)
+                                            {{-- @if ($package_details->id == $package_details->id) --}}
+                                            <div class="booking">
+                                                <button class="book"
+                                                    onclick="showPopup('<?php echo $package_details->id; ?>', '<?php echo $package->user_info['id']; ?>', '<?php echo $package_details->days; ?>', '<?php echo $package->trek_info['id']; ?>' )">Open
+                                                    Booking
+                                                    Form</button>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                @endif
+                            @else
                                 <div class="booking">
-                                    <button class="book"
-                                        onclick="showPopup('<?php echo $package_details->id; ?>', '<?php echo $package->user_info['id']; ?>', '<?php echo $package_details->days; ?>', '<?php echo $package->trek_info['id']; ?>' )">Open
-                                        booking
-                                        Form</button>
+                                    <button class="book" onclick="return alert('Please accept my apologies, it appears that you already have a trip planned, and therefore are unable to book another trek at this time.');">Open Booking Form</button>
                                 </div>
                             @endif
                         @endforeach
                     @endif
-                    {{-- @endif --}}
+
                 </div>
             @endforeach
         @endif

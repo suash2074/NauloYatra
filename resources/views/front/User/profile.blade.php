@@ -1,9 +1,15 @@
 @include('front.userProfileInclude.header')
 
 @include('front.userProfileInclude.sidebar')
+
+
 <div class="main-content">
     <!-- Navbar -->
-    <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+
+    <nav style="z-index: 1" class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+        <div style="z-index: 2">
+            <x:notify-messages />
+        </div>
         <div class="container-fluid">
             <!-- Brand -->
             <a href={{ route('home') }} class="logo">Naulo <span>Yatra</span></a>
@@ -522,143 +528,115 @@
                                     </div>
                                 </div>
 
-                                <button type="submit" value="submit"
-                                    class="btn btn-info float-right">Update</button>
+                                <div class="pl-lg-4">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button type="submit" value="submit"
+                                                class="btn btn-info float-right">Update</button>
+
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                        <h6 class="heading-small text-muted mb-4">Your Planned Trips</h6>
+        <hr class="my-4" />
 
+        <h6 class="heading-small text-muted">Trips</h6>
+        <div class="row mt-4">
+            <div class="col">
+                <div class="card bg-default shadow">
+                    <div class="card-header bg-transparent border-0">
+                        <h3 class="text-white mb-0">Your planned trips</h3>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-dark table-flush">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Guide Name</th>
+                                    <th scope="col">Group</th>
+                                    <th scope="col">Arrival Date</th>
+                                    <th scope="col">Days</th>
+                                    <th scope="col">Trek Name</th>
+                                    <th scope="col">Trip Status</th>
+                                    <th scope="col">Cancellation Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (isset($booking_data))
+                                    @foreach ($booking_data as $bookings => $booking)
+                                        <tr>
+                                            <th scope="row" class="d-flex align-items-center">
+                                                <a href="#" class="avatar avatar-sm" data-toggle="tooltip">
+                                                    @if (isset(auth()->user()->photo) &&
+                                                            auth()->user()->photo != null &&
+                                                            file_exists(public_path() . '/uploads/user/' . auth()->user()->photo))
+                                                        <img alt="Image placeholder"
+                                                            src="{{ asset('uploads/user/Thumb-' . $booking->guide_info['photo']) }}"
+                                                            style="height:34px" class="rounded-circle">
+                                                    @else
+                                                        <img class="profile-user-img img-circle elevation-3"
+                                                            src="{{ asset('images/defaultUser.png') }}"
+                                                            alt="User profile picture" style="height:34px">
+                                                    @endif
+                                                </a>
+                                                <span class="mb-0 ml-2 text-sm">
+                                                    {{ $booking->guide_info['username'] }}
+                                                </span>
+                                            </th>
 
+                                            <td>{{ $booking->number_of_people }}</td>
 
-                        <div class="pl-lg-4">
-                            @if ($errors->any())
-                                {{ implode('', $errors->all('<div>:message</div>')) }}
-                            @endif
-                            <form action="{{ route('profile.update', auth()->user()->id) }}" method="post"
-                                class="form" enctype="multipart/form-data">
-                                @method('put')
-                                @csrf
+                                            <td>{{ $booking->arrival_date }}</td>
 
-                                <div class="pl-lg-4 d-none">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label class="form-control-label" for="input-username">First
-                                                    Name</label>
-                                                <input type="text" id="first_name" name="first_name"
-                                                    class="form-control form-control-alternative"
-                                                    value="{{ auth()->user()->first_name }}">
-                                                @error('first_name')
-                                                    <span class="invalid-feedback"
-                                                        role="alert">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                        </div>
+                                            <td>{{ $booking->days }}</td>
 
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label class="form-control-label" for="input-username">Last
-                                                    Name</label>
-                                                <input type="text" id="last_name" name="last_name"
-                                                    class="form-control form-control-alternative"
-                                                    value="{{ auth()->user()->last_name }}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label class="form-control-label"
-                                                    for="input-first-name">Username</label>
-                                                <input type="text" id="username" name="username"
-                                                    class="form-control form-control-alternative"
-                                                    value="{{ auth()->user()->username }}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                            <td> {{ $booking->trek_info['trek_name'] }} </td>
 
-                                <div class="pl-lg-4 d-none">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="form-group">
-                                                <label class="form-control-label" for="input-email">Email
-                                                    address</label>
-                                                <input type="email" id="email" name="email"
-                                                    class="form-control form-control-alternative"
-                                                    value="{{ auth()->user()->email }}">
-                                            </div>
-                                        </div>
-                                    </div>
+                                            <td>
+                                                <span class="badge badge-dot mr-4">
+                                                    <i
+                                                        class="{{ @$booking->trip_status == 'Cancelled' ? 'bg-warning' : 'bg-success' }}"></i>
+                                                    {{ $booking->trip_status }}
+                                                </span>
+                                            </td>
 
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="form-control-label" for="input-address">Address</label>
-                                                <input id="address" name="address"
-                                                    class="form-control form-control-alternative"
-                                                    placeholder="Home Address" value="{{ auth()->user()->address }}">
-                                            </div>
-                                        </div>
+                                            @if (@$booking->trip_status != 'Cancelled')
+                                                <td class="text-right d-flex">
+                                                    <div class="dropdown">
+                                                        <a class="btn btn-sm btn-icon-only text-light" href="#"
+                                                            role="button" data-toggle="dropdown"
+                                                            aria-haspopup="true" aria-expanded="false">
+                                                            <i class="fas fa-ellipsis-v"></i>
+                                                        </a>
+                                                        <div
+                                                            class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                            <form
+                                                                action="{{ route('profile.destroy', $booking->id) }}"
+                                                                method="post">
+                                                                @method('delete')
 
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="form-control-label"
-                                                    for="input-address">Contact_number</label>
-                                                <input id="phone" name="phone"
-                                                    class="form-control form-control-alternative"
-                                                    placeholder="Home Address" value="{{ auth()->user()->phone }}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row d-none">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="form-control-label" for="input-address">Password</label>
-                                                <input type="password" id="password" name="password"
-                                                    class="form-control form-control-alternative"
-                                                    placeholder="Home Address"
-                                                    value="{{ auth()->user()->password }}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
-                                    {{-- <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-control-label" for="input-address">Current
-                                                Password</label>
-                                            <input type="password" id="oldPassword" name="oldPassword"
-                                                class="form-control form-control-alternative" value="">
-                                        </div>
-                                    </div>
+                                                                @csrf
+                                                                <button class="dropdown-item"
+                                                                    onclick="return confirm('Please be aware that cancelling the trip may result in the loss of the advance payment you have made. Are you absolutely certain you wish to proceed with the cancellation?');"
+                                                                    href="#">Cancel</button>
 
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-control-label" for="input-address">New Password</label>
-                                            <input type="password" id="newPassword" name="newPassword"
-                                                class="form-control form-control-alternative" value="">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-control-label" for="input-address">Conform New
-                                                Password</label>
-                                            <input type="password" id="retypeNewPassword" name="retypeNewPassword"
-                                                class="form-control form-control-alternative" value="">
-                                        </div>
-                                    </div> --}}
-                                </div>
-
-                                <button type="submit" value="submit"
-                                    class="btn btn-danger float-right">Cancel</button>
-                            </form>
-                        </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            @else
+                                                <td>--</td>
+                                            @endif
+                                        </tr>
+                                    @endforeach
+                                @endif
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

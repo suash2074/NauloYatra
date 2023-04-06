@@ -46,15 +46,25 @@
                         <div class="form-group col-6">
                             <label for="start_point" class="form-control-label">Start point</label>
                             <input class="form-control" type="text" placeholder="Starting point of the Trek "
-                                name="start_point" id="start_point" value="{{ @$map_data->start_point }}"
-                                readonly>
+                                name="start_point" id="start_point" value="{{ @$map_data->start_point }}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label for="route_name" class="form-control-label">Route Name<span
+                                    class="text-danger">*</span></label>
+                            <input class="form-control" type="text"
+                                placeholder="Format longitude, latitude: 85.3247, 27.6588" name="route_name"
+                                id="route_name" value="{{ @$map_data->route_name }}" readonly>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-12">
                             <div class="form-group">
-                                <label class="form-control-label" for="exampleFormControlTextarea1">Path Coordinates</label>
+                                <label class="form-control-label" for="exampleFormControlTextarea1">Path
+                                    Coordinates</label>
                                 <textarea class="form-control" id="path_coordinates" name="path_coordinates" rows="5" readonly>{{ @$map_data->path_coordinates }}</textarea>
                             </div>
                         </div>

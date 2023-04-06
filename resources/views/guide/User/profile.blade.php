@@ -176,6 +176,7 @@
                                                 value="{{ auth()->user()->username }}">
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
 
@@ -329,6 +330,24 @@
                                             <input type="text" id="username" name="username"
                                                 class="form-control form-control-alternative"
                                                 value="{{ auth()->user()->username }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label"
+                                                for="input-first-name">Availability</label>
+                                            <select class="form-control" name="availability" id="">
+                                                <option
+                                                    {{ auth()->user()->availability == 'Not Available' ? 'selected' : '' }}>
+                                                    Not
+                                                    Available
+                                                </option>
+                                                <option
+                                                    {{ auth()->user()->availability == 'Available' ? 'selected' : '' }}>
+                                                    Available
+                                                </option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

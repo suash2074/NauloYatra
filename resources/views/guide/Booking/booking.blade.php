@@ -71,7 +71,7 @@
 
                                                     <td>{{ $booking->arrival_date }}</td>
 
-                                                    <td>{{ $booking->trek_status }}</td>
+                                                    <td>{{ $booking->trip_status }}</td>
 
                                                     <td class="{{ @$booking->payment_status == 'Paid' ? 'text-success' : 'text-warning' }}">{{ $booking->payment_status }}</td>
 

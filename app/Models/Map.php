@@ -10,6 +10,7 @@ class Map extends Model
     use HasFactory;
     protected $fillable = [
         'trek_id',
+        'route_name',
         'start_point',
         'path_coordinates',
         'status'
@@ -24,8 +25,9 @@ class Map extends Model
     {
         $rules = [
             'trek_id' => 'nullable|exists:treks,id',
+            'route_name' => 'required|string',
             'start_point' => 'required|string',
-            'path_coordinates' => 'required|string',
+            'path_coordinates' => 'required|text',
         ];
 
         return $rules;

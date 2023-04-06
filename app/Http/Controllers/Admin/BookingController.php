@@ -110,7 +110,8 @@ class BookingController extends Controller
         $user_info = User::orderBy('id', 'DESC')->where('status', 'Active')->pluck('username', 'id');
         $guide_info = User::orderBy('id', 'DESC')->where('status', 'Active')->where('role', 'guide')->pluck('username', 'id');
         $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
-        $package_info = Package_details::orderBy('id', 'DESC')->where('status', 'Active')->get();
+        $package_info = Packages::orderBy('id', 'DESC')->where('status', 'Active')->pluck('package_name', 'id');
+        $package_detail_info = Package_details::orderBy('id', 'DESC')->where('status', 'Active')->get();
         if (!$this->booking) {
             notify()->error('This booking doesnot exists !!');
             return redirect()->route('booking.index');
@@ -120,7 +121,8 @@ class BookingController extends Controller
                 'user_info' => $user_info,
                 'guide_info' => $guide_info,
                 'trek_info' => $trek_info,
-                'package_info' => $package_info
+                'package_info' => $package_info,
+                'package_detail_info' => $package_detail_info
             ]);
     }
 
@@ -137,7 +139,8 @@ class BookingController extends Controller
         $user_info = User::orderBy('id', 'DESC')->where('status', 'Active')->pluck('username', 'id');
         $guide_info = User::orderBy('id', 'DESC')->where('status', 'Active')->where('role', 'guide')->pluck('username', 'id');
         $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
-        $package_info = Package_details::orderBy('id', 'DESC')->where('status', 'Active')->get();
+        $package_info = Packages::orderBy('id', 'DESC')->where('status', 'Active')->pluck('package_name', 'id');
+        $package_detail_info = Package_details::orderBy('id', 'DESC')->where('status', 'Active')->get();
         if (!$this->booking) {
             notify()->error('This booking doesnot exists !!');
             return redirect()->route('booking.index');
@@ -160,7 +163,8 @@ class BookingController extends Controller
             'user_info' => $user_info,
             'guide_info' => $guide_info,
             'trek_info' => $trek_info,
-            'package_info' => $package_info
+            'package_info' => $package_info,
+            'package_detail_info' => $package_detail_info
         ]);
     }
 

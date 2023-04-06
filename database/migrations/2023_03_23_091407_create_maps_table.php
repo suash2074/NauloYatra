@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('maps', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('trek_id')->nullable();
+            $table->string('route_name');
             $table->string('start_point');
-            $table->string('path_coordinates', 16000);
+            $table->text('path_coordinates');
             $table->enum('status',['Active', 'Inactive'])->default('Active');
             $table->foreign('trek_id')->references('id')->on('treks')->onDelete('set null');
             $table->timestamps();

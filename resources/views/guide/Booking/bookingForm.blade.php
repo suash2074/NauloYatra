@@ -178,7 +178,7 @@
                             <select class="form-control" name="trip_status" id="trip_status">
                                 <option value="" disabled selected hidden>Select Trip Status</option>
 
-                                <option {{ @$booking_data->trip_status == 'Ongiong' ? 'selected' : '' }}>Ongiong
+                                <option {{ @$booking_data->trip_status == 'Ongoiong' ? 'selected' : '' }}>Ongoiong
                                 </option>
                                 <option {{ @$booking_data->trip_status == 'Completed' ? 'selected' : '' }}>Completed
                                 </option>

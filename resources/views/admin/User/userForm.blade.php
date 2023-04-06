@@ -197,28 +197,6 @@
                         </div>
                     </div>
                     <button type="submit" value="submit" class="btn btn-info float-right">Submit</button>
-
-                    {{-- <div class="form-group">
-                            <label for="example-url-input" class="form-control-label">URL</label>
-                            <input class="form-control" type="url" value="https://www.creative-tim.com"
-                                id="example-url-input">
-                        </div> --}}
-                    {{-- <div class="form-group">
-                            <label for="example-search-input" class="form-control-label">Search</label>
-                            <input class="form-control" type="search" value="Tell me your secret ..."
-                                id="example-search-input">
-                        </div> --}}
-                    {{-- <div class="form-group">
-                            <label for="example-datetime-local-input" class="form-control-label">Created at</label>
-                            <input class="form-control" type="datetime-local" value="2018-11-23T10:30:00"
-                                id="example-datetime-local-input">
-                        </div> --}}
-
-                    {{-- <div class="form-group">
-                            <label for="example-date-input" class="form-control-label">Date</label>
-                            <input class="form-control" type="date" value="2018-11-23" id="example-date-input">
-                        </div> --}}
-                    {{-- </form> --}}
                 </div>
             </div>
         </div>
