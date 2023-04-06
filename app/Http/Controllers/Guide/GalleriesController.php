@@ -23,8 +23,8 @@ class GalleriesController extends Controller
      */
     public function index()
     {
-        $this->gallery = $this->gallery->orderBy('id', 'DESC')->with('trek_info')->with('gallery_info')->whereHas('trek_info', function ($trek) {
-            $trek->where('user_id', auth()->id());
+        $this->gallery = $this->gallery->orderBy('id', 'DESC')->with('trek_info')->with('gallery_info')->whereHas('gallery_info', function ($gallery) {
+            $gallery->where('user_id', auth()->id());
         })->paginate(6);
         return view('guide.galleries.galleries.galleries')->with('gallery_data', $this->gallery);
     }
@@ -37,7 +37,7 @@ class GalleriesController extends Controller
     public function create()
     {
         $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
-        $gallery_info = Gallery_detail::orderBy('id', 'DESC')->where('status', 'Active')->pluck('image_caption', 'id');
+        $gallery_info = Gallery_detail::orderBy('id', 'DESC')->where('status', 'Active')->where('user_id', auth()->user()->id)->pluck('image_caption', 'id');
         return view('guide.galleries.galleries.galleriesForm')->with([
             'trek_info' => $trek_info,
             'gallery_info' => $gallery_info
@@ -75,7 +75,7 @@ class GalleriesController extends Controller
     public function show($id)
     {
         $this->gallery = $this->gallery->find($id);
-        $gallery_info = Gallery_detail::orderBy('id', 'DESC')->where('status', 'Active')->pluck('image_caption', 'id');
+        $gallery_info = Gallery_detail::orderBy('id', 'DESC')->where('status', 'Active')->where('user_id', auth()->user()->id)->pluck('image_caption', 'id');
         $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
         if (!$this->gallery) {
             //message
@@ -98,7 +98,7 @@ class GalleriesController extends Controller
     {
         $this->gallery = $this->gallery->find($id);
         $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
-        $gallery_info = Gallery_detail::orderBy('id', 'DESC')->where('status', 'Active')->pluck('image_caption', 'id');
+        $gallery_info = Gallery_detail::orderBy('id', 'DESC')->where('status', 'Active')->where('user_id', auth()->user()->id)->pluck('image_caption', 'id');
         if (!$this->gallery) {
             //message
             notify()->error('This gallery doesnot exists !!');

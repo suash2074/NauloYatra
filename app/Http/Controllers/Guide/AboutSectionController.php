@@ -44,7 +44,7 @@ class AboutSectionController extends Controller
      */
     public function create()
     {
-        $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
+        $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->where('user_id', auth()->user()->id)->pluck('trek_name', 'id');
         return view('guide.About_section.about_SectionForm')->with('trek_info', $trek_info);
     }
 
@@ -105,7 +105,7 @@ class AboutSectionController extends Controller
     public function edit($id)
     {
         $this->about_section = $this->about_section->find($id);
-        $trek_info = Trek::orderBy('id', 'Desc')->where('status', 'Active')->pluck('trek_name', 'id');
+        $trek_info = Trek::orderBy('id', 'Desc')->where('status', 'Active')->where('user_id', auth()->user()->id)->pluck('trek_name', 'id');
         if (!$this->about_section) {
             //message
             notify()->error('This trek detail doesnot exists !!');

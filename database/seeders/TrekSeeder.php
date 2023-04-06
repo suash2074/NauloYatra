@@ -348,6 +348,7 @@ class TrekSeeder extends Seeder
         $galleryDetail_datas = [
             //Trek 1 (Annapurna Circuit Trek) About data
             [
+                'user_id' => 1,
                 'gallery_image' => 'Gallery-2023040203473745.jpg',
                 'image_caption' => 'Local people on the 5th stay at lodge',
                 'season' => 'Spring',
@@ -356,6 +357,7 @@ class TrekSeeder extends Seeder
             ],
 
             [
+                'user_id' => 1,
                 'gallery_image' => 'Gallery-202304020357446.jpg',
                 'image_caption' => 'Enjoying crossing the bridge',
                 'season' => 'Summer',
@@ -364,6 +366,7 @@ class TrekSeeder extends Seeder
             ],
 
             [
+                'user_id' => 3,
                 'gallery_image' => 'Gallery-2023040204030525.png',
                 'image_caption' => 'Beautiful mountains scenery on the trail of Annapurna Circuit Trek',
                 'season' => 'Winter',
@@ -372,6 +375,7 @@ class TrekSeeder extends Seeder
             ],
 
             [
+                'user_id' => 4,
                 'gallery_image' => 'Gallery-2023040204124946.jpg',
                 'image_caption' => 'Crossing the bridge ',
                 'season' => 'Summer',
@@ -380,6 +384,7 @@ class TrekSeeder extends Seeder
             ],
 
             [
+                'user_id' => 1,
                 'gallery_image' => 'Gallery-2023040204135683.jpg',
                 'image_caption' => 'Crossing the bridge at winter season',
                 'season' => 'Winter',
@@ -388,6 +393,7 @@ class TrekSeeder extends Seeder
             ],
 
             [
+                'user_id' => 3,
                 'gallery_image' => 'Gallery-2023040204153118.gif',
                 'image_caption' => 'View point of beautiful Mt Annapurna mountain ',
                 'season' => 'Autumn',
@@ -396,6 +402,7 @@ class TrekSeeder extends Seeder
             ],
 
             [
+                'user_id' => 4,
                 'gallery_image' => 'Gallery-2023040204164468.jpg',
                 'image_caption' => 'View of Mt Annapurna Mountain',
                 'season' => 'Autumn',
@@ -404,6 +411,7 @@ class TrekSeeder extends Seeder
             ],
 
             [
+                'user_id' => 1,
                 'gallery_image' => 'Gallery-2023040204174476.jpg',
                 'image_caption' => 'Beautiful river view on the way',
                 'season' => 'Spring',
@@ -413,6 +421,7 @@ class TrekSeeder extends Seeder
 
             //Trek 1 (Shey Poksundo Trek) About data
             [
+                'user_id' => 1,
                 'gallery_image' => 'Gallery-2023040409205080.jpg',
                 'image_caption' => 'Half frozen lake during winter season',
                 'season' => 'Winter',
@@ -421,6 +430,7 @@ class TrekSeeder extends Seeder
             ],
 
             [
+                'user_id' => 1,
                 'gallery_image' => 'Gallery-2023040409231932.jpg',
                 'image_caption' => 'Waterfall Anmol Jharana Jajarkot',
                 'season' => 'Spring',
@@ -429,6 +439,7 @@ class TrekSeeder extends Seeder
             ],
 
             [
+                'user_id' => 1,
                 'gallery_image' => 'Gallery-2023040409241385.webp',
                 'image_caption' => 'Beautiful Shey Pokdusundo lake during summer ',
                 'season' => 'Summer',
@@ -437,6 +448,7 @@ class TrekSeeder extends Seeder
             ],
 
             [
+                'user_id' => 3,
                 'gallery_image' => 'Gallery-2023040409244874.gif',
                 'image_caption' => 'Full view of Shey Pokdusundo lake',
                 'season' => 'Summer',
@@ -445,6 +457,7 @@ class TrekSeeder extends Seeder
             ],
 
             [
+                'user_id' => 3,
                 'gallery_image' => 'Gallery-2023040409253371.jpg',
                 'image_caption' => 'Shey Poksundo Lake',
                 'season' => 'Autumn',
@@ -453,6 +466,7 @@ class TrekSeeder extends Seeder
             ],
 
             [
+                'user_id' => 3,
                 'gallery_image' => 'Gallery-2023040409262782.jpg',
                 'image_caption' => 'Foggy day in Shey Poksundo  Lake',
                 'season' => 'Spring',
@@ -461,6 +475,7 @@ class TrekSeeder extends Seeder
             ],
 
             [
+                'user_id' => 4,
                 'gallery_image' => 'Gallery-2023040409341848.jpg',
                 'image_caption' => 'Beautiful morning view in winter season',
                 'season' => 'Winter',
@@ -469,6 +484,7 @@ class TrekSeeder extends Seeder
             ],
 
             [
+                'user_id' => 4,
                 'gallery_image' => 'Gallery-2023040409350159.jpg',
                 'image_caption' => 'Suligad bridge ',
                 'season' => 'Spring',
@@ -477,6 +493,7 @@ class TrekSeeder extends Seeder
             ],
 
             [
+                'user_id' => 4,
                 'gallery_image' => 'Gallery-2023040409370368.jpg',
                 'image_caption' => 'Reading news paper at the one of the most beautiful view point',
                 'season' => 'Autumn',

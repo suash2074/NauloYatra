@@ -43,7 +43,7 @@ class CultureController extends Controller
      */
     public function create()
     {
-        $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
+        $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->where('user_id', auth()->user()->id)->pluck('trek_name', 'id');
         return view('guide.culture.cultureForm')->with('trek_info', $trek_info);
     }
 
@@ -104,7 +104,7 @@ class CultureController extends Controller
     public function edit($id)
     {
         $this->culture = $this->culture->find($id);
-        $trek_info = Trek::orderBy('id', 'Desc')->where('status', 'Active')->pluck('trek_name', 'id');
+        $trek_info = Trek::orderBy('id', 'Desc')->where('status', 'Active')->where('user_id', auth()->user()->id)->pluck('trek_name', 'id');
         if (!$this->culture) {
             //message
             notify()->error('This culture detail doesnot exists !!');
@@ -124,7 +124,7 @@ class CultureController extends Controller
     public function update(Request $request, $id)
     {
         $this->culture = $this->culture->find($id);
-        $trek_info = Trek::orderBy('id', 'Desc')->where('status', 'Active')->pluck('trek_name', 'id');
+        $trek_info = Trek::orderBy('id', 'Desc')->where('status', 'Active')->where('user_id', auth()->user()->id)->pluck('trek_name', 'id');
         if (!$this->culture) {
             notify()->error('This culture doesnot exists');
             redirect()->route('guide.about.index');

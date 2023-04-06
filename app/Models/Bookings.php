@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class Bookings extends Model
 {
     use HasFactory;
-    // use MultiVendorTrait;
     protected $fillable = [
         'user_id',
         'guide_name',

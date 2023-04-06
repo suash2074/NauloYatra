@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class Gallery extends Model
 {
     use HasFactory;
-    use MultiVendorTrait;
     protected $fillable = [
         'trek_id',
         'gallery_detail_id',

@@ -36,7 +36,7 @@ class MapController extends Controller
      */
     public function create()
     {
-        $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
+        $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->where('user_id', auth()->user()->id)->pluck('trek_name', 'id');
         return view('guide.map.mapForm')->with('trek_info', $trek_info);
  
     }
@@ -93,7 +93,7 @@ class MapController extends Controller
     public function edit($id)
     {
         $this->map = $this->map->find($id);
-        $trek_info = Trek::orderBy('id', 'Desc')->where('status', 'Active')->pluck('trek_name', 'id');
+        $trek_info = Trek::orderBy('id', 'Desc')->where('status', 'Active')->where('user_id', auth()->user()->id)->pluck('trek_name', 'id');
         if (!$this->map) {
             //message
             notify()->error('This map detail doesnot exists !!');
@@ -114,7 +114,7 @@ class MapController extends Controller
     public function update(Request $request, $id)
     {
         $this->map = $this->map->find($id);
-        $trek_info = Trek::orderBy('id', 'Desc')->where('status', 'Active')->pluck('trek_name', 'id');
+        $trek_info = Trek::orderBy('id', 'Desc')->where('status', 'Active')->where('user_id', auth()->user()->id)->pluck('trek_name', 'id');
         if (!$this->map) {
             notify()->error('This map doesnot exists');
             redirect()->route('guide.map.index');

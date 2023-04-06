@@ -59,6 +59,7 @@ class Gallery_detailsController extends Controller
                 $data['gallery_image'] = $file_name;
             }
         }
+        $data['user_id'] = auth()->user()->id;
         $this->gallery_detail->fill($data);
         $status = $this->gallery_detail->save();
         if ($status) {

@@ -38,7 +38,7 @@ class Health_KitController extends Controller
      */
     public function create()
     {
-        $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
+        $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->where('user_id', auth()->user()->id)->pluck('trek_name', 'id');
         $medicine_info = Medicine::orderBy('id', 'DESC')->where('status', 'Active')->pluck('medicine_name', 'id');
         return view('guide.health_kit.health_kitForm')->with([
             'trek_info' => $trek_info,
@@ -99,7 +99,7 @@ class Health_KitController extends Controller
     public function edit($id)
     {
         $this->health_kit = $this->health_kit->find($id);
-        $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
+        $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->where('user_id', auth()->user()->id)->pluck('trek_name', 'id');
         $medicine_info = Medicine::orderBy('id', 'DESC')->where('status', 'Active')->pluck('medicine_name', 'id');
         if (!$this->health_kit) {
             //message
@@ -122,7 +122,7 @@ class Health_KitController extends Controller
     public function update(Request $request, $id)
     {
         $this->health_kit = $this->health_kit->find($id);
-        $trek_info = Trek::orderBy('id', 'Desc')->where('status', 'Active')->pluck('trek_name', 'id');
+        $trek_info = Trek::orderBy('id', 'Desc')->where('status', 'Active')->where('user_id', auth()->user()->id)->pluck('trek_name', 'id');
         $medicine_info = Medicine::orderBy('id', 'DESC')->where('status', 'Active')->pluck('medicine_name', 'id');
 
         if (!$this->health_kit) {

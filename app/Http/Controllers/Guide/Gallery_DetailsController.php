@@ -23,9 +23,9 @@ class Gallery_DetailsController extends Controller
     {
         $search = $request['search'] ?? "";
         if ($search != "") {
-            $this->gallery_detail = $this->gallery_detail->orderBy('id', 'DESC')->where('image_caption', 'LIKE', "%$search%")->orWhere("season", 'LIKE', "%$search%")->paginate(6);
+            $this->gallery_detail = $this->gallery_detail->orderBy('id', 'DESC')->with('user_info')->where('user_id', auth()->user()->id)->where('image_caption', 'LIKE', "%$search%")->orWhere("season", 'LIKE', "%$search%")->paginate(6);
         } else {
-            $this->gallery_detail = $this->gallery_detail->orderBy('id', 'DESC')->paginate(6);
+            $this->gallery_detail = $this->gallery_detail->orderBy('id', 'DESC')->with('user_info')->where('user_id', auth()->user()->id)->paginate(6);
         }
         return view('guide.galleries.gallery_detail.gallery_detail')->with('gallery_detail_data', $this->gallery_detail)->with('search', $search);
     }
@@ -58,6 +58,7 @@ class Gallery_DetailsController extends Controller
                 $data['gallery_image'] = $file_name;
             }
         }
+        $data['user_id'] = auth()->user()->id;
         $this->gallery_detail->fill($data);
         $status = $this->gallery_detail->save();
         if ($status) {
