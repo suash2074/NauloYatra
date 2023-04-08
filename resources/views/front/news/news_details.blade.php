@@ -1,41 +1,4 @@
 @include('include.toppart')
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-<style>
-    /* header {
-        height: calc(4rem + 1rem)
-    }
-
-    header .nav-bar {
-        display: flex;
-        padding: 0 200px;
-        background-color: #FEFEFE;
-        box-shadow: 0 4px 8px 0px rgba(0, 0, 0, 0.2);
-    } */
-
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap');
-
-    * {
-        font-family: 'Poppins', sans-serif;
-    }
-
-    a {
-        text-decoration: none;
-    }
-
-    li {
-        list-style: none;
-    }
-
-    img {
-        width: 100%;
-    }
-
-    section {
-        padding: 2rem 0 2rem;
-    }
-</style>
-
 <body>
     @include('include.navbar')
     {{-- Post Content --}}
@@ -43,7 +6,7 @@
         @foreach ($news_info as $news)
             <form action="{{ route('newsDetail.index', $news->id) }}" method="get">
                 @csrf
-                <section class="post-header">
+                <section class="post-header" style="margin-bottom: 12rem">
                     <div class="header-content post-container">
                         {{-- Back to home --}}
                         <a href="{{ route('home') }}" class="back-home">Back</a>
@@ -53,12 +16,12 @@
                         <img src="{{ asset('uploads/news/' . $news->image) }}" alt="About image" class="header-img">
                         <div class="publisher-detail">
                             <div>
-                                <h6>Published By: <span style="font-weight:300 ">
+                                <h5>Published By: <span style="font-weight:300 ">
                                         {{ $news->user_info['username'] }}
-                                    </span></h6>
+                                    </span></h5>
                             </div>
                             <div>
-                                <h6>Published Date: <span style="font-weight:300 ">{{ $news->created_at }}</span></h6>
+                                <h5>Published Date: <span style="font-weight:300 ">{{ $news->created_at }}</span></h5>
                             </div>
                         </div>
                     </div>

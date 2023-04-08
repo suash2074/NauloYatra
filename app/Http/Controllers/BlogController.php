@@ -18,7 +18,7 @@ class BlogController extends Controller
             $trek_info = Trek::inRandomOrder()->where('status', 'Active')->with('user_info')->get();
         }
         // dd($trek_info);
-        $about_info = About_section::orderBy('id', 'DESC')->where('status', 'Active')->with('trek_info')->get();
+        $about_info = About_section::where('status', 'Active')->with('trek_info')->get();
         return view('front/Blog/blog')->with([
             'trek_info' => $trek_info,
             'about_info' => $about_info

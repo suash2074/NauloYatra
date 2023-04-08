@@ -88,7 +88,7 @@
                         <div class="form-group col-6">
                             <label for="example-text-input" class="form-control-label">Image <span
                                 class="text-danger">*</span></label>
-                            <input class="form-control" type="file" value="" name="image" id="image" required>
+                            <input class="form-control" type="file" value="" name="image" id="image">
                             <div class="col-md-4">
                                 <img src={{ asset('uploads/news_detail/Thumb-' . @$news_detail_data->image) }}
                                     alt="" class="img img-fluid img-responsive" style="max-width: 10rem">

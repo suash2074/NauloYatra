@@ -5,12 +5,12 @@
                 <div class="row">
                     <div class="col">
                         <h5 class="card-title text-uppercase text-muted mb-0">
-                            Treks
+                            Your Treks
                         </h5>
 
                         <span class="h2 font-weight-bold mb-0">
                             @php
-                                $trek_count = DB::table('treks')->count('trek_name');
+                                $trek_count = DB::table('treks')->where('user_id', auth()->user()->id)->count('trek_name');
                                 echo $trek_count;
                             @endphp
                         </span>
@@ -31,7 +31,7 @@
                 <div class="row">
                     <div class="col">
                         <h5 class="card-title text-uppercase text-muted mb-0">
-                            Guides
+                            Total Guides
                         </h5>
                         <span class="h2 font-weight-bold mb-0">
                             @php
@@ -58,7 +58,7 @@
                 <div class="row">
                     <div class="col">
                         <h5 class="card-title text-uppercase text-muted mb-0">
-                            Users
+                            Total Users
                         </h5>
                         <span class="h2 font-weight-bold mb-0">
                             @php

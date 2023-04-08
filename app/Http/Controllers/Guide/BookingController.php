@@ -26,7 +26,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $this->booking = $this->booking->orderby('id', 'DESC')->with('user_info')->with('package_info')->with('trek_info')->where('user_id', Auth()->user()->id)->paginate(6);
+        $this->booking = $this->booking->orderby('id', 'DESC')->with('user_info')->with('package_info')->with('trek_info')->where('guide_name', Auth()->user()->id)->paginate(6);
         return view('guide.booking.booking')->with('booking_data', $this->booking);
 
     }
@@ -38,7 +38,7 @@ class BookingController extends Controller
      */
     public function create()
     {
-        $user_info = User::orderBy('id', 'DESC')->where('status', 'Active')->pluck('username', 'id');
+        $user_info = User::orderBy('id', 'DESC')->where('status', 'Active')->where('role', 'User')->pluck('username', 'id');
         $guide_info = User::orderBy('id', 'DESC')->where('status', 'Active')->where('role', 'guide')->pluck('username', 'id');
         $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
         $package_info = Packages::orderBy('id', 'DESC')->where('status', 'Active')->pluck('package_name', 'id');
@@ -108,7 +108,7 @@ class BookingController extends Controller
     public function edit($id)
     {
         $this->booking = $this->booking->find($id);
-        $user_info = User::orderBy('id', 'DESC')->where('status', 'Active')->pluck('username', 'id');
+        $user_info = User::orderBy('id', 'DESC')->where('status', 'Active')->where('role', 'User')->pluck('username', 'id');
         $guide_info = User::orderBy('id', 'DESC')->where('status', 'Active')->where('role', 'guide')->pluck('username', 'id');
         $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
         $package_info = Package_details::orderBy('id', 'DESC')->where('status', 'Active')->get();
@@ -135,7 +135,7 @@ class BookingController extends Controller
     public function update(Request $request, $id)
     {
         $this->booking = $this->booking->find($id);
-        $user_info = User::orderBy('id', 'DESC')->where('status', 'Active')->pluck('username', 'id');
+        $user_info = User::orderBy('id', 'DESC')->where('status', 'Active')->where('role', 'User')->pluck('username', 'id');
         $guide_info = User::orderBy('id', 'DESC')->where('status', 'Active')->where('role', 'guide')->pluck('username', 'id');
         $trek_info = Trek::orderBy('id', 'DESC')->where('status', 'Active')->pluck('trek_name', 'id');
         $package_info = Package_details::orderBy('id', 'DESC')->where('status', 'Active')->get();

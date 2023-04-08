@@ -39,6 +39,10 @@
                 <i class="ni ni-calendar-grid-58"></i>
                 <span>Treks</span>
             </a>
+            <a href="{{ route('guide.guideBlog') }}" class="dropdown-item">
+                <i class="ni ni-book-bookmark"></i>
+                <span>Blog</span>
+            </a>
             <div class="dropdown-divider"></div>
             <a href="{{ route('logout') }}" class="dropdown-item"
                 onclick="event.preventDefault();

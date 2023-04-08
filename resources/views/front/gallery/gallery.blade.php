@@ -17,7 +17,7 @@
         </div>
     </section>
 
-    
+
     <div class="container-fluid">
         <div class="container-sm">
             <section id="news" class="news section-bg">
@@ -42,7 +42,12 @@
                                         <img src="{{ asset('uploads/gallery/' . $gallery->gallery_info['gallery_image']) }}"
                                             class="img-fluid" alt="">
                                         <div class="news-info">
-                                            <h4>{{ $gallery->gallery_info['image_caption'] }}</h4>
+                                            <p>{{ $gallery->gallery_info['image_caption'] }}</p>
+                                            <div class="news-links">
+                                                <a href="{{ asset('uploads/gallery/' . $gallery->gallery_info['gallery_image']) }}"
+                                                    data-gallery="newsGallery" class="news-lightbox"><i
+                                                        class="ni ni-image"></i></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

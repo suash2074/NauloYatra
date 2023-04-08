@@ -11,8 +11,10 @@
                     @csrf
                     <div class="header-content post-container">
                         {{-- Back to home --}}
-                        <a href="{{ route('blog') }}" class="back-home">Back</a>
-
+                        @if (auth()->user()->role == 'user')
+                            <a href="{{ route('blog') }}" class="back-home">Back</a>
+                        @else
+                        @endif
                         <!-- Title -->
                         <h1 class="header-title">{{ $trek->trek_name }}</h1>
                         <!-- Post Image -->
@@ -127,9 +129,20 @@
                         </div>
                     @endforeach
                 @endif
-                <div class="d-flex justify-content-center pt-3" style="font-weight:500; font-size:1.2rem">
-                    <a href="{{ route('gallery', $trek->id) }}"><u>More Images </u></a>
-                </div>
+
+                @if (auth()->user()->role == 'user')
+                    <div class="d-flex justify-content-center pt-3" style="font-weight:500; font-size:1.2rem">
+                        <a href="{{ route('gallery', $trek->id) }}"><u>More Images </u></a>
+                    </div>
+                @elseif(auth()->user()->role == 'guide')
+                    <div class="d-flex justify-content-center pt-3" style="font-weight:500; font-size:1.2rem">
+                        <a href="{{ route('guide.guideBlogGallery', $trek->id) }}"><u>More Images </u></a>
+                    </div>
+                @else
+                    <div class="d-flex justify-content-center pt-3" style="font-weight:500; font-size:1.2rem">
+                        <a href="{{ route('adminBlogGallery', $trek->id) }}"><u>More Images </u></a>
+                    </div>
+                @endif
             </div>
         </form>
     </section>
@@ -138,7 +151,7 @@
     <section class="post-container post-content">
         <h2 class="sub-heading">Map</h2>
         @foreach ($map_infos as $map)
-            <p><span style="font-weight:600">Route From: </span>{{$map->route_name}}</p>
+            <p><span style="font-weight:600">Route From: </span>{{ $map->route_name }}</p>
         @endforeach
         <div id='map' style='width: 100%; height: 500px;'></div>
 
@@ -149,46 +162,60 @@
         <h2 class="sub-heading">Feedbacks</h2>
         @if (isset($comment_infos))
             @foreach ($comment_infos as $comment)
-                <form action="{{ route('content', $trek->id) }}" method="get">
-                    @csrf
+                @if (auth()->user()->role == 'user')
+                    <form action="{{ route('content', $trek->id) }}" method="get">
+                    @elseif(auth()->user()->role == 'guide')
+                        <form action="{{ route('guide.guideBlogPostComment', $trek->id) }}" method="get">
+                        @else
+                            <form action="{{ route('adminBlogPostComment', $trek->id) }}" method="get">
+                @endif
+                @csrf
 
-                    <div class="d-flex justify-content-cennter row bg-white">
-                        <div class="col-md-8">
-                            <div class="p-2">
-                                <div class="d-flex flex-row user-info">
-                                    @if (isset(auth()->user()->photo) &&
-                                            auth()->user()->photo != null &&
-                                            file_exists(public_path() . '/uploads/user/' . auth()->user()->photo))
-                                        <img src="{{ asset('uploads/user/' . $comment->user_info['photo']) }}"
-                                            style="width: 50px" height="50px" class="rounded-circle" alt="">
-                                    @else
-                                        <img src={{ asset('images/defaultUser.png') }} style="width: 50px"
-                                            height="50px" class="rounded-circle" alt="">
-                                    @endif
+                <div class="d-flex justify-content-cennter row bg-white">
+                    <div class="col-md-8">
+                        <div class="p-2">
+                            <div class="d-flex flex-row user-info">
+                                @if (isset(auth()->user()->photo) &&
+                                        auth()->user()->photo != null &&
+                                        file_exists(public_path() . '/uploads/user/' . auth()->user()->photo))
+                                    <img src="{{ asset('uploads/user/' . $comment->user_info['photo']) }}"
+                                        style="width: 50px; height:50px" class="rounded-circle" alt="">
+                                @else
+                                    <img src={{ asset('images/defaultUser.png') }} style="width: 50px" height="50px"
+                                        class="rounded-circle" alt="">
+                                @endif
 
-                                    <div class="d-flex flex-column justify-content-start ml-2">
-                                        <span
-                                            class="d-block font-weight-bold name">{{ $comment->user_info['first_name'] }}
-                                            {{ $comment->user_info['last_name'] }}</span>
-                                        <span class="date text-black-50">Shared Publically-
-                                            {{ $comment->created_at }}</span>
-                                    </div>
+                                <div class="d-flex flex-column justify-content-start ml-2">
+                                    <span class="d-block font-weight-bold name">{{ $comment->user_info['first_name'] }}
+                                        {{ $comment->user_info['last_name'] }}</span>
+                                    <span class="date text-black-50">Shared Publically-
+                                        {{ $comment->created_at }}</span>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="mt-2">
-                                <p class="comment-text">{!! html_entity_decode($comment->text) !!}</p>
-                            </div>
+                        <div class="mt-2">
+                            <p class="comment-text">{!! html_entity_decode($comment->text) !!}</p>
                         </div>
                     </div>
+                </div>
                 </form>
             @endforeach
         @endif
 
         <div class="p-2">
             @if (isset($comment_infos))
-                <form action="{{ route('postComment') }}" method="post" class="form" enctype="multipart/form-data">
-                    @csrf
+                @if (auth()->user()->role == 'user')
+                    <form action="{{ route('postComment') }}" method="post" class="form"
+                        enctype="multipart/form-data">
+                @elseif(auth()->user()->role == 'guide')
+                    <form action="{{ route('guide.guideBlogPostComment') }}" method="post" class="form"
+                            enctype="multipart/form-data">
+                @else
+                    <form action="{{ route('adminBlogPostComment') }}" method="post" class="form"
+                                enctype="multipart/form-data">
+                @endif
+                @csrf
             @endif
             @if (isset($trek_info))
                 @foreach ($trek_info as $trek)
@@ -205,10 +232,10 @@
                 @if (isset(auth()->user()->photo) &&
                         auth()->user()->photo != null &&
                         file_exists(public_path() . '/uploads/user/' . auth()->user()->photo))
-                    <img src="{{ asset('uploads/user/' . Auth::user()->photo) }}" style="width: 50px" height="50px"
+                    <img src="{{ asset('uploads/user/' . Auth::user()->photo) }}" style="width: 50px; height:50px"
                         class="rounded-circle" alt="">
                 @else
-                    <img src={{ asset('images/defaultUser.png') }} style="width: 50px" height="50px"
+                    <img src={{ asset('images/defaultUser.png') }} style="width: 50px; height:50px"
                         class="rounded-circle" alt="">
                 @endif
 
@@ -225,6 +252,11 @@
 
     <br>
     <br>
+    <style>
+        .sd {
+            color: rgb(45, 149, 218)
+        }
+    </style>
     <br>
     <br>
     <br>
@@ -240,13 +272,13 @@
             @foreach ($map_infos as $map)
                 center: [{{ $map->start_point }}], // starting position
             @endforeach
-            zoom: 14 // starting zoom
+            zoom: 13 // starting zoom
         });
 
         // Set marker options.
         const marker = new mapboxgl.Marker({
                     color: "rgb(0, 132, 255)",
-                    draggable: true
+                    draggable: false
                     @foreach ($map_infos as $map)}).setLngLat([{{ $map->start_point }}])
             @endforeach
             .addTo(map);
@@ -276,8 +308,8 @@
                     'line-cap': 'round'
                 },
                 'paint': {
-                    'line-color': '#69abf2',
-                    'line-width': 8
+                    'line-color': 'rgb(45, 149, 218)',
+                    'line-width': 6
                 }
             });
         });

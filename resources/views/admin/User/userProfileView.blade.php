@@ -127,7 +127,7 @@
                         <div class="text-center">
                             <h3>
                                 {{ @$user_data->first_name }} {{ @$user_data->last_name }}<span
-                                    class="font-weight-light">, 27</span>
+                                    class="font-weight-light"></span>
                             </h3>
                             <div class="h5 font-weight-300">
                                 <i class="ni location_pin mr-2"></i>{{ @$user_data->address }}, Nepal

@@ -5,9 +5,9 @@
 
 
     <div class="homeBackground">
-        <img src="images/background1.png" id="backgroundImg1">
+        <img src="{{ asset('images/background1.png') }}" id="backgroundImg1">
         <h2 id="logoText">Naulo Yatra</h2>
-        <img src="images/background2.png" id="backgroundImg2">
+        <img src="{{ asset('images/background2.png') }}" id="backgroundImg2">
     </div>
 
 
@@ -24,7 +24,7 @@
             a strong understanding of the topic they'll be guiding on, as well as excellent communication skills. We
             also prioritize guides who are passionate about helping others learn and grow. If you meet these
             requirements, please mail out your details and we'll be in touch with you soon if you seems eligiable." <br>
-            <span style="font-weight:300; font-size:1.2rem;">Note: While mailing us don't forget to tell your Naulo
+            <span class="form-message-note">Note: While mailing us don't forget to tell your Naulo
                 Yatra's User name. </span>
             <br>
             <a
@@ -66,7 +66,7 @@
                                         <div class="news-info">
                                             <h4>{{ $news->headline }}</h4>
 
-                                            <p>{!! html_entity_decode($news->short_description) !!}</p>
+                                            <p style="text-align:justify; padding: 8px">{!! html_entity_decode($news->short_description) !!}</p>
                                             <div class="news-links">
 
                                                 <a href="{{ route('newsDetail', $news->id) }}"

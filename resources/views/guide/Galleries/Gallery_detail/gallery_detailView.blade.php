@@ -48,17 +48,17 @@
 
                         <div class="form-group col-3">
                             <label for="example-password-input" class="form-control-label">Best Season</label>
-                            <select class="form-control" name="best_season" id="best_season" readonly>
-                                <option {{ @$trek_data->best_season == 'Spring' ? 'selected' : '' }}>Spring
+                            <select class="form-control" name="season" id="season" readonly>
+                                <option {{ @$trek_data->season == 'Spring' ? 'selected' : '' }}>Spring
                                 </option>
-                                <option {{ @$trek_data->best_season == 'Summer' ? 'selected' : '' }}>Summer
+                                <option {{ @$trek_data->season == 'Summer' ? 'selected' : '' }}>Summer
                                 </option>
-                                <option {{ @$trek_data->best_season == 'Autumn' ? 'selected' : '' }}>Autumn
+                                <option {{ @$trek_data->season == 'Autumn' ? 'selected' : '' }}>Autumn
                                 </option>
-                                <option {{ @$trek_data->best_season == 'Winter' ? 'selected' : '' }}>Winter
+                                <option {{ @$trek_data->season == 'Winter' ? 'selected' : '' }}>Winter
                                 </option>
                             </select>
-                            @error('best_season')
+                            @error('season')
                                 <span class="invalid-feedback" role="alert">{{ $message }}</span>
                             @enderror
                         </div>

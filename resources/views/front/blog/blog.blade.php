@@ -39,9 +39,19 @@
                 <div class="post-box {{ $trek->trek_type }}">
                     <img src="{{ asset('uploads/trek/' . $trek->background_image) }}" alt="" class="post-img">
                     <h2 class="category">{{ $trek->trek_type }}</h2>
-                    <a href="{{ route('content', $trek->id) }}" class="post-title">
-                        {{ $trek->trek_name }}
-                    </a>
+                    @if (auth()->user()->role == 'user')
+                        <a href="{{ route('content', $trek->id) }}" class="post-title">
+                            {{ $trek->trek_name }}
+                        </a>
+                    @elseif(auth()->user()->role == 'guide')
+                        <a href="{{ route('guide.guideBlogContent', $trek->id) }}" class="post-title">
+                            {{ $trek->trek_name }}
+                        </a>
+                    @else
+                        <a href="{{ route('adminBlogContent', $trek->id) }}" class="post-title">
+                            {{ $trek->trek_name }}
+                        </a>
+                    @endif
                     <span class="post-date">{{ $trek->created_at }}</span>
                     <hr>
                     @if (isset($about_info))
@@ -52,9 +62,9 @@
                         @endforeach
                     @endif
                     <div class="profile">
-                        @if (isset(auth()->user()->photo) &&
-                                auth()->user()->photo != null &&
-                                file_exists(public_path() . '/uploads/user/' . auth()->user()->photo))
+                        @if (isset($trek['user_info']->photo) &&
+                                $trek['user_info']->photo != null &&
+                                file_exists(public_path() . '/uploads/user/' . $trek['user_info']->photo))
                             <img src="{{ asset('uploads/user/' . $trek->user_info['photo']) }}" alt=""
                                 class="profile-img">
                         @else

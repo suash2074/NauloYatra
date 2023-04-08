@@ -8,6 +8,7 @@
     <title>Naulo Yatra</title>
 
 
+    @notifyCss
     <!-- Favicons -->
 
     <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">

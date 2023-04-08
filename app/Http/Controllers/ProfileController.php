@@ -159,6 +159,8 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    // Booking cancel request
     public function destroy($id, Request $request)
     {
         DB::table('bookings')

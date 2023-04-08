@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\PackagesController;
 // use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 use App\Http\Controllers\Admin\TrekContreller;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\EsewaController;
 use App\Http\Controllers\Guide\AboutSectionController;
 use App\Http\Controllers\Guide\BookingController as GuideBookingController;
 use App\Http\Controllers\Guide\CultureController as GuideCultureController;
@@ -49,6 +50,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.login');
 });
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -83,13 +85,16 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 
 
     Route::get('/adminBlog', [App\Http\Controllers\HomeController::class, 'adminBlog'])->name('adminBlog');
-    Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index'])->name('blog');
-    // Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('index');
+    Route::get('/adminBlogContent{id}', [App\Http\Controllers\HomeController::class, 'adminBlogContent'])->name('adminBlogContent');
+    Route::get('/adminBlogGallery{id}', [App\Http\Controllers\HomeController::class, 'adminBlogGallery'])->name('adminBlogGallery');
+    Route::post('/adminBlogPost/Comment', [App\Http\Controllers\HomeController::class, 'adminBlogPostComment'])->name('adminBlogPostComment');
+
 });
 
 
 Route::prefix('user')->middleware(['auth', 'user'])->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'user'])->name('user');
+    Route::get('/aboutus', [App\Http\Controllers\HomeController::class, 'about_us'])->name('about_us');
     Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index'])->name('blog');
     Route::get('/content{id}', [App\Http\Controllers\BlogContentController::class, 'index'])->name('content');
     Route::post('/post/comment', [App\Http\Controllers\BlogContentController::class, 'postComment'])->name('postComment');
@@ -98,6 +103,8 @@ Route::prefix('user')->middleware(['auth', 'user'])->group(function () {
     Route::post('/packages/book', [App\Http\Controllers\PackagesController::class, 'book'])->name('book');
     Route::get('/gallery{id}', [App\Http\Controllers\GalleryController::class, 'index'])->name('gallery');
     Route::resource('/profile', ProfileController::class);
+    Route::get('esewa/pay/{id}', [EsewaController::class,'esewaPay'])->name('esewa-pay');
+    Route::get('esewa/pay/confirm', [EsewaController::class,'esewaConfirm'])->name('esewa-pay-confirm');
 });
 
 Route::prefix('guide')->as('guide.')->middleware(['auth', 'guide'])->group(function () {
@@ -122,4 +129,10 @@ Route::prefix('guide')->as('guide.')->middleware(['auth', 'guide'])->group(funct
     Route::resource('/profile', GuideProfileController::class, [
         'names' => 'guideProfile'
     ]);
+
+    Route::get('/guideBlog', [App\Http\Controllers\HomeController::class, 'adminBlog'])->name('guideBlog');
+    Route::get('/guideBlogContent{id}', [App\Http\Controllers\HomeController::class, 'adminBlogContent'])->name('guideBlogContent');
+    Route::get('/guideBlogGallery{id}', [App\Http\Controllers\HomeController::class, 'adminBlogGallery'])->name('guideBlogGallery');
+    Route::post('/guideBlogPost/Comment', [App\Http\Controllers\HomeController::class, 'adminBlogPostComment'])->name('guideBlogPostComment');
+    
 });

@@ -4,6 +4,9 @@
 <div class="main-content">
     <!-- Navbar -->
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+        <div style="z-index: 2">
+            <x:notify-messages />
+        </div>
         <div class="container-fluid">
             <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{ route('profile.index') }}">Your
                 Profile</a>
@@ -227,7 +230,7 @@
                             <div class="text-center">
                                 <h3>
                                     {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}<span
-                                        class="font-weight-light">, 27</span>
+                                        class="font-weight-light"></span>
                                 </h3>
                                 <div class="h5 font-weight-300">
                                     <i class="ni location_pin mr-2"></i>{{ auth()->user()->address }}, Nepal

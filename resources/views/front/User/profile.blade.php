@@ -235,7 +235,7 @@
                             <div class="text-center">
                                 <h3>
                                     {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}<span
-                                        class="font-weight-light">, 27</span>
+                                        class="font-weight-light"></span>
                                 </h3>
                                 <div class="h5 font-weight-300">
                                     <i class="ni location_pin mr-2"></i>{{ auth()->user()->address }}, Nepal
@@ -605,7 +605,7 @@
                                                 </span>
                                             </td>
 
-                                            @if (@$booking->trip_status != 'Cancelled')
+                                            @if (@$booking->trip_status != 'Cancelled' && @$booking->trip_status != 'Completed')
                                                 <td class="text-right d-flex">
                                                     <div class="dropdown">
                                                         <a class="btn btn-sm btn-icon-only text-light" href="#"

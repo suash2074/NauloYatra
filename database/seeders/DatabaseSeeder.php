@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             TrekSeeder::class,
             // CommentSeeder::class,
-            // NewsSeeder::class,
+            NewsSeeder::class,
             // PackageSeeder::class,
         ]);
     }
