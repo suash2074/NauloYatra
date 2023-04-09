@@ -99,9 +99,11 @@
                             <select class="form-control" name="trek_type" id="trek_type">
                                 <option value="" disabled selected hidden>Select Trek type</option>
 
-                                <option {{ @$trek_data->trek_type == 'Tea-House-Trek' ? 'selected' : '' }}>Tea-House-Trek
+                                <option {{ @$trek_data->trek_type == 'Tea-House-Trek' ? 'selected' : '' }}>
+                                    Tea-House-Trek
                                 </option>
-                                <option {{ @$trek_data->trek_type == 'Camping-Trekking' ? 'selected' : '' }}>Camping-Trekking
+                                <option {{ @$trek_data->trek_type == 'Camping-Trekking' ? 'selected' : '' }}>
+                                    Camping-Trekking
                                 </option>
                                 <option {{ @$trek_data->trek_type == 'Gap-Trek' ? 'selected' : '' }}>Gap-Trek
                                 </option>
@@ -159,10 +161,6 @@
                             @enderror
                         </div>
                     </div>
-                    <a href="{{ route('about.create') }}" class="btn btn-warning"
-                        onclick="return confirm('Are you sure you want to skip this part !!');">
-                        Skip
-                    </a>
                     <button type="submit" value="submit" class="btn btn-info float-right">Submit</button>
                 </div>
             </div>

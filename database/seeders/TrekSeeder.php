@@ -25,7 +25,7 @@ class TrekSeeder extends Seeder
                 'trek_type' => 'Gap-Trek',
                 'duration' => 15,
                 'track_difficulty' => 'Difficult',
-                'average_budget' => 20000,
+                'average_budget' => 30000,
                 'best_season' => 'Spring',
                 'created_at' => Carbon::now(),
                 'status' => 'Active'
@@ -39,7 +39,7 @@ class TrekSeeder extends Seeder
                 'trek_type' => 'Tea-House-Trek',
                 'duration' => 14,
                 'track_difficulty' => 'Moderate',
-                'average_budget' => 22000,
+                'average_budget' => 25000,
                 'best_season' => 'Autumn',
                 'created_at' => Carbon::now(),
                 'status' => 'Active'
@@ -51,15 +51,15 @@ class TrekSeeder extends Seeder
                 'user_id' => 4,
                 'background_image' => 'Trek-2023040708230760.webp',
                 'trek_type' => 'Camping-Trekking',
-                'duration' => 7,
+                'duration' => 8,
                 'track_difficulty' => 'Moderate',
-                'average_budget' => 25000,
+                'average_budget' => 22000,
                 'best_season' => 'Summer',
                 'created_at' => Carbon::now(),
                 'status' => 'Active'
             ],
 
-            //Trek 3 data (Tilicho Lake Trek)
+            //Trek 4 data (Tilicho Lake Trek)
             [
                 'trek_name' => 'Tilicho Lake Trek',
                 'user_id' => 3,
@@ -67,7 +67,7 @@ class TrekSeeder extends Seeder
                 'trek_type' => 'Camping-Trekking',
                 'duration' => 16,
                 'track_difficulty' => 'Moderate',
-                'average_budget' => 20000,
+                'average_budget' => 28000,
                 'best_season' => 'Spring',
                 'created_at' => Carbon::now(),
                 'status' => 'Active'
@@ -197,7 +197,7 @@ class TrekSeeder extends Seeder
 
             [
                 'trek_id' => 4,
-                'title' => '',
+                'title' => 'Which season is best to visit Tilicho Lake Trek ?',
                 'description' => 'The best time to visit Tilicho Lake is from March to May during the spring season and from September to November during the autumn season. During the spring season, the weather is mild and the skies are clear, making it an ideal time for trekking. The hills and meadows around the lake are filled with colorful wildflowers, making the scenery even more beautiful. The autumn season offers similar weather conditions with clear skies, making it a great time for trekking as well.
 
                 During the summer months of June to August, the region experiences heavy rainfall, making the trekking trails muddy and slippery, and posing a risk of landslides. The monsoon season makes it challenging to trek in the region and is generally not recommended.
