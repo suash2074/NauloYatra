@@ -109,6 +109,22 @@
                     </div>
 
                     <div class="row d-flex justify-content-between">
+                        <div class="form-group col-5">
+                            <label for="example-tel-input" class="form-control-label">Total Amount</label>
+                            <input class="form-control" type="number" placeholder="24000"
+                                value="{{ @$booking_data->total_amount }}" name="total_amount"
+                                id="total_amount" readonly>
+                        </div>
+
+                        <div class="form-group col-5">
+                            <label for="example-tel-input" class="form-control-label">Advance Payment </label>
+                            <input class="form-control" type="number" placeholder="4000"
+                                value="{{ @$booking_data->advance_payment }}" name="advance_payment"
+                                id="advance_payment" readonly>
+                        </div>
+                    </div>
+                    
+                    <div class="row d-flex justify-content-between">
                         <div class="form-group col-4">
                             <label for="example-tel-input" class="form-control-label">Arrival Date</label>
                             <input class="form-control" type="date" placeholder=""

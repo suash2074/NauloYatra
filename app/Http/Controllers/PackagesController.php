@@ -37,6 +37,9 @@ class PackagesController extends Controller
 
     public function book(Request $request)
     {
+        // return $request->all();
+        $package_id = $request->id;
+
         $packages = Package_details::where('id', $request->package_id)->get();
         // dd($packages);
         // dd($request->all());
@@ -44,18 +47,23 @@ class PackagesController extends Controller
         // $request->validate($rules);
         $data = $request->except(['_token']);
         $data['user_id'] = auth()->user()->id;
+        $data['number'] = rand(99999,99999);
+        $data['total_amount'] = $request->price_per_person * $request->number_of_people;
+        $data['advance_payment'] = $data['total_amount'] * 0.2;
         $data['payment_status'] = 'Unpaid';
-        DB::table('users')
-            ->where('id', $request->guide_id)
-            ->update(array('availability' => 'Not Available'));
+        // DB::table('users')
+        //     ->where('id', $request->guide_id)
+        //     ->update(array('availability' => 'Not Available'));
         $this->booking->fill($data);
         $status = $this->booking->save();
+        
         if ($status) {
             notify()->success('Package booking done sucessfully !');
         } else {
             notify()->error('Sorry! There was problem in booking of package.');
         }
 
-        return redirect()->back();
+        return redirect()->route('esewa-pay', $this->booking->id);
+        // return redirect()->back();
     }
 }

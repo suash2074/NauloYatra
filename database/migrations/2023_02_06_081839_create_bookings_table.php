@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
+            $table->integer('number');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('guide_name')->nullable();
             $table->unsignedBigInteger('package_id')->nullable();
@@ -25,6 +26,9 @@ return new class extends Migration
 
             $table->integer('days');
             $table->unsignedBigInteger('trek_id')->nullable();
+
+            $table->integer('total_amount');
+            $table->integer('advance_payment');
             $table->enum('payment_status',['Paid', 'Unpaid'])->default('Unpaid');
             $table->enum('trip_status',['Ongoing', 'Completed', 'Cancelled'])->default('Ongoing');
             $table->enum('status',['Active', 'Inactive'])->default('Active');

@@ -33,6 +33,7 @@
                                             <th scope="col">Guide Name</th>
                                             <th scope="col">Trek Name</th>
                                             <th scope="col">Arrival Date</th>
+                                            <th scope="col">Advance Paid</th>
                                             <th scope="col">Trek Status</th>
                                             <th scope="col">Payment Status</th>
                                             <th scope="col">Status</th>
@@ -70,6 +71,8 @@
                                                     </td>
 
                                                     <td>{{ $booking->arrival_date }}</td>
+
+                                                    <td>{{ $booking->advance_payment }}</td>
 
                                                     <td>{{ $booking->trip_status }}</td>
 

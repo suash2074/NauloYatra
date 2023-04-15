@@ -175,9 +175,9 @@
                     <div class="col-md-8">
                         <div class="p-2">
                             <div class="d-flex flex-row user-info">
-                                @if (isset(auth()->user()->photo) &&
-                                        auth()->user()->photo != null &&
-                                        file_exists(public_path() . '/uploads/user/' . auth()->user()->photo))
+                                @if (isset($trek['user_info']->photo) &&
+                                        $trek['user_info']->photo != null &&
+                                        file_exists(public_path() . '/uploads/user/' . $trek['user_info']->photo))
                                     <img src="{{ asset('uploads/user/' . $comment->user_info['photo']) }}"
                                         style="width: 50px; height:50px" class="rounded-circle" alt="">
                                 @else

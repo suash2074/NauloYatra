@@ -10,6 +10,7 @@ class Bookings extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'number',
         'user_id',
         'guide_name',
         'package_id',
@@ -19,6 +20,8 @@ class Bookings extends Model
         'contact_number',
         'days',
         'trek_id',
+        'total_amount',
+        'advance_payment',  
         'payment_status',
         'trip_status',
         'status'

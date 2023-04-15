@@ -58,7 +58,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="col-xl-4">
                         <div class="card shadow">
                             <div class="card-header bg-transparent">
@@ -82,3 +82,93 @@
                 </div>
             </div>
             @include('admin.adminInclude.footer')
+
+            <script>
+                OrdersChart = function() {
+                        var e, a, t = $("#chart-orders");
+                        $('[name="ordersSelect"]');
+                        t.length && (e = t, a = new Chart(e, {
+                            type: "bar",
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        gridLines: {
+                                            lineWidth: 1,
+                                            color: "#dfe2e6",
+                                            zeroLineColor: "#dfe2e6"
+                                        },
+                                        ticks: {
+                                            callback: function(e) {
+                                                if (!(e % 10)) return e
+                                            }
+                                        }
+                                    }]
+                                },
+                                tooltips: {
+                                    callbacks: {
+                                        label: function(e, a) {
+                                            var t = a.datasets[e.datasetIndex].label || "",
+                                                o = e.yLabel,
+                                                n = "";
+                                            return 1 < a.datasets.length && (n +=
+                                                    '<span class="popover-body-label mr-auto">' + t + "</span>"),
+                                                n += '<span class="popover-body-value">' + o + "</span>"
+                                        }
+                                    }
+                                }
+                            },
+                            data: {
+                                labels: ["Jan", "Feb", "Mar", "Apr", "May", "jun", "Jul", "Aug", "Sep", "Oct", "Nov",
+                                    "Dec"
+                                ],
+                                datasets: [{
+                                    label: "Sales",
+                                    data: [25, 20, 30, 22, 17, 29, 10, 5, 1, 5, 5, 5]
+                                }]
+                            }
+                        }), e.data("chart", a))
+                    }(),
+                    SalesChart = function() {
+                        var e, a, t = $("#chart-sales");
+                        t.length && (e = t, a = new Chart(e, {
+                            type: "line",
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        gridLines: {
+                                            lineWidth: 1,
+                                            color: Charts.colors.gray[900],
+                                            zeroLineColor: Charts.colors.gray[900]
+                                        },
+                                        ticks: {
+                                            callback: function(e) {
+                                                if (!(e % 10)) return "$" + e + "k"
+                                            }
+                                        }
+                                    }]
+                                },
+                                tooltips: {
+                                    callbacks: {
+                                        label: function(e, a) {
+                                            var t = a.datasets[e.datasetIndex].label || "",
+                                                o = e.yLabel,
+                                                n = "";
+                                            return 1 < a.datasets.length && (n +=
+                                                    '<span class="popover-body-label mr-auto">' + t + "</span>"),
+                                                n += '<span class="popover-body-value">$' + o + "k</span>"
+                                        }
+                                    }
+                                }
+                            },
+                            data: {
+                                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov",
+                                    "Dec"
+                                ],
+                                datasets: [{
+                                    label: "Performance",
+                                    data: [0, 0, 10, 30, 15, 40, 20, 60]
+                                }]
+                            }
+                        }), e.data("chart", a))
+                    }();
+            </script>

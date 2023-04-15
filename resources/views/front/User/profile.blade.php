@@ -562,6 +562,8 @@
                                     <th scope="col">Arrival Date</th>
                                     <th scope="col">Days</th>
                                     <th scope="col">Trek Name</th>
+                                    <th scope="col">Totoal Amount</th>
+                                    <th scope="col">Advance paid</th>
                                     <th scope="col">Trip Status</th>
                                     <th scope="col">Cancellation Action</th>
                                 </tr>
@@ -596,6 +598,10 @@
                                             <td>{{ $booking->days }}</td>
 
                                             <td> {{ $booking->trek_info['trek_name'] }} </td>
+
+                                            <td>{{ $booking->total_amount }}</td>
+
+                                            <td>{{ $booking->advance_payment }}</td>
 
                                             <td>
                                                 <span class="badge badge-dot mr-4">

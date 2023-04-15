@@ -79,7 +79,7 @@
                                     @if ($package->id == $package_details->package_id)
                                         <div class="booking">
                                             <button class="book"
-                                                onclick="showPopup('<?php echo $package_details->id; ?>', '<?php echo $package->user_info['id']; ?>', '<?php echo $package_details->days; ?>', '<?php echo $package->trek_info['id']; ?>' )">Open
+                                                onclick="showPopup('<?php echo $package_details->id; ?>', '<?php echo $package->user_info['id']; ?>', '<?php echo $package_details->days; ?>', '<?php echo $package_details->price_per_person; ?>', '<?php echo $package->trek_info['id']; ?>' )">Open
                                                 Booking
                                                 Form</button>
                                         </div>
@@ -113,6 +113,8 @@
 
             <input type="hidden" id="days" name="days">
 
+            <input type="hidden" id="price_per_person" name="price_per_person">
+
             <input type="hidden" id="trek_id" name="trek_id">
 
             <label for="email">Email:</label>
@@ -139,11 +141,12 @@
     </section>
 
     <script>
-        function showPopup(package_id, guide_name, days, trek_id) {
+        function showPopup(package_id, guide_name, days, price_per_person, trek_id) {
             document.querySelector("#package_id").value = package_id;
             document.querySelector("#guide_name").value = guide_name;
             document.querySelector("#trek_id").value = trek_id;
             document.querySelector("#days").value = days;
+            document.querySelector("#price_per_person").value = price_per_person;
             document.querySelector(".popupForm").style.display = "block";
         }
 

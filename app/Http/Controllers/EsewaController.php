@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bookings;
+// use App\Models\Package_details;
 use App\Models\Packages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -9,11 +11,12 @@ use Illuminate\Support\Facades\Auth;
 class EsewaController extends Controller
 {
     function esewaPay($id){
-        $order  = Packages::findOrFail($id);
-        return view('front.esewa-pay', compact('order'));
+        $booking  = Bookings::findOrFail($id);
+        return view('front.esewa.esewa', compact('booking'));
     }
 
     function esewaConfirm(Request $request){
+        // return $request->all();
         $user = Auth::user();
         if($request->success){
 
@@ -35,14 +38,14 @@ class EsewaController extends Controller
             if ($response == 'failure')
                 return "Invalid transaction";
 
-            $user->cart->cartItems()->delete();
-            $user->cart->save();
-            $order = Packages::where('number',$request->oid)->first();
-            $order->payment_status = "paid";
-            $order->payment_ref = $request->refId;
-            $order->save();
+            $booking = Bookings::where('number',$request->oid)->first();
+            $booking->payment_status = "Paid";
+            // $booking->advance_payment = $request->amt;
+            // $booking->payment_ref = $request->refId;
+            $booking->save();
 
-        return redirect()->route('front.home');
+        // return redirect()->view('front.home.home');
+        return redirect()->route('packages');
 
         }else{
             return "PAYMENT FAIL!!";

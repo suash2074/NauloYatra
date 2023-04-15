@@ -58,14 +58,14 @@
                         the lesser-known trails that are just as stunning and rewarding. These
                         hidden gems offer a unique and authentic trekking experience, away from
                         the crowds and tourist hotspots.</p>
-                        <p>In addition to promoting responsible and ethical trekking practices,
-                            Naulo Yatra also contributes to the sustainable development of tourism
-                            in Nepal. By showcasing lesser-known destinations, the website helps to
-                            distribute the benefits of tourism more evenly throughout the country,
-                            promoting economic development and job creation in rural areas. This
-                            approach to sustainable tourism is crucial for ensuring that future
-                            generations can continue to enjoy Nepal's stunning landscapes without
-                            causing harm to the environment or local communities.</p>
+                    <p>In addition to promoting responsible and ethical trekking practices,
+                        Naulo Yatra also contributes to the sustainable development of tourism
+                        in Nepal. By showcasing lesser-known destinations, the website helps to
+                        distribute the benefits of tourism more evenly throughout the country,
+                        promoting economic development and job creation in rural areas. This
+                        approach to sustainable tourism is crucial for ensuring that future
+                        generations can continue to enjoy Nepal's stunning landscapes without
+                        causing harm to the environment or local communities.</p>
                 </div>
             </div>
 
