@@ -47,7 +47,7 @@ class BlogContentController extends Controller
         $this->comment->fill($data);
         $status = $this->comment->save();
         if($status){
-            notify()->success('Comment added successfully !');
+            notify()->success('Comment posted successfully !');
         }else{
             notify()->error('Sorry! There was problem while adding comment.');
         }

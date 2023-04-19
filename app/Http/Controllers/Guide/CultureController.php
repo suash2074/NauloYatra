@@ -177,10 +177,10 @@ class CultureController extends Controller
                 unlink(public_path() . '/uploads/culture/' . $photo);
                 unlink(public_path() . '/uploads/culture/Thumb-' . $photo);
                 //message
-                notify()->error('Sorry! there was problem in deleting data.');
+                notify()->success('Culture details deleted successfully !');
             } else {
                 //message
-                notify()->success('Culture details deleted successfully !');
+                notify()->error('Sorry! there was problem in deleting data.');
             }
 
             return redirect()->route('guide.culture.index');

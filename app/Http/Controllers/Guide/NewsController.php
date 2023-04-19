@@ -176,10 +176,10 @@ class NewsController extends Controller
                 unlink(public_path() . '/uploads/news/' . $photo);
                 unlink(public_path() . '/uploads/news/Thumb-' . $photo);
                 //message
-                notify()->error('Sorry! there was problem in deleting data.');
+                notify()->success('News deleted successfully !');
             } else {
                 //message
-                notify()->success('News deleted successfully !');
+                notify()->error('Sorry! there was problem in deleting data.');
             }
 
             return redirect()->route('guide.news.index');

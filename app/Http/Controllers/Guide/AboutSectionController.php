@@ -178,10 +178,10 @@ class AboutSectionController extends Controller
                 unlink(public_path() . '/uploads/about_section/' . $photo);
                 unlink(public_path() . '/uploads/about_section/Thumb-' . $photo);
                 //message
-                notify()->error('Sorry! there was problem in deleting detail');
+                notify()->success('Trek detail deleted successfully !');
             } else {
                 //message
-                notify()->success('Trek detail deleted successfully !');
+                notify()->error('Sorry! there was problem in deleting detail');
             }
 
             return redirect()->route('guide.about.index');

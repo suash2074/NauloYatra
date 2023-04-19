@@ -9,13 +9,10 @@
         <div class="col-xl-6">
             <ul class="nav nav-footer justify-content-center justify-content-xl-end">
                 <li class="nav-item">
-                    <a href="{{ route('adminBlog') }}" class="nav-link" target="_blank">Naulo Yatra</a>
+                    <a href="{{ route('about_us') }}" class="nav-link" target="_blank">About Us</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link" target="_blank">About Us</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" target="_blank">Blog</a>
+                    <a href="{{ route('blog') }}" class="nav-link" target="_blank">Blog</a>
                 </li>
             </ul>
         </div>

@@ -24,11 +24,11 @@ return new class extends Migration
             $table->string('address');
             $table->string('phone');
             $table->string('photo')->nullable();
-            $table->integer('cost_per_day')->nullable();
+            // $table->integer('cost_per_day')->nullable();
             $table->enum('role',['admin','user','guide'])->default('user');
             $table->enum('availability',['Available','Not Available'])->nullable();
             $table->enum('status',['Active','Inactive'])->default('Active');
-            // $table->rememberToken();
+            $table->rememberToken();
             $table->timestamps();
         });
     }

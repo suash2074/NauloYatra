@@ -32,9 +32,9 @@
         @if (isset($package_detail_infos))
             @foreach ($package_detail_infos as $package_details)
                 <div class="post-box {{ $package_details->category }}">
-                    <a href="" class="post-title">
+                    <p class="post-title">
                         {{ $package_details->package_info['package_name'] }}
-                    </a>
+                    </p>
 
                     @if (isset($packages_infos))
                         @foreach ($packages_infos as $package)

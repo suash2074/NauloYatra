@@ -169,10 +169,10 @@ class TrekController extends Controller
                 unlink(public_path() . '/uploads/trek/' . $photo);
                 unlink(public_path() . '/uploads/trek/Thumb-' . $photo);
                 //message
-                notify()->error('Sorry! there was problem in deleting data.');
+                notify()->success('Trek deleted successfully !');
             } else {
                 //message
-                notify()->success('Trek deleted successfully !');
+                notify()->error('Sorry! there was problem in deleting data.');
             }
 
             return redirect()->route('guide.trek.index');

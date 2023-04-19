@@ -158,7 +158,7 @@
                     <div class="row d-flex justify-content-between">
                         <div class="col-8 p-0" id="guide" style="display: none;">
                             <div class="d-flex justify-content-between">
-                                <div class="form-group col-5">
+                                {{-- <div class="form-group col-5">
                                     <label for="example-tel-input" class="form-control-label">Cost Per Day</label>
                                     <input class="form-control" type="number" placeholder="Rs 1600"
                                         value="{{ @$user_data->cost_per_day }}" name="cost_per_day"
@@ -166,7 +166,7 @@
                                     @error('cost_per_day')
                                         <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                     @enderror
-                                </div>
+                                </div> --}}
 
                                 <div class="form-group col-5">
                                     <label for="example-password-input"

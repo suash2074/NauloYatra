@@ -96,10 +96,10 @@
                         <div class="col-lg-3 order-lg-2">
                             <div class="card-profile-image">
                                 <a href="#">
-                                    @if (isset(auth()->user()->photo) &&
-                                            auth()->user()->photo != null &&
-                                            file_exists(public_path() . '/uploads/user/' . auth()->user()->photo))
-                                        <img src={{ asset('uploads/user/' . auth()->user()->photo) }}
+                                    @if (isset($user_data->photo) &&
+                                            @$user_data->photo != null &&
+                                            file_exists(public_path() . '/uploads/user/' . @$user_data->photo))
+                                        <img src={{ asset('uploads/user/' . @$user_data->photo) }}
                                             style="height:180px; width:180px" class="rounded-circle">
                                     @else
                                         <img class="profile-user-img img-circle elevation-3"
@@ -160,12 +160,12 @@
                             <a href="#">Show more</a> --}}
                             <hr class="my-4" />
                             <h6 class="heading-small text-muted mb-2"><u>Others</u></h6>
-                            @if (
+                            {{-- @if (
                                 (@$user_data->role == 'guide' && @$user_data->availability == 'Available') ||
                                     (@$user_data->role == 'guide' && @$user_data->availability == 'Not Available'))
                                 <p class="text-" style="font-size: 13px">Per day charge: Rs
                                     {{ @$user_data->cost_per_day }}</p>
-                            @endif
+                            @endif --}}
                             <p style="font-size: 13px">Created at: {{ @$user_data->created_at }}</p>
                             <p style="font-size: 13px">Updated at: {{ @$user_data->updated_at }}</p>
                         </div>

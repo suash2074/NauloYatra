@@ -38,7 +38,7 @@ class PackagesController extends Controller
     public function book(Request $request)
     {
         // return $request->all();
-        $package_id = $request->id;
+        // $package_id = $request->id;
 
         $packages = Package_details::where('id', $request->package_id)->get();
         // dd($packages);

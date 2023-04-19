@@ -159,10 +159,7 @@
                             @enderror
                         </div>
                     </div> --}}
-                    <a href="{{ route('guide.about.create') }}" class="btn btn-warning"
-                        onclick="return confirm('Are you sure you want to skip this part !!');">
-                        Skip
-                    </a>
+                   
                     <button type="submit" value="submit" class="btn btn-info float-right">Submit</button>
                 </div>
             </div>

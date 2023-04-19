@@ -118,14 +118,14 @@ class ProfileController extends Controller
 
         if (isset($request->oldPassword) && $request->oldPassword != null) {
             if (!password_verify($request->oldPassword, $data['password'])) {
-                // notify()->error("Old password didn't matched.");
+                notify()->error("Old password didn't matched.");
                 return redirect()->back();
             }
         }
 
         if (isset($request->oldPassword) && $request->oldPassword != null && isset($request->newPassword) && $request->newPassword != null) {
             if ($request->oldPassword == $request->newPassword) {
-                // notify()->error("Old password and New cannot be same.");
+                notify()->error("Old password and New cannot be same.");
                 return redirect()->back();
             }
         }
@@ -136,7 +136,7 @@ class ProfileController extends Controller
                 if ($request->newPassword == $request->retypeNewPassword) {
                     $data['password'] = Hash::make($request->newPassword);
                 } else {
-                    // notify()->error("Password conformation failed.");
+                    notify()->error("Password conformation failed as new and confirm password didnt matched.");
                     return redirect()->route('profile.index');
                 }
             }

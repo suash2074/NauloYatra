@@ -271,12 +271,12 @@
                             <a href="#">Show more</a> --}}
                                 <hr class="my-4" />
                                 <h6 class="heading-small text-muted mb-2"><u>Others</u></h6>
-                                @if (
+                                {{-- @if (
                                     (auth()->user()->role == 'guide' && auth()->user()->availability == 'Available') ||
                                         (auth()->user()->role == 'guide' && auth()->user()->availability == 'Not Available'))
                                     <p class="text-" style="font-size: 13px">Per day charge: Rs
                                         {{ auth()->user()->cost_per_day }}</p>
-                                @endif
+                                @endif --}}
                                 <p style="font-size: 13px">Created at: {{ auth()->user()->created_at }}</p>
                                 <p style="font-size: 13px">Updated at: {{ auth()->user()->updated_at }}</p>
                                 <button type="submit" value="submit" class="btn btn-info">Update</button>

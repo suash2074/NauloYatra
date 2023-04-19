@@ -45,7 +45,9 @@ class EsewaController extends Controller
             $booking->save();
 
         // return redirect()->view('front.home.home');
-        return redirect()->route('packages');
+        // return redirect()->route('packages');
+        return redirect()->back();
+
 
         }else{
             return "PAYMENT FAIL!!";
