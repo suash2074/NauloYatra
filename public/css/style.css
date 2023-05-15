@@ -60,6 +60,10 @@ header.shadow .logo {
 	color: var(--text-color);
 }
 
+header.shadow .nav-menu-btn {
+	color: var(--text-color);
+}
+
 a {
 	text-decoration: none;
 }
@@ -88,6 +92,24 @@ section {
 	justify-content: space-between;
 	padding: 18px 0;
 }
+
+.nav-items {
+	width: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+}
+
+.navigation .nav-items a i {
+	display: none;
+}
+
+.nav-close-btn,
+.nav-menu-btn {
+	display: none;
+}
+
 
 .logo {
 	font-size: 1.5rem;
@@ -169,6 +191,7 @@ section {
 	background-color: #bebec224;
 	height: 20rem;
 	display: flex;
+	margin-top: 140px;
 	justify-content: center;
 	align-items: center;
 	text-align: justify;
@@ -181,9 +204,9 @@ section {
 	font-weight: 400;
 }
 
-.form-message-note{
-	font-weight:300;
-	font-size:1.2rem;
+.form-message-note {
+	font-weight: 300;
+	font-size: 1.2rem;
 }
 
 .compose-mail {
@@ -811,15 +834,17 @@ Blog page
 
 
 /*--------------------------------------------------------------
-#media Queries (max-width: 1100px)
+#media Queries (max-width: 1500px)
 --------------------------------------------------------------*/
 @media screen and (max-width: 1500px) {
+
+
 	.homeBackground {
-		min-height: 70vh;
+		min-height: 110vh;
 	}
 
 	.homeBackground #logoText {
-		top: 16vh;
+		top: 18vh;
 	}
 
 	.form-message {
@@ -831,9 +856,14 @@ Blog page
 	}
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1350px) {
+
+	.nav-items {
+		width: 90vh;
+	}
+
 	.homeBackground {
-		min-height: 59vh;
+		min-height: 95vh;
 	}
 
 	.homeBackground #logoText {
@@ -844,14 +874,23 @@ Blog page
 		font-size: 2.1rem;
 	}
 }
+
 /*--------------------------------------------------------------
 #media Queries (max-width: 1100px)
 --------------------------------------------------------------*/
 @media screen and (max-width: 1100px) {
 
+	.container {
+		max-width: 900px;
+	}
+
+	.nav-items {
+		width: 83vh;
+	}
+
 	.homeBackground {
-		padding: 50px;
-		min-height: 50vh;
+		/* padding: 50px; */
+		min-height: 80vh;
 	}
 
 	.display-5 {
@@ -890,11 +929,32 @@ Blog page
 	.homeBackground #logoText {
 		top: 18vh;
 	}
+
+	.form-message {
+		font-size: 1.2rem;
+	}
+
+	.compose-mail {
+		font-size: 1.1rem;
+	}
 }
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 990px) {
+
+	/* .nav {
+		padding: 17px 50px;
+	} */
+
+	.container {
+		max-width: 750px;
+	}
+
+	.nav-items {
+		width: 64vh;
+	}
+
 	.homeBackground {
-		min-height: 42vh;
+		min-height: 68vh;
 	}
 
 	.homeBackground #logoText {
@@ -905,12 +965,26 @@ Blog page
 		font-size: 1.8rem;
 	}
 
+	.moto {
+		font-size: 1.5rem;
+	}
+
 	.form-message {
-		font-size: 1.1rem;
+		font-size: 1rem;
 	}
 
 	.compose-mail {
-		font-size: 1rem;
+		font-size: 0.9rem;
+	}
+
+	.fit {
+		flex: 0 0 100%;
+		max-width: 100%;
+	}
+
+	.reverse {
+		display: flex;
+		flex-direction: column-reverse;
 	}
 }
 
@@ -918,12 +992,16 @@ Blog page
 #media Queries (max-width: 785px)
 --------------------------------------------------------------*/
 @media screen and (max-width: 785px) {
+	.container {
+		max-width: 590px;
+	}
+
 	.homeBackground {
-		min-height: 33vh;
+		min-height: 50vh;
 	}
 
 	.display-5 {
-		font-size: 1.5rem;
+		font-size: 1.3rem;
 	}
 
 	.form-message {
@@ -938,10 +1016,6 @@ Blog page
 
 	.card {
 		min-width: 75%;
-	}
-
-	header .nav-bar {
-		padding: 25px 20px;
 	}
 
 	.media-icons {
@@ -1009,9 +1083,11 @@ Blog page
 		margin-top: 4rem;
 	}
 
+
 	/*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
+	/*======= Navigation menu =======*/
 	.nav-menu-btn {
 		display: block;
 		color: var(--white-color);
@@ -1021,12 +1097,13 @@ Blog page
 
 	.nav-close-btn {
 		display: block;
-		color: var(--darkcolor);
+		color: var(--dark-color);
 		position: absolute;
 		top: 0;
 		right: 0;
 		font-size: 1.3em;
-		margin: 0.3em;
+		margin: 10px;
+		cursor: pointer;
 		transition: 0.3s ease;
 	}
 
@@ -1047,13 +1124,15 @@ Blog page
 	}
 
 	.navigation.active {
-		visibility: visable;
+		visibility: visible;
 		opacity: 1;
 	}
 
 	.navigation .nav-items {
-		position: relative;
-		background-color: var(--white-color);
+		/* display: none; */
+		visibility: hidden;
+		position: absolute;
+		background: var(--white-color);
 		width: 400px;
 		max-width: 400px;
 		display: grid;
@@ -1062,50 +1141,50 @@ Blog page
 		padding: 40px;
 		border-radius: 20px;
 		box-shadow: var(--box-shadow);
-		/* transform: translateY(-200px);
-		transition: 0.3s ease; */
+		transform: translateY(-150px);
+		transition: 0.3s ease;
 	}
 
-	/* .navigation.active .nav-items {
+	.navigation.active .nav-items {
+		visibility: visible;
 		transform: translateY(0);
-	} */
+	}
 
 	.navigation .nav-items a {
 		color: var(--dark-color);
 		font-size: 1em;
 		margin: 15px 50px;
 		transition: 0.3s ease;
-
 	}
 
-	/* .navigation .nav-items a:hover {
+	.navigation .nav-items a:hover {
 		color: var(--navigation-item-hover-color);
-	} */
+	}
 
-	.navigation .nav-items a i {
+	.navigation .nav-items>a>i {
 		display: inline-block;
 		font-size: 1.3em;
 		margin-right: 5px;
 	}
 
-	.swiper-slider .text-content .read-btn {
-		font-size: 0.9em;
-		padding: 5px 15px;
+	.logo {
+		margin-left: 10px;
+		font-size: 20px;
 	}
 }
 
 /*--------------------------------------------------------------
-#media Queries (max-width: 785px)
+#media Queries (max-width: 570px)
 --------------------------------------------------------------*/
 @media screen and (max-width: 570px) {
 	.homeBackground {
-		min-height: 24vh;
+		min-height: 38vh;
 	}
 
 	.display-5 {
-		font-size: 1.2rem;
+		font-size: 1.1rem;
 	}
-	
+
 	.homeBackground #logoText {
 		top: 7vh;
 	}
@@ -1114,6 +1193,7 @@ Blog page
 		font-size: 0.9rem;
 		width: 80%;
 	}
+
 	.compose-mail {
 		font-size: 0.9rem;
 	}
@@ -1141,48 +1221,87 @@ Blog page
 		padding: 20px 0;
 		text-align: center;
 	}
-}
 
-/*--------------------------------------------------------------
-#media Queries (max-width: 785px)
+	.navigation .nav-items {
+		max-width: 284px;
+	}
+
+	.navigation .nav-items a {
+		margin: 6px 50px;
+	}
+
+	/*--------------------------------------------------------------
+#media Queries (max-width: 396px)
 --------------------------------------------------------------*/
-@media screen and (max-width: 396px) {
+	@media screen and (max-width: 396px) {
 
-	.blog-title {
-		font-size: 2rem;
-	}
+		.homeBackground {
+			min-height: 25vh;
+		}
 
-	.blog-subtitle {
-		font-size: 0.9rem;
-	}
+		.display-5 {
+			font-size: 0.9rem;
+		}
 
-	.blog {
-		min-height: 300px;
-	}
+		.homeBackground #logoText {
+			top: 8vh;
+		}
 
-	.post-box {
-		padding: 10px;
-	}
+		.blog-title {
+			font-size: 2rem;
+		}
 
-	.header-title {
-		font-size: 1.4rem;
-	}
+		.form-message {
+			font-size: 0.7rem;
+			width: 80%;
+		}
 
-	.header-img {
-		height: 240px;
-	}
+		.compose-mail {
+			font-size: 0.7rem;
+		}
 
-	.post-header {
-		height: 300px;
-	}
+		.form-message-note {
+			font-weight: 300;
+			font-size: 0.7rem;
+		}
 
-	.post-content {
-		margin-top: 4rem !important;
-	}
+		.blog-subtitle {
+			font-size: 0.9rem;
+		}
 
-	.post-text {
-		font-size: 0.875rem;
-		line-height: 1.5rem;
-		margin: 10px 0;
+		.blog {
+			min-height: 300px;
+		}
+
+		.post-box {
+			padding: 10px;
+		}
+
+		.header-title {
+			font-size: 1.4rem;
+		}
+
+		.header-img {
+			height: 240px;
+		}
+
+		.post-header {
+			height: 300px;
+		}
+
+		.post-content {
+			margin-top: 4rem !important;
+		}
+
+		.post-text {
+			font-size: 0.875rem;
+			line-height: 1.5rem;
+			margin: 10px 0;
+		}
+
+		.logo {
+			margin-left: 10px;
+			font-size: 20px;
+		}
 	}
 }

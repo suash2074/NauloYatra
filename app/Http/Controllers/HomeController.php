@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\About_section;
+use App\Models\Bookings;
 use App\Models\Comment;
 use App\Models\Culture;
 use App\Models\Gallery;
@@ -12,6 +13,7 @@ use App\Models\News;
 use App\Models\News_details;
 use App\Models\Trek;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -44,8 +46,33 @@ class HomeController extends Controller
 
     public function admin()
     {
-        return redirect()->route('adminHome');
+
+        $monthly_bookings = Bookings::pluck('id', 'created_at');
+        $monthly_totals = [];
+
+        foreach ($monthly_bookings as $created_at => $id) {
+            $month = date('F Y', strtotime($created_at)); // Format the date as "Month Year"
+            if (isset($monthly_totals[$month])) {
+                $monthly_totals[$month]++;
+            } else {
+                $monthly_totals[$month] = 1;
+            }
+        }
+
+        $monthly_sales = Bookings::pluck('advance_payment', 'created_at')
+            ->groupBy(function ($item, $key) {
+                return Carbon::parse($key)->format('F Y'); // Convert the string to Carbon instance and format as 'F Y' (e.g., 'May 2023')
+            })
+            ->map(function ($item) {
+                return $item->sum(); // Calculate the sum of advance payments for each month
+            })
+            ->toArray();
+
+        $monthly_sales_json = json_encode($monthly_sales);
+
+        return view('admin.home.adminHome', compact('monthly_sales_json', 'monthly_totals'));
     }
+
 
     public function adminBlog()
     {
@@ -129,6 +156,31 @@ class HomeController extends Controller
 
     public function guide()
     {
-        return redirect()->route('guide.guideHome');
+
+        $monthly_bookings = Bookings::where('guide_name', auth()->user()->id)->pluck('id', 'created_at');
+        // dd($monthly_bookings);
+        $monthly_totals = [];
+
+        foreach ($monthly_bookings as $created_at => $id) {
+            $month = date('F Y', strtotime($created_at)); // Format the date as "Month Year"
+            if (isset($monthly_totals[$month])) {
+                $monthly_totals[$month]++;
+            } else {
+                $monthly_totals[$month] = 1;
+            }
+        }
+
+        $monthly_sales = Bookings::where('guide_name', auth()->user()->id)->pluck('advance_payment', 'created_at')
+            ->groupBy(function ($item, $key) {
+                return Carbon::parse($key)->format('F Y'); // Convert the string to Carbon instance and format as 'F Y' (e.g., 'May 2023')
+            })
+            ->map(function ($item) {
+                return $item->sum(); // Calculate the sum of advance payments for each month
+            })
+            ->toArray();
+
+        $monthly_sales_json = json_encode($monthly_sales);
+
+        return view('guide.home.guideHome', compact('monthly_sales_json', 'monthly_totals'));
     }
 }

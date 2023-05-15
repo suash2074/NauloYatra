@@ -23,7 +23,6 @@ class AboutSectionContreller extends Controller
      */
     public function index(Request $request)
     {
-
         $search = $request['search'] ?? "";
         if($search != ""){
             $this->about_section = $this->about_section->orderBy('id', 'DESC')->with('trek_info')->where('title', 'LIKE', "%$search%")->orWhere("description", 'LIKE', "%$search%")->paginate(6);

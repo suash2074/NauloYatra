@@ -273,7 +273,7 @@
                 center: [{{ $map->start_point }}], // starting position
             @endforeach
             zoom: 13 // starting zoom
-        });
+        }); 
 
         // Set marker options.
         const marker = new mapboxgl.Marker({

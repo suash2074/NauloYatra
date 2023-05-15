@@ -17,7 +17,7 @@
     <div class="container-fluid">
         <div class="container-sm mt-5" style="text-align:justify">
             <div class="row">
-                <div class="col-6">
+                <div class="col-6 fit">
                     <p>Naulo Yatra is a trekking website that has quickly become a go-to
                         resource for outdoor enthusiasts looking to explore Nepal's stunning
                         landscapes. Launched in 2018, the platform aims to create a community of
@@ -39,18 +39,18 @@
                         and connecting with like-minded individuals who share a passion for
                         trekking and the great outdoors.</p>
                 </div>
-                <div class="col-6">
+                <div class="col-6 fit">
                     <img src="{{ asset('images/aboutPhoto1.webp') }}" alt="">
 
                 </div>
             </div>
 
-            <div class="row mt-5 mb-5">
-                <div class="col-6">
+            <div class="row mt-5 mb-5 reverse">
+                <div class="col-6 fit">
                     <img src="{{ asset('images/aboutPhoto2.jpg') }}" alt="">
 
                 </div>
-                <div class="col-6">
+                <div class="col-6 fit">
                     <p>Another exciting feature of Naulo Yatra is the wealth of new and
                         undiscovered trekking routes and destinations that are featured on the
                         platform. While there are plenty of popular treks in Nepal, such as the

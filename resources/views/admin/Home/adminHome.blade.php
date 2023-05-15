@@ -1,4 +1,9 @@
 @include('admin.adminInclude.header')
+{{-- <style>
+    #chart-container {
+        height: 100vh;
+    }
+</style> --}}
 
 @include('admin.adminInclude.sidebar')
 
@@ -12,7 +17,6 @@
             @include('admin.adminInclude.topNav')
 
             @include('admin.adminInclude.status')
-
 
             <div class="container-fluid mt--7">
                 <div class="row">
@@ -30,19 +34,11 @@
                                         <ul class="nav nav-pills justify-content-end">
                                             <li class="nav-item mr-2 mr-md-0" data-toggle="chart"
                                                 data-target="#chart-sales"
-                                                data-update='{"data":{"datasets":[{"data":[0, 20, 10, 30, 15, 40, 20, 60, 60]}]}}'
-                                                data-prefix="Nrs " data-suffix="k">
+                                                data-update='{"data":{"datasets":[{"data":[]}]}}' data-prefix="NRS "
+                                                data-suffix="k">
                                                 <a href="#" class="nav-link py-2 px-3 active" data-toggle="tab">
                                                     <span class="d-none d-md-block">Month</span>
                                                     <span class="d-md-none">M</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item" data-toggle="chart" data-target="#chart-sales"
-                                                data-update='{"data":{"datasets":[{"data":[0, 20, 5, 25, 10, 30, 15, 40, 40]}]}}'
-                                                data-prefix="Nrs " data-suffix="k">
-                                                <a href="#" class="nav-link py-2 px-3" data-toggle="tab">
-                                                    <span class="d-none d-md-block">Week</span>
-                                                    <span class="d-md-none">W</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -81,12 +77,21 @@
                     </div>
                 </div>
             </div>
+
+
+
+
             @include('admin.adminInclude.footer')
 
             <script>
-                OrdersChart = function() {
+                labels: {!! json_encode(array_keys($monthly_totals, $monthly_sales_json)) !!},
+                    //Total booking per month js
+                    OrdersChart = function() {
                         var e, a, t = $("#chart-orders");
-                        $('[name="ordersSelect"]');
+                        var monthlyBookings = {!! json_encode($monthly_totals) !!};
+                        var months = Object.keys(monthlyBookings);
+                        var bookingCounts = Object.values(monthlyBookings);
+
                         t.length && (e = t, a = new Chart(e, {
                             type: "bar",
                             options: {
@@ -99,7 +104,7 @@
                                         },
                                         ticks: {
                                             callback: function(e) {
-                                                if (!(e % 10)) return e
+                                                if (!(e % 5)) return e;
                                             }
                                         }
                                     }]
@@ -107,68 +112,68 @@
                                 tooltips: {
                                     callbacks: {
                                         label: function(e, a) {
-                                            var t = a.datasets[e.datasetIndex].label || "",
-                                                o = e.yLabel,
-                                                n = "";
+                                            var t = a.datasets[e.datasetIndex].label || "";
+                                            var o = e.yLabel;
+                                            var n = "";
                                             return 1 < a.datasets.length && (n +=
                                                     '<span class="popover-body-label mr-auto">' + t + "</span>"),
-                                                n += '<span class="popover-body-value">' + o + "</span>"
+                                                n += '<span class="popover-body-value">' + o + "</span>";
                                         }
                                     }
                                 }
                             },
                             data: {
-                                labels: ["Jan", "Feb", "Mar", "Apr", "May", "jun", "Jul", "Aug", "Sep", "Oct", "Nov",
-                                    "Dec"
-                                ],
+                                labels: months,
                                 datasets: [{
-                                    label: "Sales",
-                                    data: [25, 20, 30, 22, 17, 29, 10, 5, 1, 5, 5, 5]
-                                }]
-                            }
-                        }), e.data("chart", a))
-                    }(),
-                    SalesChart = function() {
-                        var e, a, t = $("#chart-sales");
-                        t.length && (e = t, a = new Chart(e, {
-                            type: "line",
-                            options: {
-                                scales: {
-                                    yAxes: [{
-                                        gridLines: {
-                                            lineWidth: 1,
-                                            color: Charts.colors.gray[900],
-                                            zeroLineColor: Charts.colors.gray[900]
-                                        },
-                                        ticks: {
-                                            callback: function(e) {
-                                                if (!(e % 10)) return "Nrs " + e + "k"
-                                            }
-                                        }
-                                    }]
-                                },
-                                tooltips: {
-                                    callbacks: {
-                                        label: function(e, a) {
-                                            var t = a.datasets[e.datasetIndex].label || "",
-                                                o = e.yLabel,
-                                                n = "";
-                                            return 1 < a.datasets.length && (n +=
-                                                    '<span class="popover-body-label mr-auto">' + t + "</span>"),
-                                                n += '<span class="popover-body-value">Nrs ' + o + "k</span>"
-                                        }
-                                    }
-                                }
-                            },
-                            data: {
-                                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov",
-                                    "Dec"
-                                ],
-                                datasets: [{
-                                    label: "Performance",
-                                    data: [0, 0, 10, 30, 15, 40, 20, 60]
+                                    label: "Bookings",
+                                    data: bookingCounts
                                 }]
                             }
                         }), e.data("chart", a))
                     }();
+
+                //Total sales per month JS
+                var monthly_Sales = {!! $monthly_sales_json !!};
+
+                SalesChart = function() {
+                    var e, a, t = $("#chart-sales");
+                    t.length && (e = t, a = new Chart(e, {
+                        type: "line",
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    gridLines: {
+                                        lineWidth: 1,
+                                        color: Charts.colors.gray[900],
+                                        zeroLineColor: Charts.colors.gray[900]
+                                    },
+                                    ticks: {
+                                        callback: function(e) {
+                                            if (!(e % 10)) return "NRS " + e;
+                                        }
+                                    }
+                                }]
+                            },
+                            tooltips: {
+                                callbacks: {
+                                    label: function(e, a) {
+                                        var t = a.datasets[e.datasetIndex].label || "",
+                                            o = e.yLabel,
+                                            n = "";
+                                        return 1 < a.datasets.length && (n +=
+                                                '<span class="popover-body-label mr-auto">' + t + "</span>"),
+                                            n += '<span class="popover-body-value">Nrs ' + o + "</span>";
+                                    }
+                                }
+                            }
+                        },
+                        data: {
+                            labels: Object.keys(monthly_Sales), // Use the months as labels
+                            datasets: [{
+                                label: "Performance",
+                                data: Object.values(monthly_Sales) // Use the sales values
+                            }]
+                        }
+                    }), e.data("chart", a));
+                }();
             </script>

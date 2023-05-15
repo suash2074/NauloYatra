@@ -27,7 +27,7 @@ class PackageSeeder extends Seeder
             ],
 
             [
-                'user_id' => 3,
+                'user_id' => 4,
                 'trek_id' => 2,
                 'package_name' => '12 Days 11 Night trek Shey Poksundo Trek',
                 'created_at' => Carbon::now(),
@@ -126,7 +126,7 @@ class PackageSeeder extends Seeder
             ],
 
 
-            //package 5 Details 
+            //package 3 Details 
             [
                 'package_id' => 1,
                 'trek_type' => 'Gap Trek',

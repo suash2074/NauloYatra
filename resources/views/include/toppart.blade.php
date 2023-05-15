@@ -25,8 +25,8 @@
 
     <!-- unicons css -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link href={{ asset('assets/css/argon-dashboard.css') }} rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     {{-- Map Css --}}
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />

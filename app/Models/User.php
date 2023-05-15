@@ -60,7 +60,7 @@ class User extends Authenticatable
             'phone' => 'required|string',
             'address' => 'required|string',
             'email' => 'required|string',
-            'password' => 'required|string',
+            'password' => 'required|string|min:8',
             'photo' => 'nullable|image|max:5120',
             'cost_per_day' => 'nullable|integer'
         ];

@@ -1,6 +1,7 @@
    <div class="footer container">
-       <p>&#169; Naulo Yatra 2023 <br><a href="{{route('about_us')}}" style="display:flex; justify-content:center; color:rgb(82, 80, 80)">About Us</a></p>
-        
+       <p>&#169; Naulo Yatra 2023 <br><a href="{{ route('about_us') }}"
+               style="display:flex; justify-content:center; color:rgb(82, 80, 80)">About Us</a></p>
+
        <div class="social">
            <a href="#"><i class="uil uil-facebook-f"></i></a>
            <a href="#" style="color: #69abf2"><i class="uil uil-instagram"></i></a>
@@ -28,7 +29,26 @@
    <script src="{{ asset('js/main.js') }}"></script>
 
    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+   <script>
+       const menuBtn = document.querySelector(".nav-menu-btn");
+       const closeBtn = document.querySelector(".nav-close-btn");
+       const navigation = document.querySelector(".navigation");
 
+       menuBtn.addEventListener("click", () => {
+           navigation.classList.add("active");
+       });
+
+       closeBtn.addEventListener("click", () => {
+           navigation.classList.remove("active");
+       });
+
+    //    const image = document.querySelector("img"),
+    //    input = document.querySelector("input");
+
+    //    input.addEventListener("change", () => {
+    //     image.src = URL.createObjectURL(input.files[0]);
+    //    });
+   </script>
    @notifyJs
 
    </body>

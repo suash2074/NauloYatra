@@ -103,8 +103,8 @@ Route::prefix('user')->middleware(['auth', 'user'])->group(function () {
     Route::post('/packages/book', [App\Http\Controllers\PackagesController::class, 'book'])->name('book');
     Route::get('/gallery{id}', [App\Http\Controllers\GalleryController::class, 'index'])->name('gallery');
     Route::resource('/profile', ProfileController::class);
+    Route::get('esewa/pay/confirm', [EsewaController::class,'esewaPayConfirm'])->name('esewaPayConfirm');
     Route::get('esewa/pay/{id}', [EsewaController::class,'esewaPay'])->name('esewa-pay');
-    Route::get('esewa/pay/confirm', [EsewaController::class,'esewaConfirm'])->name('esewa-pay-confirm');
 });
 
 Route::prefix('guide')->as('guide.')->middleware(['auth', 'guide'])->group(function () {
